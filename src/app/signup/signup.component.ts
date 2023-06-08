@@ -17,21 +17,46 @@ import {
 export class SignupComponent {
 
   form!:FormGroup
- 
+  matchingPWD!:string | null
   constructor(
     private fb: FormBuilder,
   ) {}
   
   ngOnInit(): void {
+    this.matchingPWD= null
     this.form = this.fb.group({
-      email: ['', [Validators.required]],
-      password: ['', [Validators.required]],
       username:['',[Validators.required]],
-      cpassword:['',[Validators.required]]
+      email: ['', [Validators.required, Validators.email]],
+      password: ['', [Validators.required]],
+      cpassword:['',[Validators.required]],
+      
     });
   }
 
+  matchValues(password: string, cpassword: string) {
+   if (password===cpassword){
+    this.matchingPWD= null
+    return 
+   }else
+   { this.matchingPWD= "password missmatch"
+  return}
+  }
+
+
   signup() {
-  console.log(this.form.value)
+    if (this.form.invalid){
+      console.log("invalid");
+      return
+    } else{
+      this.matchValues( this.form.get('password')?.value,this.form.get('cpassword')?.value)
+      if (!this.matchingPWD){
+        console.log(this.form.value)    
+      } else{
+        console.log(this.matchingPWD);
+        
+      }
+      
+    }
+  
 }
 }

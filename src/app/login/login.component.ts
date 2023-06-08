@@ -6,7 +6,7 @@ import {
   Validators,
   ReactiveFormsModule
 } from '@angular/forms';
-import { NavSideBarComponent } from '../nav-side-bar/nav-side-bar.component';
+
 
 @Component({
   selector: 'app-login',
@@ -24,12 +24,16 @@ export class LoginComponent {
 
   ngOnInit(): void {
     this.form = this.fb.group({
-      email: ['', [Validators.required]],
+      email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required]],
     });
   }
 
-  logIn() {
+ logIn() {
+    if (this.form.invalid){
+      console.log("invalid");
+      return
+    }
   console.log(this.form.value)
 }
 }
