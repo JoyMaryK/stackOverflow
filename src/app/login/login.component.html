@@ -1,0 +1,15 @@
+
+<div class="container  flex flex-col justify-center items-center h-screen">
+  <div class="border flex justify-center w-7/12 m-4 rounded-3xl sm:w-5/12"> 
+    <form class="sm:text-2xl w-full m-2 flex-col " [formGroup]="form" (ngSubmit)="logIn()">
+        <h1 class=" text-2xl sm:text-5xl font-semibold text-[#1F7A8C] sm:mt-12 mb-6">Login</h1>
+        <label for="email" >Email:</label><br>
+        <input type="text" id="email" formControlName="email" class="mb-3 border bg-[#E1E5F2] w-11/12  rounded p-1" placeholder="Enter your email"><br>
+        <label for="password">Password:</label><br>
+        <input type="password" id="password" formControlName="password" class="border bg-[#E1E5F2] w-11/12 rounded p-1" placeholder="Enter your password"> <br>
+        <a class="text-sm text-[#1F7A8C] " href="">forgot password?</a> <br>
+        <button type="submit" class="mt-5  bg-[#1F7A8C] pt-1 pb-1 pl-3 pr-3 rounded-md text-white mb-4 ">Login</button>  <br>
+         <p class="text-sm">Don't have an account? <a>signup</a></p>
+      </form>
+</div>
+</div>
