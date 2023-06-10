@@ -1,0 +1,26 @@
+<div class="container">
+    <div class="pg-titles mt-4 flex justify-between items-center">
+        <div class="title ">
+            <h2 class=" font-semibold sm:text-2xl sm:ml-4">
+                Ask Question
+            </h2>
+        </div>
+     </div>
+
+     <form class=" m-2 ml-9 sm:text-xl flex-col w-10/12 " >
+          <div class="inputs ">
+            <label for="title" >Question Title:</label><br>
+            <input type="text" id="title" formControlName="title" class="mb-3 border bg-[#E1E5F2] w-10/12 rounded p-1" placeholder="Enter the title of the question" required>
+             
+            </div><br>
+            <label for="question" >Question Description:</label><br>
+            <textarea rows="5" cols="16" id="question" formControlName="question" class="mb-3 border bg-[#E1E5F2] w-10/12 rounded p-1 " placeholder="Enter your question's details" required></textarea>
+           <br>
+            <label for="tags">Tags:</label><br>
+            <input type="text" id="tags" formControlName="tags" class="border bg-[#E1E5F2] w-10/12 rounded p-1 mb-3 " placeholder="Enter tags" required> 
+           
+            <br>
+          <button class="mt-5  bg-[#1F7A8C] pt-1 pb-1 pl-3 pr-3 rounded-md text-white mb-3 ">Post</button>
+       
+        </form>
+</div>

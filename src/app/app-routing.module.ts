@@ -13,6 +13,7 @@ const routes: Routes = [
     { path: '', loadComponent: () => import('./home/home.component').then(m => m.HomeComponent) },
     {path:'your-questions',loadComponent: () => import('./your-questions/your-questions.component').then(m =>m.YourQuestionsComponent)},
     {path:'tags',loadComponent: () => import('./tags/tags.component').then(m =>m.TagsComponent)},
+    {path:'ask',loadComponent: () => import('./ask-question/ask-question.component').then(m =>m.AskQuestionComponent)},
   ]},
 
 ];
