@@ -12,13 +12,13 @@ import { addQuestion } from '../Store/actions/questionActions';
 import { Question } from '../Interfaces';
 
 @Component({
-  selector: 'app-ask-question',
+  selector: 'app-update-profile',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule],
-  templateUrl: './ask-question.component.html',
-  styleUrls: ['./ask-question.component.css']
+  imports: [CommonModule,ReactiveFormsModule],
+  templateUrl: './update-profile.component.html',
+  styleUrls: ['./update-profile.component.css']
 })
-export class AskQuestionComponent {
+export class UpdateProfileComponent {
   form!:FormGroup
   invalid!: string | null
   constructor(
@@ -29,9 +29,11 @@ export class AskQuestionComponent {
   ngOnInit(): void {
   
     this.form = this.fb.group({
-      title: ['', [Validators.required]],
-      question: ['', [Validators.required]],
-      tags: ['', [Validators.required]],
+      
+      username: ['Joy', [Validators.required]],
+      email: ['joy@gmail.com', [Validators.required]],
+      location: ['Nyeri', [Validators.required]],
+      about: ['About Me?', [Validators.required]],
     });
   }
 
@@ -43,8 +45,7 @@ export class AskQuestionComponent {
     }else{
       this.invalid=null
       console.log(this.form.value)
-      let newq:Question = {...this.form.value, id:"2", user_id:'2',date:'12/3/22'}
-      this.store.dispatch(addQuestion({newQuestion:newq}))
+     
     }
 
   }

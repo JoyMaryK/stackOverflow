@@ -1,6 +1,11 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
+import { Store } from '@ngrx/store';
+import { AppState } from 'src/app/app.state';
+import { selectAllQuestions } from 'src/app/Store/Selectors/selectors';
+import * as actions from '../../Store/actions/questionActions';
+
 
 @Component({
   selector: 'app-admin-questions',
@@ -10,5 +15,10 @@ import { RouterModule } from '@angular/router';
   styleUrls: ['./admin-questions.component.css']
 })
 export class AdminQuestionsComponent {
+  constructor(private store:Store<AppState>){}
 
+  questions$ = this.store.select(selectAllQuestions)
+ ngOnInit(): void {
+    this.store.dispatch(actions.getAllQuestions()) 
+ }
 }

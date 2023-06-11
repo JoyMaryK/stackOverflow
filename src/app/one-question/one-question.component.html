@@ -1,0 +1,42 @@
+<div class="container h-screen w-11/12">
+
+    <div class="whole-question  ">
+        <div class="m-3 title">
+            <p class=" text-xl text-[#1F7A8C] ">The question being asked ?</p>
+        </div>
+        <p class="m-3">the loong description of the question being asked will go right here :></p>
+         <p class="font-light text-right text-gray-500">asked on: 2/2/23</p>
+    </div>
+     <div class="all-answers ">
+        <h1 class="ml-3 text-xl font-semibold ">2 Answers</h1>
+   <div class="one-answer bg-[#BFDBF7] m-3">
+    <p class="text-center text-xs text-[#1F7A8C]">Accepted Answer</p>
+    <div class="user-question w-full flex p-3 ">
+            <p class="name-letter bg-[#1F7A8C] p-2 h-fit text-white rounded-md cursor-pointer" routerLink="/home/update">J</p>
+         
+        <div class="question ml-4 ">
+                <p> The answer to the question is here </p>
+        </div>
+    </div>
+
+    <div class="upvote-controls">
+        <div class="upvote-downvote">
+            
+        </div>
+    </div>
+   </div>
+        
+     </div>   
+    <form class="your-answer ml-3" (ngSubmit)="onSubmit()" #answerForm="ngForm" >
+        <label for="answer" class=" font-semibold sm:text-2xl sm:ml-4">Your Answer:</label><br>
+        <textarea rows="5" cols="16" id="answer" name="answer" [(ngModel)]="formData.answer"
+          class="mb-3 border bg-[#E1E5F2] w-10/12 rounded p-1 mt-4" placeholder="Enter your answer's details"
+          required></textarea>
+        <div *ngIf="answerForm.controls['answer'].invalid && (answerForm.controls['answer'].dirty || answerForm.controls['answer'].touched)">
+          <div *ngIf="answerForm.controls['answer'].errors?.['required']" class="text-xs text-red-600">Answer description is required</div>
+        </div>
+        <br>
+        <button class="mt-5  bg-[#1F7A8C] pt-1 pb-1 pl-3 pr-3 rounded-md text-white mb-3 ">Post</button>
+      </form>
+      
+</div>

@@ -6,6 +6,9 @@ import {
   Validators,
   ReactiveFormsModule
 } from '@angular/forms';
+import { Store } from '@ngrx/store';
+import * as actions from '../Store/actions/userActions'
+import { User } from '../Interfaces';
 
 @Component({
   selector: 'app-signup',
@@ -19,7 +22,7 @@ export class SignupComponent {
   form!:FormGroup
   matchingPWD!:string | null
   constructor(
-    private fb: FormBuilder,
+    private fb: FormBuilder, private store:Store
   ) {}
   
   ngOnInit(): void {
@@ -50,7 +53,9 @@ export class SignupComponent {
     } else{
       this.matchValues( this.form.get('password')?.value,this.form.get('cpassword')?.value)
       if (!this.matchingPWD){
-        console.log(this.form.value)    
+        console.log(this.form.value) 
+        let newUser:User = {id:"theid", ...this.form.value}
+        this.store.dispatch(actions.addUser({user:newUser}))   
       } else{
         console.log(this.matchingPWD);
         

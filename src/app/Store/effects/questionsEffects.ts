@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
-import * as actions from '../actions/actions';
+import * as actions from '../actions/questionActions';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
-
 import { catchError, exhaustMap, map, mergeMap, of, switchMap } from 'rxjs';
 import { OverallService } from 'src/app/Services/overall.service';
 
@@ -19,6 +18,20 @@ export class QuestionsEffects {
             return actions.getQuestionsSuccess({ questions });
           }),
           catchError((error: any) => of(actions.getQuestionsFailure(error)))
+        )
+      )
+    );
+  });
+  addQuestion$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(actions.addQuestion),
+      mergeMap((action) =>
+        this.service.addQuestion(action.newQuestion).pipe(
+          map((questions) => {
+            console.log(questions);
+            return actions.addQuestionSuccess({ message:'success' });
+          }),
+          catchError((error: any) => of(actions.addQuestionFailure(error)))
         )
       )
     );

@@ -1,0 +1,41 @@
+<div class="container">
+    <div class="pg-titles mt-4 flex justify-between items-center">
+        <div class="title ">
+            <h2 class=" font-semibold sm:text-2xl sm:ml-4">
+                Update Profile
+            </h2>
+        </div>
+     </div>
+
+     <form class=" m-2 ml-9 sm:text-xl flex-col w-10/12 "  [formGroup]="form" (ngSubmit)="onSubmit()" >
+      <p *ngIf="invalid" class="text-xs text-red-600">{{invalid}}</p>
+          
+            <label for="username" >Username:</label><br>
+            <input type="text" id="username" formControlName="username" class="mb-3 border bg-[#E1E5F2] w-10/12 rounded p-1" placeholder="Enter the title of the question" required>
+            <div *ngIf="form.get('username')?.invalid && (form.get('username')?.dirty || form.get('username')?.touched)">
+              <div *ngIf="form.get('username')?.errors?.['required']" class="text-xs text-red-600">Username is required</div>
+            </div>
+            <br>
+            <label for="email" >email:</label><br>
+            <input type="text" id="email" formControlName="email" class="mb-3 border bg-[#E1E5F2] w-10/12 rounded p-1" placeholder="Enter your email" required>
+            <div *ngIf="form.get('email')?.invalid && (form.get('email')?.dirty || form.get('email')?.touched)">
+              <div *ngIf="form.get('email')?.errors?.['required']" class="text-xs text-red-600">Email is required</div>
+            </div>
+            <br>
+            <label for="location" >location:</label><br>
+            <input type="text" id="location" formControlName="location" class="mb-3 border bg-[#E1E5F2] w-10/12 rounded p-1" placeholder="Enter your location" required>
+            <div *ngIf="form.get('location')?.invalid && (form.get('location')?.dirty || form.get('location')?.touched)">
+              <div *ngIf="form.get('location')?.errors?.['required']" class="text-xs text-red-600">location is required</div>
+            </div>
+            <br>
+            <label for="about" >About me:</label><br>
+            <textarea rows="5" cols="16" id="about" formControlName="about" class="mb-3 border bg-[#E1E5F2] w-10/12 rounded p-1 " placeholder="Enter your question's details" required></textarea>
+            <div *ngIf="form.get('about')?.invalid && (form.get('about')?.dirty || form.get('about')?.touched)">
+              <div *ngIf="form.get('about')?.errors?.['required']" class="text-xs text-red-600">about description is required</div>
+            </div>
+            <br>
+          <button class="mt-5  bg-[#1F7A8C] pt-1 pb-1 pl-3 pr-3 rounded-md text-white mb-3 ">Save</button>
+       
+        </form>
+</div>
+
