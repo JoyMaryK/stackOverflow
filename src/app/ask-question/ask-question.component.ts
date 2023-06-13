@@ -14,6 +14,7 @@ import { Question, Tag } from '../Interfaces';
 import { Observable } from 'rxjs';
 import { selectAllTags } from '../Store/Selectors/selectors';
 import { getAllTags } from '../Store/actions/tagsActions';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-ask-question',
@@ -30,7 +31,8 @@ export class AskQuestionComponent {
   
   constructor(
     private fb: FormBuilder,
-    private store:Store<AppState>
+    private store:Store<AppState>,
+    private route:ActivatedRoute
   ) {}
 
   ngOnInit(): void {
@@ -42,6 +44,7 @@ export class AskQuestionComponent {
     });
     this.store.dispatch(getAllTags())
     this.tags$=this.store.select(selectAllTags)
+    
   }
 
   onSubmit(){

@@ -18,7 +18,7 @@ const routes: Routes = [
     {path:'view',loadComponent: () => import('./view-profile/view-profile.component').then(m =>m.ViewProfileComponent)},
     {path:'question',loadComponent: () => import('./one-question/one-question.component').then(m =>m.OneQuestionComponent)},
     {path:'your-question',loadComponent: () => import('./your-one-question/your-one-question.component').then(m =>m.YourOneQuestionComponent)},
-    
+    {path:'update-question',loadComponent: () => import('./update-question/update-question.component').then(m =>m.UpdateQuestionComponent)},
   ]},
 
 ];

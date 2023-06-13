@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-your-one-question',
@@ -14,5 +14,14 @@ export class YourOneQuestionComponent {
   showComment = false
   showComment1 = false
   selectedOption='';
-
+  invalid:string | null=null
+  onSub(form:NgForm){
+    if (form.valid) {
+      this.invalid=null
+      console.log(form.value);
+     
+    }else{
+      this.invalid="invalid input"
+    }
+  }
 }

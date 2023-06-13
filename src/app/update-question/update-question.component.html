@@ -2,7 +2,7 @@
     <div class="pg-titles mt-4 flex justify-between items-center">
         <div class="title ">
             <h2 class=" font-semibold sm:text-2xl sm:ml-4">
-                Ask Question
+                Update Question
             </h2>
         </div>
      </div>
@@ -12,7 +12,7 @@
       <p *ngIf="msg" class="text-sm text-green-600">{{msg}}</p>
           <div class="inputs ">
             <label for="title" >Question Title:</label><br>
-            <input type="text" id="title" formControlName="title" class="mb-3 border bg-[#E1E5F2] w-10/12 rounded p-1" placeholder="What is a div?" required>
+            <input type="text" id="title" formControlName="title" class="mb-3 border bg-[#E1E5F2] w-10/12 rounded p-1" placeholder="Enter the title of the question" required>
             <div *ngIf="form.get('title')?.invalid && (form.get('title')?.dirty || form.get('title')?.touched)">
               <div *ngIf="form.get('title')?.errors?.['required']" class="text-xs text-red-600">Question title is required</div>
             </div>
@@ -33,7 +33,8 @@
               <div *ngIf="form.get('tags')?.errors?.['required']" class="text-xs text-red-600">Question tag is required</div>
             </div>
             <br>
-          <button class="mt-5  bg-[#1F7A8C] pt-1 pb-1 pl-3 pr-3 rounded-md text-white mb-3 ">Post</button>
+          <button class="mt-5  bg-[#1F7A8C] pt-1 pb-1 pl-3 pr-3 rounded-md text-white mb-3 ">Update</button>
        
         </form>
 </div>
+
