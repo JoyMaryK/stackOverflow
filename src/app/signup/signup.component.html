@@ -16,16 +16,18 @@
               <div *ngIf="form.get('email')?.errors?.['email']" class="text-xs text-red-600" class="text-xs text-red-600">Incorrect email format</div>
             </div><br>
             <label for="password">Password:</label><br>
-            <input type="text" id="password" formControlName="password" class="border bg-[#E1E5F2] w-10/12 rounded p-1 mb-3 " placeholder="Enter your password" required> 
+            <input type="password" id="password" formControlName="password" class="border bg-[#E1E5F2] w-10/12 rounded p-1 mb-3 " placeholder="Enter your password" required> 
             <div *ngIf="form.get('password')?.invalid && (form.get('password')?.dirty || form.get('password')?.touched)">
               <div *ngIf="form.get('password')?.errors?.['required']" class="text-xs text-red-600">Password is required</div>
+            <div *ngIf="form.get('password')?.errors?.['pattern']" class="text-xs text-red-600">Make password stronger</div>
             </div><br>
             <label for="cpassword">Confirm Password:</label><br>
-            <input type="text" id="cpassword" formControlName="cpassword" class="border bg-[#E1E5F2] w-10/12 rounded p-1 mb-3 " placeholder="Confirm your password" required>
+            <input type="password" id="cpassword" formControlName="cpassword" class="border bg-[#E1E5F2] w-10/12 rounded p-1 mb-3 " placeholder="Confirm password" required>
             <div *ngIf="form.get('cpassword')?.invalid && (form.get('cpassword')?.dirty || form.get('cpassword')?.touched)">
-              <div *ngIf="matchingPWD" class="text-xs text-red-600">{{matchingPWD}}</div>
-              <div *ngIf="form.get('cpassword')?.errors?.['required']" class="text-xs text-red-600">Passwords is required</div>
-            </div> <br>
+            
+              <div *ngIf="form.get('cpassword')?.errors?.['required']" class="text-xs text-red-600">Password is required</div>
+            </div> 
+            <div *ngIf="matchingPWD" class="text-xs text-red-600">{{matchingPWD}}</div><br>
           </div>
          
           <button class="mt-5  bg-[#1F7A8C] pt-1 pb-1 pl-3 pr-3 rounded-md text-white mb-3  ">Signup</button>

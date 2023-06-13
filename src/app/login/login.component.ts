@@ -6,7 +6,7 @@ import {
   Validators,
   ReactiveFormsModule
 } from '@angular/forms';
-import { RouterModule } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 
 
 @Component({
@@ -21,6 +21,7 @@ export class LoginComponent {
 
   constructor(
     private fb: FormBuilder,
+    private router:Router
   ) {}
 
   ngOnInit(): void {
@@ -36,5 +37,6 @@ export class LoginComponent {
       return
     }
   console.log(this.form.value)
+  this.router.navigateByUrl('/home')
 }
 }

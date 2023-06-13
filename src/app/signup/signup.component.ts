@@ -9,6 +9,7 @@ import {
 import { Store } from '@ngrx/store';
 import * as actions from '../Store/actions/userActions'
 import { User } from '../Interfaces';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-signup',
@@ -18,11 +19,11 @@ import { User } from '../Interfaces';
   styleUrls: ['./signup.component.css']
 })
 export class SignupComponent {
-
+  invalid!:string|null
   form!:FormGroup
   matchingPWD!:string | null
   constructor(
-    private fb: FormBuilder, private store:Store
+    private fb: FormBuilder, private store:Store, private router:Router
   ) {}
   
   ngOnInit(): void {
@@ -30,7 +31,7 @@ export class SignupComponent {
     this.form = this.fb.group({
       username:['',[Validators.required]],
       email: ['', [Validators.required, Validators.email]],
-      password: ['', [Validators.required]],
+      password: ['', [Validators.required, Validators.pattern( /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/)]],
       cpassword:['',[Validators.required]],
       
     });
@@ -49,13 +50,15 @@ export class SignupComponent {
   signup() {
     if (this.form.invalid){
       console.log("invalid");
+      this.invalid="confirm all fields are valid"
       return
     } else{
       this.matchValues( this.form.get('password')?.value,this.form.get('cpassword')?.value)
       if (!this.matchingPWD){
         console.log(this.form.value) 
         let newUser:User = {id:"theid", ...this.form.value}
-        this.store.dispatch(actions.addUser({user:newUser}))   
+        this.store.dispatch(actions.addUser({user:newUser}))  
+        this.router.navigateByUrl('/login')
       } else{
         console.log(this.matchingPWD);
         

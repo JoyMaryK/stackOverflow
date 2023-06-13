@@ -17,7 +17,8 @@ const routes: Routes = [
     {path:'update',loadComponent: () => import('./update-profile/update-profile.component').then(m =>m.UpdateProfileComponent)},
     {path:'view',loadComponent: () => import('./view-profile/view-profile.component').then(m =>m.ViewProfileComponent)},
     {path:'question',loadComponent: () => import('./one-question/one-question.component').then(m =>m.OneQuestionComponent)},
-
+    {path:'your-question',loadComponent: () => import('./your-one-question/your-one-question.component').then(m =>m.YourOneQuestionComponent)},
+    
   ]},
 
 ];

@@ -11,10 +11,15 @@
     </div>
  </div>
 <div class="all-questions mt-5" *ngIf="questions$ | async as questions">
-    <div class="one-question border m-3 p-3 sm:flex sm:justify-between sm:items-center " *ngFor="let question of questions">
+    <div class="one-question border m-3 p-3 sm:flex sm:justify-between sm:items-center " *ngFor="let question of questions" [ngClass]="{'answered':question.answersNo!>0}">
     <div class="question-tags mb-3 flex-col p-3">
-        <p class="sm:font-semibold text-xl">{{question.title}}</p>
-        <p >tag tag</p>
+        <p class="sm:font-semibold text-xl" routerLink="/home/question">{{question.title}}</p>
+        <div class="tags-container">
+            <div *ngFor="let tag of question.tags" >
+                <p class="text-[#1F7A8C] text-xs">#{{tag.tagName}}</p>
+                </div>
+       
+        </div>
     </div>
     <div class="answers-date bg-[#E1E5F2] rounded-md w-fit  p-3 ">
         <p>{{question.answersNo}} Answers</p>

@@ -2,11 +2,10 @@ export interface Question{
     id:string
     title:string
     description:string
-    tag:string
+    tags:Tag[]
     user_id:string
     answersNo?:number
     date:string
-
 }
 
 export interface QuestionState {

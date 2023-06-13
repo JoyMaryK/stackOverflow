@@ -13,7 +13,7 @@
             </h3>
         </div>
     </div>
-    <div class="search hidden bg-[#E1E5F2] h-6 sm:flex  justify-center items-center rounded-md">
+    <div class="search hidden bg-[#E1E5F2] h-6 sm:flex outline-none border-none justify-center items-center rounded-md">
         <input type="search" name="search" id="search"
         class="bg-[#E1E5F2] w-10/12 " placeholder="search questions"
         >
@@ -23,13 +23,13 @@
         <div class="name-letter bg-[#1F7A8C] p-2 h-fit text-white rounded-md cursor-pointer" routerLink="/home/update">
            <p>J</p>
         </div>
-        <button class="name-letter bg-[#BFDBF7] p-2 h-fit text-white rounded-md mr-7 cursor-pointer" routerLink="/login" >Logout</button>
+        <button class="name-letter bg-[#BFDBF7] p-2 h-fit text-black rounded-md mr-7 cursor-pointer" routerLink="/login" >Logout</button>
     </div>
   </div>
 <div class="down sm:flex">
 
 
-  <div class="sidebar sm:w-1/6 sm:border  sm:h-screen flex justify-between sm:flex-col sm:justify-start sm:gap-10">
+  <div class="sidebar sm:w-1/6 border sm:h-screen   flex justify-between sm:flex-col sm:justify-start sm:gap-10">
     <!-- Sidebar content -->
 <h4 class="mt-3 p-3 cursor-pointer" routerLink="/home" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">Home</h4>
 <h4 class="p-3 cursor-pointer" routerLink="/home/your-questions" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">Your Questions</h4>

@@ -9,20 +9,39 @@ import { Question, ReturnedMessage, Tag, User, UserSignup } from '../Interfaces'
 })
 export class OverallService {
   questions:Question[] = [{id:"1",
-  title:"question title",
-  tag:"tag",
+  title:"question uno",
+  tags:[{ id:'1',
+  tagName:"Joy", description:'a really good kid',}],
+  description:"desc",
+  user_id:"u_id", answersNo:0,
+  date:"12/1/22"},{id:"2",
+  title:"question dos",
+  tags:[{ id:'1',
+  tagName:"Joy", description:'a really good kid',}],
   description:"desc",
   user_id:"u_id", answersNo:2,
+  date:"12/1/22"},{id:"3",
+  title:"question dos",
+  tags:[{ id:'1',
+  tagName:"Joy", description:'a really good kid',}],
+  description:"desc",
+  user_id:"u_id", answersNo:0,
   date:"12/1/22"}]
 
   users:User[]=[{ id:'1',
     username:"Joy",
     email:"joy@gmail.com",
+    password:"password"},{ id:'1',
+    username:"Mary",
+    email:"mary@gmail.com",
+    password:"password"},{ id:'1',
+    username:"Joy Mary",
+    email:"joymary@gmail.com",
     password:"password"}]
     
-    tags:Tag[]=[{ id:'1',
-    tagName:"Joy", description:'a really good kid'
-  }]
+    tags:Tag[]=[{ id:'1',tagName:"Javascript", description:'its just vanilla'}, 
+    { id:'2',tagName:"Java", description:'stable and versatile'},
+    { id:'3',tagName:"PHP", description:'where do I begin?'}]
   constructor() { }
 
   //user related 

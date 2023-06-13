@@ -32,8 +32,8 @@ export class UpdateProfileComponent {
       
       username: ['Joy', [Validators.required]],
       email: ['joy@gmail.com', [Validators.required]],
-      location: ['Nyeri', [Validators.required]],
-      about: ['About Me?', [Validators.required]],
+      location: ['', [Validators.required]],
+      about: ['', [Validators.required]],
     });
   }
 

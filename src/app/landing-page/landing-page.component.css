@@ -1,0 +1,15 @@
+.right{
+    height: 50%;
+   display: grid;
+   place-items: center;
+}
+
+.right img{
+    height: 30rem;
+    object-fit: cover;
+}
+
+.left{
+    margin: auto;
+}
+
