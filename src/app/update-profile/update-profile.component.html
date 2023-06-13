@@ -23,13 +23,13 @@
             </div>
             <br>
             <label for="location" >location:</label><br>
-            <input type="text" id="location" formControlName="location" class="mb-3 border bg-[#E1E5F2] w-10/12 rounded p-1" placeholder="Enter your location" required>
+            <input type="text" id="location" formControlName="location" class="mb-3 border bg-[#E1E5F2] w-10/12 rounded p-1" placeholder="Cairo, Egypt" required>
             <div *ngIf="form.get('location')?.invalid && (form.get('location')?.dirty || form.get('location')?.touched)">
               <div *ngIf="form.get('location')?.errors?.['required']" class="text-xs text-red-600">location is required</div>
             </div>
             <br>
             <label for="about" >About me:</label><br>
-            <textarea rows="5" cols="16" id="about" formControlName="about" class="mb-3 border bg-[#E1E5F2] w-10/12 rounded p-1 " placeholder="Enter your question's details" required></textarea>
+            <textarea rows="5" cols="16" id="about" formControlName="about" class="mb-3 border bg-[#E1E5F2] w-10/12 rounded p-1 " placeholder="I am a Full Stack Developer..." required></textarea>
             <div *ngIf="form.get('about')?.invalid && (form.get('about')?.dirty || form.get('about')?.touched)">
               <div *ngIf="form.get('about')?.errors?.['required']" class="text-xs text-red-600">about description is required</div>
             </div>

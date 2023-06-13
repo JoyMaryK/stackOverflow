@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, NgForm } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 
 @Component({
@@ -13,12 +13,23 @@ import { RouterModule } from '@angular/router';
 export class OneQuestionComponent {
   showComment = false; 
   showComment1= false 
+  invalid:string | null=null
   formData = {
     answer: '',
   };
   onSubmit(){
     console.log(this.formData);
     
+  }
+ 
+  onSub(form:NgForm){
+    if (form.valid) {
+      this.invalid=null
+      console.log(form.value);
+     
+    }else{
+      this.invalid="invalid input"
+    }
   }
 
 }
