@@ -18,7 +18,7 @@ import { Router, RouterModule } from '@angular/router';
 })
 export class LoginComponent {
   form!: FormGroup;
-
+  showFP=false
   constructor(
     private fb: FormBuilder,
     private router:Router
@@ -37,6 +37,12 @@ export class LoginComponent {
       return
     }
   console.log(this.form.value)
+if(this.form.get('email')?.value ==='admin@gmail.com'){
+  this.router.navigateByUrl('/admin-questions')
+} else{
   this.router.navigateByUrl('/home')
+}
+
+ 
 }
 }

@@ -11,7 +11,7 @@
         </div>
      </div>
     <div class="all-tags justify-center sm:justify-around flex flex-wrap" *ngIf="tags$ |async as tags">
-        <div class="one-tag w-56 m-4 mt-3  bg-[#E1E5F2] " *ngFor="let tag of tags">
+        <div class="tag-container one-tag w-56 m-4 mt-3  bg-[#E1E5F2] " *ngFor="let tag of tags">
             <h5 class=" ml-5 text-[#1F7A8C]">#{{tag.tagName}}</h5>
             <p class="p-3">{{tag.description}}</p>
         </div>

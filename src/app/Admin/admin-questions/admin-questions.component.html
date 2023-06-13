@@ -51,7 +51,7 @@
       </div>
     </div>
    <div class="all-questions mt-5" *ngIf="questions$ | async as questions">
-       <div class="one-question border m-3 p-3 sm:flex sm:justify-between sm:items-center " *ngFor="let q of questions">
+       <div class="one-question border m-3 p-3 sm:flex sm:justify-between sm:items-center " *ngFor="let q of questions"  [ngClass]="{'answered':q.answersNo!>0}">
        <div class="question-tags mb-3 flex-col p-3">
             <div class="edit-question flex justify-between items-center gap-2">
                 <p class="sm:font-semibold text-xl">{{q.title}}</p>

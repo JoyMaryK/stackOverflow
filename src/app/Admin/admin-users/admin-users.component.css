@@ -2,3 +2,7 @@
     border-right: 2px solid #1F7A8C;
     background-color: #BFDBF7;
 }
+
+.one-tag{
+    box-shadow:0 .7rem .7rem 0 rgba(0,0 ,0,.2);
+}
