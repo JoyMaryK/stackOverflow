@@ -16,10 +16,12 @@ import { userReducers } from './Store/reducers/userReducers';
 import { tagsReducers } from './Store/reducers/tagsReducers';
 import { TagsEffects } from './Store/effects/tagsEffects';
 import { YourOneQuestionComponent } from './your-one-question/your-one-question.component';
+import { HashPrefixPipe } from './Pipes/hash-prefix.pipe';
 
 @NgModule({
   declarations: [
     AppComponent,
+    HashPrefixPipe,
     
     
   ],

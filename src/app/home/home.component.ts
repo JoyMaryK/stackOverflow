@@ -7,12 +7,14 @@ import * as actions from '../Store/actions/questionActions';
 import { selectAllQuestions } from '../Store/Selectors/selectors';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
+import { HashPrefixPipe } from '../Pipes/hash-prefix.pipe';
 
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css'],
-  imports: [CommonModule, RouterModule],
+  imports: [CommonModule, RouterModule, ],
+  providers: [HashPrefixPipe],
   standalone: true
 })
 export class HomeComponent implements OnInit{

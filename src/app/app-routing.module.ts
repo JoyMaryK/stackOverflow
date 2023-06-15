@@ -20,7 +20,7 @@ const routes: Routes = [
     {path:'your-question',loadComponent: () => import('./your-one-question/your-one-question.component').then(m =>m.YourOneQuestionComponent)},
     {path:'update-question',loadComponent: () => import('./update-question/update-question.component').then(m =>m.UpdateQuestionComponent)},
   ]},
-
+ { path: '**', loadComponent: () => import('./not-found/not-found.component').then(m =>m.NotFoundComponent) },
 ];
 @NgModule({
   imports: [RouterModule.forRoot(routes)],

@@ -16,7 +16,7 @@
         <p class="sm:font-semibold text-xl cursor-pointer" routerLink="/home/question">{{question.title}}</p>
         <div class="tags-container">
             <div *ngFor="let tag of question.tags" >
-                <p class="text-[#1F7A8C] text-xs">#{{tag.tagName}}</p>
+                <p class="text-[#1F7A8C] text-xs">{{tag.tagName }}</p>
                 </div>
        
         </div>

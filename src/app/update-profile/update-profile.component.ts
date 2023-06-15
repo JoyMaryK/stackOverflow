@@ -10,11 +10,12 @@ import { AppState } from '../app.state';
 import { Store } from '@ngrx/store';
 import { addQuestion } from '../Store/actions/questionActions';
 import { Question } from '../Interfaces';
+import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-update-profile',
   standalone: true,
-  imports: [CommonModule,ReactiveFormsModule],
+  imports: [CommonModule,ReactiveFormsModule, RouterModule],
   templateUrl: './update-profile.component.html',
   styleUrls: ['./update-profile.component.css']
 })
