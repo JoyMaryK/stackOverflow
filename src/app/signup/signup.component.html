@@ -30,7 +30,11 @@
             </div> 
             <div *ngIf="matchingPWD" class="text-xs text-red-600">{{matchingPWD}}</div><br>
           </div>
-         
+          <div  class="text-sm flex" > 
+            <p class="text-sm ">Have an account?</p>
+            <p routerLink="/login" class="text-sm text-[#1F7A8C] cursor-pointer ">signin</p>
+          </div>
+            
           <button class="mt-5  bg-[#1F7A8C] pt-1 pb-1 pl-3 pr-3 rounded-md text-white mb-3  ">Signup</button>
        
         </form>

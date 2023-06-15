@@ -9,12 +9,12 @@ import {
 import { Store } from '@ngrx/store';
 import * as actions from '../Store/actions/userActions'
 import { User } from '../Interfaces';
-import { Router } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-signup',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule],
+  imports: [CommonModule, ReactiveFormsModule, RouterModule],
   templateUrl: './signup.component.html',
   styleUrls: ['./signup.component.css']
 })

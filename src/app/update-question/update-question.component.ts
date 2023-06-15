@@ -7,11 +7,12 @@ import { Store } from '@ngrx/store';
 import { getAllTags } from '../Store/actions/tagsActions';
 import { selectAllTags } from '../Store/Selectors/selectors';
 import { AppState } from '../app.state';
+import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-update-question',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule],
+  imports: [CommonModule, ReactiveFormsModule, RouterModule],
   templateUrl: './update-question.component.html',
   styleUrls: ['./update-question.component.css']
 })
