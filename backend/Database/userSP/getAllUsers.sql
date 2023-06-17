@@ -4,6 +4,6 @@ AS
 BEGIN 
 
 
-select * from Users
+select * from Users WHERE isDeleted = 0
 
 END

@@ -13,7 +13,7 @@ go
 create table Users(
   uid varchar(255),
   username varchar(255),
-  email varchar(25),
+  email varchar(255) UNIQUE,
   password varchar(255),
   location varchar(255),
   about varchar(1024),

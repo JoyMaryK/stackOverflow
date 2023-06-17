@@ -4,6 +4,6 @@ AS
 BEGIN 
 
 
-select * from Users where uid=@uid
+select * from Users where uid=@uid and isDeleted=0
 
 END
