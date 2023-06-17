@@ -1,6 +1,5 @@
 import { Request, RequestHandler, Response } from "express";
 import mssql from "mssql";
-import { sqlConfig } from "../config";
 import { v4 as uuid } from "uuid";
 import bcrypt from "bcrypt";
 import { userRegistrationSchema } from "../Helpers/userValidation";

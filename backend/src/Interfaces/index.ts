@@ -25,3 +25,14 @@ export interface DecodedData {
     location?:string;
     about?:string
   }
+
+
+  export interface Tag{
+    tid:string
+    tagname:string
+    description:string
+  }
+
+  export interface Questions{
+      
+  }
