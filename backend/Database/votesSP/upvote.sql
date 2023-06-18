@@ -4,11 +4,11 @@ create proc upvote(
     @aid varchar(255)
 )
 AS
-BEGIN
-   
-    IF NOT EXISTS (SELECT 1 FROM Users WHERE uid = @uid)
+  IF EXISTS (SELECT 1 FROM Votes WHERE aid = @aid AND uid = @uid)
     BEGIN
-        INSERT INTO Votes (vid, aid, uid, type)
-        VALUES (NEWID(), @aid, @uid, 1)
+        UPDATE Votes SET type = 1 WHERE aid = @aid AND uid = @uid
     END
-END
+    ELSE
+    BEGIN
+        INSERT INTO Votes (vid, aid, uid, type) VALUES (@vid, @aid,@uid, 1)
+    END

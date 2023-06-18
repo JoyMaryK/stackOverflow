@@ -145,4 +145,39 @@ Content-Type:  application/json
 
 
 
-//---------comments--------
+//-------------comments--------
+//aid in url
+####
+POST http://localhost:4000/comments/c0e2b4d2-3e49-452b-a234-935b454ab2a0
+Content-Type:  application/json
+
+{
+    "comment": "the comment number 2",
+    "uid":"004a4795-8edb-41c3-b77e-f987f8b65f38"
+   
+   }
+
+
+//aid in url
+####
+GET http://localhost:4000/comments/c0e2b4d2-3e49-452b-a234-935b454ab2a0
+
+
+//---------------------------votes-----------------
+//aid in url
+####
+POST http://localhost:4000/votes/upvote/c0e2b4d2-3e49-452b-a234-935b454ab2a0
+Content-Type:  application/json
+
+{
+    "uid":"004a4795-8edb-41c3-b77e-f987f8b65f38"
+   }
+
+//aid in url
+####
+POST http://localhost:4000/votes/downvote/c0e2b4d2-3e49-452b-a234-935b454ab2a0
+Content-Type:  application/json
+
+{ 
+   "uid":"004a4795-8edb-41c3-b77e-f987f8b65f38"
+}

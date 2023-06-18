@@ -5,9 +5,12 @@ create proc downvote(
 )
 AS
 BEGIN
-    IF NOT EXISTS (SELECT 1 FROM Users WHERE uid = @uid)
+    IF EXISTS (SELECT 1 FROM Votes WHERE aid = @aid AND uid = @uid)
     BEGIN
-        INSERT INTO Votes (vid, aid, uid, type)
-        VALUES (@vid, @aid, @uid, 0)
+        UPDATE Votes SET type = 0 WHERE aid = @aid AND uid = @uid
+    END
+    ELSE
+    BEGIN
+        INSERT INTO Votes (aid, uid, type) VALUES (@aid, @uid, 0)
     END
 END

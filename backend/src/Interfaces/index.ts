@@ -45,3 +45,10 @@ export interface DecodedData {
     answer:string
     isPreffered:string
   }
+
+  export interface Comment{
+    cid:string
+    uid:string
+    aid:string
+    comment:string
+  }
