@@ -11,7 +11,14 @@ SELECT
         INNER JOIN Tags T ON TJ.tid = T.tid
         WHERE TJ.qid = @qid
         FOR JSON PATH
-    ) AS tag_names
-FROM Questions Q
-where Q.isDeleted =0 and qid=@qid
+    ) AS tag_names,
+    U.username
+FROM
+    Questions Q
+JOIN
+    Users U ON Q.uid = U.uid
+WHERE
+    Q.isDeleted = 0
+    AND Q.qid = @qid;
+
 end

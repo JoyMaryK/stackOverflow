@@ -36,3 +36,12 @@ export interface DecodedData {
   export interface Questions{
       
   }
+
+
+  export interface Answer{
+    aid:string
+    uid:string
+    qid:string
+    answer:string
+    isPreffered:string
+  }

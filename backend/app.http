@@ -115,3 +115,34 @@ token:eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiIwMDRhNDc5NS04ZWRiLTQxYzMtY
    "tags":[{"tid":"t2","tagname":"name"}]
    
    }
+
+
+   //------------------------answers----------------------
+//qid in url
+####
+POST http://localhost:4000/answers/5
+Content-Type:  application/json
+
+{
+    "answer": "the looong answer pt 2 ",
+    "uid":"004a4795-8edb-41c3-b77e-f987f8b65f38"
+   
+   }
+
+//get answers of a question 
+####
+GET http://localhost:4000/answers/551e5dbe-feab-4ced-b8a0-29331ce6c500
+
+
+//aid in url
+####
+POST http://localhost:4000/answers/prefer/c0e2b4d2-3e49-452b-a234-935b454ab2a0
+Content-Type:  application/json
+
+{
+    "qid":"551e5dbe-feab-4ced-b8a0-29331ce6c500" 
+   }
+
+
+
+//---------comments--------
