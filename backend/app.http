@@ -36,6 +36,7 @@ token:eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI1NzUwMWI1Ny05MTllLTQ0MDItY
 //update Profile
 PUT http://localhost:4000/users/004a4795-8edb-41c3-b77e-f987f8b65f38
 Content-Type:  application/json
+token:eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiIwMDRhNDc5NS04ZWRiLTQxYzMtYjc3ZS1mOTg3ZjhiNjVmMzgiLCJ1c2VybmFtZSI6ImpveSIsImVtYWlsIjoiam95QGdtYWlsLmNvbSIsImxvY2F0aW9uIjoiTnllcmkiLCJhYm91dCI6IkFib3V0IG1lZWVlZSA6KSIsInJvbGUiOiJ1c2VyIiwiaWF0IjoxNjg3MTA4OTU3LCJleHAiOjE2ODc0Njg5NTd9.CPI7Ta8oHge997f1_50uSkPpbi0Bu-NQ1ttXsb8cH0o
 
 {
    "username":"joy" ,
@@ -53,7 +54,7 @@ token:eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI1NzUwMWI1Ny05MTllLTQ0MDItY
 //login user
 ###
 POST http://localhost:4000/users/login
-Content-Type:  application/json
+Content-Type:  application/json0o
 
 {
    "email":"joy@gmail.com",
@@ -74,6 +75,7 @@ Content-Type:  application/json
 ###
 POST http://localhost:4000/questions/004a4795-8edb-41c3-b77e-f987f8b65f38
 Content-Type:  application/json
+token:eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiIwMDRhNDc5NS04ZWRiLTQxYzMtYjc3ZS1mOTg3ZjhiNjVmMzgiLCJ1c2VybmFtZSI6ImpveSIsImVtYWlsIjoiam95QGdtYWlsLmNvbSIsImxvY2F0aW9uIjoiTnllcmkiLCJhYm91dCI6IkFib3V0IG1lZWVlZSA6KSIsInJvbGUiOiJ1c2VyIiwiaWF0IjoxNjg3MTA4OTU3LCJleHAiOjE2ODc0Njg5NTd9.CPI7Ta8oHge997f1_50uSkPpbi0Bu-NQ1ttXsb8cH0o
 
 
 {
@@ -86,14 +88,17 @@ Content-Type:  application/json
 //get all questions
 ###
 GET http://localhost:4000/questions
+token:eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiIwMDRhNDc5NS04ZWRiLTQxYzMtYjc3ZS1mOTg3ZjhiNjVmMzgiLCJ1c2VybmFtZSI6ImpveSIsImVtYWlsIjoiam95QGdtYWlsLmNvbSIsImxvY2F0aW9uIjoiTnllcmkiLCJhYm91dCI6IkFib3V0IG1lZWVlZSA6KSIsInJvbGUiOiJ1c2VyIiwiaWF0IjoxNjg3MTA4OTU3LCJleHAiOjE2ODc0Njg5NTd9.CPI7Ta8oHge997f1_50uSkPpbi0Bu-NQ1ttXsb8cH0o
 
 //get questions by one User 
 ###
 GET http://localhost:4000/questions/004a4795-8edb-41c3-b77e-f987f8b65f38
+token:eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiIwMDRhNDc5NS04ZWRiLTQxYzMtYjc3ZS1mOTg3ZjhiNjVmMzgiLCJ1c2VybmFtZSI6ImpveSIsImVtYWlsIjoiam95QGdtYWlsLmNvbSIsImxvY2F0aW9uIjoiTnllcmkiLCJhYm91dCI6IkFib3V0IG1lZWVlZSA6KSIsInJvbGUiOiJ1c2VyIiwiaWF0IjoxNjg3MTA4OTU3LCJleHAiOjE2ODc0Njg5NTd9.CPI7Ta8oHge997f1_50uSkPpbi0Bu-NQ1ttXsb8cH0o
 
 //get one question
 ###
 GET http://localhost:4000/questions/question/551e5dbe-feab-4ced-b8a0-29331ce6c500
+token:eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiIwMDRhNDc5NS04ZWRiLTQxYzMtYjc3ZS1mOTg3ZjhiNjVmMzgiLCJ1c2VybmFtZSI6ImpveSIsImVtYWlsIjoiam95QGdtYWlsLmNvbSIsImxvY2F0aW9uIjoiTnllcmkiLCJhYm91dCI6IkFib3V0IG1lZWVlZSA6KSIsInJvbGUiOiJ1c2VyIiwiaWF0IjoxNjg3MTA4OTU3LCJleHAiOjE2ODc0Njg5NTd9.CPI7Ta8oHge997f1_50uSkPpbi0Bu-NQ1ttXsb8cH0o
 
 
 
@@ -122,6 +127,7 @@ token:eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiIwMDRhNDc5NS04ZWRiLTQxYzMtY
 ####
 POST http://localhost:4000/answers/5
 Content-Type:  application/json
+token:eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiIwMDRhNDc5NS04ZWRiLTQxYzMtYjc3ZS1mOTg3ZjhiNjVmMzgiLCJ1c2VybmFtZSI6ImpveSIsImVtYWlsIjoiam95QGdtYWlsLmNvbSIsImxvY2F0aW9uIjoiTnllcmkiLCJhYm91dCI6IkFib3V0IG1lZWVlZSA6KSIsInJvbGUiOiJ1c2VyIiwiaWF0IjoxNjg3MTA4OTU3LCJleHAiOjE2ODc0Njg5NTd9.CPI7Ta8oHge997f1_50uSkPpbi0Bu-NQ1ttXsb8cH0o
 
 {
     "answer": "the looong answer pt 2 ",
@@ -132,12 +138,14 @@ Content-Type:  application/json
 //get answers of a question 
 ####
 GET http://localhost:4000/answers/551e5dbe-feab-4ced-b8a0-29331ce6c500
+token:eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiIwMDRhNDc5NS04ZWRiLTQxYzMtYjc3ZS1mOTg3ZjhiNjVmMzgiLCJ1c2VybmFtZSI6ImpveSIsImVtYWlsIjoiam95QGdtYWlsLmNvbSIsImxvY2F0aW9uIjoiTnllcmkiLCJhYm91dCI6IkFib3V0IG1lZWVlZSA6KSIsInJvbGUiOiJ1c2VyIiwiaWF0IjoxNjg3MTA4OTU3LCJleHAiOjE2ODc0Njg5NTd9.CPI7Ta8oHge997f1_50uSkPpbi0Bu-NQ1ttXsb8cH0o
 
 
 //aid in url
 ####
 POST http://localhost:4000/answers/prefer/c0e2b4d2-3e49-452b-a234-935b454ab2a0
 Content-Type:  application/json
+token:eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiIwMDRhNDc5NS04ZWRiLTQxYzMtYjc3ZS1mOTg3ZjhiNjVmMzgiLCJ1c2VybmFtZSI6ImpveSIsImVtYWlsIjoiam95QGdtYWlsLmNvbSIsImxvY2F0aW9uIjoiTnllcmkiLCJhYm91dCI6IkFib3V0IG1lZWVlZSA6KSIsInJvbGUiOiJ1c2VyIiwiaWF0IjoxNjg3MTA4OTU3LCJleHAiOjE2ODc0Njg5NTd9.CPI7Ta8oHge997f1_50uSkPpbi0Bu-NQ1ttXsb8cH0o
 
 {
     "qid":"551e5dbe-feab-4ced-b8a0-29331ce6c500" 
@@ -150,6 +158,7 @@ Content-Type:  application/json
 ####
 POST http://localhost:4000/comments/c0e2b4d2-3e49-452b-a234-935b454ab2a0
 Content-Type:  application/json
+token:eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiIwMDRhNDc5NS04ZWRiLTQxYzMtYjc3ZS1mOTg3ZjhiNjVmMzgiLCJ1c2VybmFtZSI6ImpveSIsImVtYWlsIjoiam95QGdtYWlsLmNvbSIsImxvY2F0aW9uIjoiTnllcmkiLCJhYm91dCI6IkFib3V0IG1lZWVlZSA6KSIsInJvbGUiOiJ1c2VyIiwiaWF0IjoxNjg3MTA4OTU3LCJleHAiOjE2ODc0Njg5NTd9.CPI7Ta8oHge997f1_50uSkPpbi0Bu-NQ1ttXsb8cH0o
 
 {
     "comment": "the comment number 2",
@@ -161,6 +170,7 @@ Content-Type:  application/json
 //aid in url
 ####
 GET http://localhost:4000/comments/c0e2b4d2-3e49-452b-a234-935b454ab2a0
+token:eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiIwMDRhNDc5NS04ZWRiLTQxYzMtYjc3ZS1mOTg3ZjhiNjVmMzgiLCJ1c2VybmFtZSI6ImpveSIsImVtYWlsIjoiam95QGdtYWlsLmNvbSIsImxvY2F0aW9uIjoiTnllcmkiLCJhYm91dCI6IkFib3V0IG1lZWVlZSA6KSIsInJvbGUiOiJ1c2VyIiwiaWF0IjoxNjg3MTA4OTU3LCJleHAiOjE2ODc0Njg5NTd9.CPI7Ta8oHge997f1_50uSkPpbi0Bu-NQ1ttXsb8cH0o
 
 
 //---------------------------votes-----------------
@@ -168,6 +178,7 @@ GET http://localhost:4000/comments/c0e2b4d2-3e49-452b-a234-935b454ab2a0
 ####
 POST http://localhost:4000/votes/upvote/c0e2b4d2-3e49-452b-a234-935b454ab2a0
 Content-Type:  application/json
+token:eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiIwMDRhNDc5NS04ZWRiLTQxYzMtYjc3ZS1mOTg3ZjhiNjVmMzgiLCJ1c2VybmFtZSI6ImpveSIsImVtYWlsIjoiam95QGdtYWlsLmNvbSIsImxvY2F0aW9uIjoiTnllcmkiLCJhYm91dCI6IkFib3V0IG1lZWVlZSA6KSIsInJvbGUiOiJ1c2VyIiwiaWF0IjoxNjg3MTA4OTU3LCJleHAiOjE2ODc0Njg5NTd9.CPI7Ta8oHge997f1_50uSkPpbi0Bu-NQ1ttXsb8cH0o
 
 {
     "uid":"004a4795-8edb-41c3-b77e-f987f8b65f38"
@@ -177,7 +188,11 @@ Content-Type:  application/json
 ####
 POST http://localhost:4000/votes/downvote/c0e2b4d2-3e49-452b-a234-935b454ab2a0
 Content-Type:  application/json
+token:eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiIwMDRhNDc5NS04ZWRiLTQxYzMtYjc3ZS1mOTg3ZjhiNjVmMzgiLCJ1c2VybmFtZSI6ImpveSIsImVtYWlsIjoiam95QGdtYWlsLmNvbSIsImxvY2F0aW9uIjoiTnllcmkiLCJhYm91dCI6IkFib3V0IG1lZWVlZSA6KSIsInJvbGUiOiJ1c2VyIiwiaWF0IjoxNjg3MTA4OTU3LCJleHAiOjE2ODc0Njg5NTd9.CPI7Ta8oHge997f1_50uSkPpbi0Bu-NQ1ttXsb8cH0o
 
 { 
    "uid":"004a4795-8edb-41c3-b77e-f987f8b65f38"
 }
+
+###
+GET http://localhost:4000/tags

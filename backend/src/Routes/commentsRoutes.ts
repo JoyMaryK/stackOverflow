@@ -1,9 +1,10 @@
 import { Router } from "express";
 import { addComment, getCommentsToAnswer } from "../Controllers/commentsController";
+import { verifyToken } from "../middleware/verifyToken";
 
 
 const commentsRoutes = Router()
-commentsRoutes.post("/:aid",addComment)
-commentsRoutes.get("/:aid",getCommentsToAnswer)
+commentsRoutes.post("/:aid",verifyToken,addComment)
+commentsRoutes.get("/:aid",verifyToken,getCommentsToAnswer)
 
 export default commentsRoutes

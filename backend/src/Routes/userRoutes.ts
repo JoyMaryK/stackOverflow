@@ -10,7 +10,7 @@ userRoutes.post("", addUser);
 userRoutes.get("",verifyToken, getallUsers);
 userRoutes.get("/:id",verifyToken, getUserById);
 userRoutes.get("/email/:email",verifyToken, getUserByEmail);
-userRoutes.put("/:id", updateUser);
+userRoutes.put("/:id", verifyToken,updateUser);
 userRoutes.delete("/:id",verifyToken, deleteUser);
 userRoutes.post("/login", loginUser);
 export default userRoutes;
