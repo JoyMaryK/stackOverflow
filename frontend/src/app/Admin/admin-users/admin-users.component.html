@@ -1,0 +1,71 @@
+
+<div class="navbar flex justify-between mt-4 border-b-2 w-full">
+    <div class="stack-o flex ">
+        <div class="logo w-16 h-16 ml-2">
+            <img src="../../assets/logo stack overflow.svg" alt="" srcset="">
+        </div>
+        <div class="title ">
+            <h3 class="sm:ml-1">
+                STACK <br>
+                <span class="ml-3 font-semibold"> 
+                    OVERFLOW
+                </span> 
+            </h3>
+        </div>
+    </div>
+    <!-- <div class="search ">
+        <input type="search" name="search" id="search"
+        class="bg-[#E1E5F2] w-9/12"
+        >
+        <button >s</button>
+    </div> -->
+    <div class="user flex gap-5 items-center ">
+        <p class=" hidden sm:block text-semibold">Welcome, Admin</p>
+        <button class="name-letter bg-[#BFDBF7] p-2 h-fit text-black rounded-md mr-7 cursor-pointer" routerLink="/login">Logout</button>
+    </div>
+  </div>
+<div class="down sm:flex">
+
+
+  <div class="sidebar sm:w-1/6 sm:border items-center sm:h-screen flex justify-between sm:flex-col sm:justify-start sm:gap-10">
+    <!-- Sidebar content -->
+<h4 class="mt-3 p-3 cursor-pointer w-full" routerLink="/admin-questions" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">Questions</h4>
+<h4 class="p-3 cursor-pointer w-full" routerLink="/admin-users" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">Users</h4>
+
+  </div>
+  
+  <div class="main-content w-full">
+ 
+    
+
+<div class=" h-screen ">
+    <div class="pg-titles mt-4 flex justify-between items-center">
+       <div class="title ">
+           <h2 class=" font-semibold sm:text-2xl sm:ml-4">
+               All System Users
+           </h2>
+       </div>
+       <div class="filter mr-4 ">
+         <input type="text" class="bg-[#E1E5F2] rounded-md mr-3 pl-1" placeholder="search">  
+       </div>
+    </div>
+    <div class="all-tags justify-center sm:justify-around flex flex-wrap" 
+    *ngIf="users$ |async as users">
+        <div class="one-tag w-56 m-4 mt-3  bg-[#E1E5F2] h-28" *ngFor="let user of users">
+            <div class="name-delete flex items-center justify-between">
+                <h5 class="text-xl ml-2 text-[#1F7A8C]">{{user.username}}</h5>
+                <svg  class=" m-2 cursor-pointer" xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 448 512"><!--! Font Awesome Free 6.4.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. --><path d="M135.2 17.7L128 32H32C14.3 32 0 46.3 0 64S14.3 96 32 96H416c17.7 0 32-14.3 32-32s-14.3-32-32-32H320l-7.2-14.3C307.4 6.8 296.3 0 284.2 0H163.8c-12.1 0-23.2 6.8-28.6 17.7zM416 128H32L53.2 467c1.6 25.3 22.6 45 47.9 45H346.9c25.3 0 46.3-19.7 47.9-45L416 128z" fill="#de535e"/></svg>
+
+            </div>
+            <p class="m-4 text-lg">{{user.email}}</p>
+    </div>
+   
+   </div>
+</div>
+
+
+   
+   
+   
+
+
