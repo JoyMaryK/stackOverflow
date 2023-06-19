@@ -1,7 +1,7 @@
 import { Request } from "express";
 
 export interface DecodedData {
-    id: string;
+    uid: string;
     username: string;
     email: string;
     role: string;
@@ -34,7 +34,10 @@ export interface DecodedData {
   }
 
   export interface Questions{
-      
+      qid:string
+      uid:string
+      title:string
+      body:string
   }
 
 

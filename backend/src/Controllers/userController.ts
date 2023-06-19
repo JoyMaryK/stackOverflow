@@ -1,5 +1,4 @@
 import { Request, RequestHandler, Response } from "express";
-import mssql from "mssql";
 import { v4 as uuid } from "uuid";
 import bcrypt from "bcrypt";
 import { userRegistrationSchema } from "../Helpers/userValidation";
@@ -36,6 +35,7 @@ export const addUser = async (req: ExtendedRequest, res: Response) => {
 
 export const getallUsers = async (req: Request, res: Response) => {
   try {
+    
     let users: User[] =  (await DatabaseHelper.exec("getAllUsers"))
       .recordset;
     res.status(200).json(users);
@@ -102,12 +102,17 @@ export const updateUser = async (req: ExtendedRequest, res: Response) => {
 // // delete users
 
 export const deleteUser = async (
-  req: Request<{ id: string }>,
+  req: ExtendedRequest,
   res: Response
 ) => {
   try {
     const { id } = req.params;
+    const role = req.info?.role as string
    
+    
+    if (role !='admin'){
+      return res.status(401).json({ message: "Admin Operation" })
+    }
     let user: User = (
       await ( await DatabaseHelper.exec("getUserById",{uid:id}))).recordset[0];
 

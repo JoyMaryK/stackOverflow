@@ -57,20 +57,27 @@ export const getAllQuestions = async (req: Request, res: Response) => {
     }
   }
 
-  export const deleteQuestion = async (req: Request<{qid:string}>, res: Response) => {
+  export const deleteQuestion = async (req: ExtendedRequest, res: Response) => {
     try {
-        const{ qid } =req.params;
-        let question: Questions =  (await DatabaseHelper.exec('getOneQuestion',{qid})).recordset[0];
+        const{ id } =req.params;
+        const uid_ = req.info?.uid as string
+        const role = req.info?.role as string
+        let question: Questions =  (await DatabaseHelper.exec('getOneQuestion',{qid:id})).recordset[0];
         if (!question) {
             return res.status(404).json({ message: "Question Not Found" });
           } else {
-            await DatabaseHelper.exec('deleteQuestion',{qid})
-            return res.status(200).json({message:"Deleted successfully"});
+            
+            
+            if (question.uid === uid_ || role ==="admin"){
+              await DatabaseHelper.exec('deleteQuestion',{qid:id})
+              return res.status(200).json({message:"Deleted successfully"});
+            } else {return res.status(401).json({ message: "Unauthorized" });}
            }
     } catch (error: any) {
       return res.status(500).json({message:error.message});
     }
   }
+
 
   export const updateQuestion = async (req: Request<{qid:string, uid:string}>, res: Response) => {
     try {

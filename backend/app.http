@@ -24,7 +24,7 @@ token:eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI1NzUwMWI1Ny05MTllLTQ0MDItY
 
 ###
 //get user by id
-GET http://localhost:4000/users/bbce660f-c430-47a1-9adc-4ca204d5feb6
+GET http://localhost:4000/users/004a4795-8edb-41c3-b77e-f987f8b65f38
 token:eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI1NzUwMWI1Ny05MTllLTQ0MDItYTJkYi1kYmJhMDJlZTY3M2QiLCJ1c2VybmFtZSI6ImFkbWluIiwiZW1haWwiOiJhZG1pbkBnbWFpbC5jb20iLCJsb2NhdGlvbiI6bnVsbCwiYWJvdXQiOm51bGwsInJvbGUiOiJhZG1pbiIsImlhdCI6MTY4Njk5OTAyOCwiZXhwIjoxNjg3MzU5MDI4fQ.V3rcIeP0QzjyaG5bgp4q9LvTK3hOPte2TW-jX0WpZK8
 
 ###
@@ -48,16 +48,16 @@ token:eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiIwMDRhNDc5NS04ZWRiLTQxYzMtY
 ###
 //delete user
 DELETE http://localhost:4000/users/bbce660f-c430-47a1-9adc-4ca204d5feb6
-token:eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI1NzUwMWI1Ny05MTllLTQ0MDItYTJkYi1kYmJhMDJlZTY3M2QiLCJ1c2VybmFtZSI6ImFkbWluIiwiZW1haWwiOiJhZG1pbkBnbWFpbC5jb20iLCJsb2NhdGlvbiI6bnVsbCwiYWJvdXQiOm51bGwsInJvbGUiOiJhZG1pbiIsImlhdCI6MTY4Njk5OTAyOCwiZXhwIjoxNjg3MzU5MDI4fQ.V3rcIeP0QzjyaG5bgp4q9LvTK3hOPte2TW-jX0WpZK8
+token:eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiIwMDRhNDc5NS04ZWRiLTQxYzMtYjc3ZS1mOTg3ZjhiNjVmMzgiLCJ1c2VybmFtZSI6ImpveSIsImVtYWlsIjoiam95QGdtYWlsLmNvbSIsImxvY2F0aW9uIjoiTnllcmkiLCJhYm91dCI6IkFib3V0IG1lZWVlZSA6KSIsInJvbGUiOiJ1c2VyIiwiaWF0IjoxNjg3MTYxNjA1LCJleHAiOjE2ODc1MjE2MDV9.4Ru0e6bY9idd8_SwbQJognM6egRMkLhW96Ul_by2wyI
 
 
 //login user
 ###
 POST http://localhost:4000/users/login
-Content-Type:  application/json0o
+Content-Type:  application/json
 
 {
-   "email":"joy@gmail.com",
+   "email":"joymary1@gmail.com",
    "password":"Password@1"    
 }
 
@@ -79,7 +79,7 @@ token:eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiIwMDRhNDc5NS04ZWRiLTQxYzMtY
 
 
 {
-    "title":"questionnnn", 
+    "title":"questionnnn I am testing", 
    "body":"a whooooolle" ,
    "tags":[{"tid":"t1","tagname":"name"},{"tid":"t2","tagname":"name"}]
    
@@ -104,8 +104,8 @@ token:eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiIwMDRhNDc5NS04ZWRiLTQxYzMtY
 
 //delete question
 ###
-DELETE http://localhost:4000/questions/delete/f17a5456-8d04-482f-a886-872ea31a1753
-token:eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI1NzUwMWI1Ny05MTllLTQ0MDItYTJkYi1kYmJhMDJlZTY3M2QiLCJ1c2VybmFtZSI6ImFkbWluIiwiZW1haWwiOiJhZG1pbkBnbWFpbC5jb20iLCJsb2NhdGlvbiI6bnVsbCwiYWJvdXQiOm51bGwsInJvbGUiOiJhZG1pbiIsImlhdCI6MTY4Njk5OTAyOCwiZXhwIjoxNjg3MzU5MDI4fQ.V3rcIeP0QzjyaG5bgp4q9LvTK3hOPte2TW-jX0WpZK8
+DELETE http://localhost:4000/questions/delete/427cbb36-4e56-4794-b7d9-084e7c344578
+token:eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI0ZmI4ZDk0ZS0yYWUzLTQ4NzMtOWU0ZC1kMjE5YmVkMDE0ZTIiLCJ1c2VybmFtZSI6ImpveW1hcnkxIiwiZW1haWwiOiJqb3ltYXJ5MUBnbWFpbC5jb20iLCJsb2NhdGlvbiI6bnVsbCwiYWJvdXQiOm51bGwsInJvbGUiOiJ1c2VyIiwiaWF0IjoxNjg3MTY2NDI4LCJleHAiOjE2ODc1MjY0Mjh9.dUlNAfax3t0REELsVncv4ipNJli96RaLQs9cxc9dNhM
 
 
 //update question
