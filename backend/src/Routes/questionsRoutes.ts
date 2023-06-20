@@ -7,6 +7,6 @@ questionsRoutes.post('/:uid',verifyToken,addQuestion)
 questionsRoutes.get('',verifyToken,getAllQuestions)
 questionsRoutes.get('/:uid',verifyToken,getAllQuestionsByUser)
 questionsRoutes.get('/question/:qid',verifyToken,getOneQuestion)
-questionsRoutes.put('/question/:qid/:uid',verifyToken,updateQuestion)
+questionsRoutes.put('/question/:id',verifyToken,updateQuestion)
 questionsRoutes.delete('/delete/:id',verifyToken,deleteQuestion)
 export default questionsRoutes

@@ -2,8 +2,8 @@ POST http://localhost:4000/users
 Content-Type:  application/json
 
 {
-   "username":"joymary" ,
-   "email":"joymary@gmail.com",
+   "username":"joymary1111" ,
+   "email":"joymary111@gmail.com",
    "password":"Password@1"    
 }
 
@@ -20,7 +20,7 @@ Content-Type:  application/json
 ### 
 //get all users
 GET http://localhost:4000/users
-token:eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI1NzUwMWI1Ny05MTllLTQ0MDItYTJkYi1kYmJhMDJlZTY3M2QiLCJ1c2VybmFtZSI6ImFkbWluIiwiZW1haWwiOiJhZG1pbkBnbWFpbC5jb20iLCJsb2NhdGlvbiI6bnVsbCwiYWJvdXQiOm51bGwsInJvbGUiOiJhZG1pbiIsImlhdCI6MTY4Njk5OTAyOCwiZXhwIjoxNjg3MzU5MDI4fQ.V3rcIeP0QzjyaG5bgp4q9LvTK3hOPte2TW-jX0WpZK8
+token:eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI1NzUwMWI1Ny05MTllLTQ0MDItYTJkYi1kYmJhMDJlZTY3M2QiLCJ1c2VybmFtZSI6ImFkbWluIiwiZW1haWwiOiJhZG1pbkBnbWFpbC5jb20iLCJsb2NhdGlvbiI6bnVsbCwiYWJvdXQiOm51bGwsInJvbGUiOiJhZG1pbiIsImlhdCI6MTY4NzE4NjU2MCwiZXhwIjoxNjg3NTQ2NTYwfQ.XslG1Zy0mxl5eFJJt3GNTY51zRw99WrH2oCxQuzh3xo
 
 ###
 //get user by id
@@ -48,7 +48,7 @@ token:eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiIwMDRhNDc5NS04ZWRiLTQxYzMtY
 ###
 //delete user
 DELETE http://localhost:4000/users/bbce660f-c430-47a1-9adc-4ca204d5feb6
-token:eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiIwMDRhNDc5NS04ZWRiLTQxYzMtYjc3ZS1mOTg3ZjhiNjVmMzgiLCJ1c2VybmFtZSI6ImpveSIsImVtYWlsIjoiam95QGdtYWlsLmNvbSIsImxvY2F0aW9uIjoiTnllcmkiLCJhYm91dCI6IkFib3V0IG1lZWVlZSA6KSIsInJvbGUiOiJ1c2VyIiwiaWF0IjoxNjg3MTYxNjA1LCJleHAiOjE2ODc1MjE2MDV9.4Ru0e6bY9idd8_SwbQJognM6egRMkLhW96Ul_by2wyI
+token:eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiIwMDRhNDc5NS04ZWRiLTQxYzMtYjc3ZS1mOTg3ZjhiNjVmMzgiLCJ1c2VybmFtZSI6ImpveSIsImVtYWlsIjoiam95QGdtYWlsLmNvbSIsImxvY2F0aW9uIjoiTnllcmkiLCJhYm91dCI6IkFib3V0IG1lZWVlZSA6KSIsInJvbGUiOiJ1c2VyIiwiaWF0IjoxNjg3MjYyNTE0LCJleHAiOjE2ODc2MjI1MTR9.sYO4A4Tuyi9CXjKSgs_pbuaShJTYylzwtrvvO_FErcE
 
 
 //login user
@@ -57,7 +57,7 @@ POST http://localhost:4000/users/login
 Content-Type:  application/json
 
 {
-   "email":"joymary1@gmail.com",
+   "email":"joy@gmail.com",
    "password":"Password@1"    
 }
 
@@ -75,7 +75,7 @@ Content-Type:  application/json
 ###
 POST http://localhost:4000/questions/004a4795-8edb-41c3-b77e-f987f8b65f38
 Content-Type:  application/json
-token:eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiIwMDRhNDc5NS04ZWRiLTQxYzMtYjc3ZS1mOTg3ZjhiNjVmMzgiLCJ1c2VybmFtZSI6ImpveSIsImVtYWlsIjoiam95QGdtYWlsLmNvbSIsImxvY2F0aW9uIjoiTnllcmkiLCJhYm91dCI6IkFib3V0IG1lZWVlZSA6KSIsInJvbGUiOiJ1c2VyIiwiaWF0IjoxNjg3MTA4OTU3LCJleHAiOjE2ODc0Njg5NTd9.CPI7Ta8oHge997f1_50uSkPpbi0Bu-NQ1ttXsb8cH0o
+token:eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiIwMDRhNDc5NS04ZWRiLTQxYzMtYjc3ZS1mOTg3ZjhiNjVmMzgiLCJ1c2VybmFtZSI6ImpveSIsImVtYWlsIjoiam95QGdtYWlsLmNvbSIsImxvY2F0aW9uIjoiTnllcmkiLCJhYm91dCI6IkFib3V0IG1lZWVlZSA6KSIsInJvbGUiOiJ1c2VyIiwiaWF0IjoxNjg3MjYyNTE0LCJleHAiOjE2ODc2MjI1MTR9.sYO4A4Tuyi9CXjKSgs_pbuaShJTYylzwtrvvO_FErcE
 
 
 {
@@ -110,9 +110,9 @@ token:eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI0ZmI4ZDk0ZS0yYWUzLTQ4NzMtO
 
 //update question
 ###
-PUT http://localhost:4000/questions/question/551e5dbe-feab-4ced-b8a0-29331ce6c500/004a4795-8edb-41c3-b77e-f987f8b65f38
+PUT http://localhost:4000/questions/question/551e5dbe-feab-4ced-b8a0-29331ce6c500
 Content-Type:  application/json
-token:eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiIwMDRhNDc5NS04ZWRiLTQxYzMtYjc3ZS1mOTg3ZjhiNjVmMzgiLCJ1c2VybmFtZSI6ImpveSIsImVtYWlsIjoiam95QGdtYWlsLmNvbSIsImxvY2F0aW9uIjoiTnllcmkiLCJhYm91dCI6IkFib3V0IG1lZWVlZSA6KSIsInJvbGUiOiJ1c2VyIiwiaWF0IjoxNjg3MDExOTc3LCJleHAiOjE2ODczNzE5Nzd9.acb6MtZ5Y0atGuUULS9C0amd3Y6RFu7GRiH7sfrlX1A
+token:eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiIwMDRhNDc5NS04ZWRiLTQxYzMtYjc3ZS1mOTg3ZjhiNjVmMzgiLCJ1c2VybmFtZSI6ImpveSIsImVtYWlsIjoiam95QGdtYWlsLmNvbSIsImxvY2F0aW9uIjoiTnllcmkiLCJhYm91dCI6IkFib3V0IG1lZWVlZSA6KSIsInJvbGUiOiJ1c2VyIiwiaWF0IjoxNjg3MTg2ODc0LCJleHAiOjE2ODc1NDY4NzR9.4gxplKOWIvcXvNTFF97PpNTadTAmfFc0G2P1LN_cKjo
 
 {
     "title":"update the question", 

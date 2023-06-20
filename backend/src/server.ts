@@ -18,5 +18,7 @@ app.use("/comments",commentsRoutes);
 app.use("/votes",votesRoutes);
 app.use("/tags",tagRoutes);
 app.listen(4000,'', () => {
-  console.log("Server Running...");
+  console.log("Server Running....");
 });
+
+export default app

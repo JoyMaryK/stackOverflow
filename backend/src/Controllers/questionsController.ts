@@ -79,18 +79,30 @@ export const getAllQuestions = async (req: Request, res: Response) => {
   }
 
 
-  export const updateQuestion = async (req: Request<{qid:string, uid:string}>, res: Response) => {
+  export const updateQuestion = async (req: ExtendedRequest, res: Response) => {
     try {
     
         const { title, body ,tags} = req.body;
-        const { qid, uid } = req.params;               //qid
+        const { id } = req.params; 
+        const uid_ = req.info?.uid as string
+        let question: Questions =  (await DatabaseHelper.exec('getOneQuestion',{qid:id})).recordset[0];
+        if (!question) {
+            return res.status(404).json({ message: "Question Not Found" });
+          } else {
+            
+            
+            if (question.uid === uid_ ){             
         
-        await DatabaseHelper.exec('updateQuestion',{qid,uid,title,body})
+        await DatabaseHelper.exec('updateQuestion',{qid:id,uid:uid_,title,body})
          tags.forEach(async (tag: { tid: string; }) => {
-            await DatabaseHelper.exec('updateQuestionTags',{tid:tag.tid, qid})
-         });
+            await DatabaseHelper.exec('updateQuestionTags',{tid:tag.tid, qid:id}) 
+         }); 
+        } else{
+            return res.status(401).json({ message: "Not your Question" });
+        }
         return res.status(201).json({ message: "question updated" });
-      } catch (error: any) {
+      } }
+      catch (error: any) {
         return res.status(500).json({message:error.message});
       }
   };

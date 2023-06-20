@@ -1,4 +1,4 @@
-create procedure deleteQuestion( @qid varchar(255), @uid varchar(255))
+create procedure deleteQuestion( @qid varchar(255))
 as 
 begin
 update Questions set isDeleted =1
