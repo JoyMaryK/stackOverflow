@@ -1,21 +1,18 @@
 import { Request, Response } from "express";
 import { v4 as uuid } from "uuid";
-import dotenv from "dotenv";
-import path from "path";
-import {Comment} from "../Interfaces/index";
+import {Comment, ExtendedRequest} from "../Interfaces/index";
 import { DatabaseHelper } from "../DatabaseHelper";
 
 
-dotenv.config({ path: path.resolve(__dirname, "../../.env") });
-
 // inserting comment
 
-export const addComment = async (req: Request<{aid:string}>, res: Response) => {
+export const addComment = async (req: ExtendedRequest, res: Response) => {
   try {
     let cid = uuid();
-    const { comment, uid} = req.body;
-    const { aid } = req.params; 
-    await DatabaseHelper.exec('addComment',{cid,aid,uid,comment})
+    const { comment} = req.body;
+    const { id } = req.params; 
+    const uid = req.info?.uid as string
+    await DatabaseHelper.exec('addComment',{cid,aid:id,uid,comment})
         return res.status(201).json({ message: "Comment submitted" });          
  
   } catch (error: any) {
@@ -24,7 +21,6 @@ export const addComment = async (req: Request<{aid:string}>, res: Response) => {
 };
 
 //get all Comments to an answer
-
 export const getCommentsToAnswer = async (req: Request<{aid:string}>, res: Response) => {
     try {
         const{aid} =req.params

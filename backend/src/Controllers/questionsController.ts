@@ -1,12 +1,8 @@
 import { Request, RequestHandler, Response } from "express";
 import { v4 as uuid } from "uuid";
-import dotenv from "dotenv";
-import path from "path";
 import { ExtendedRequest,Questions,User } from "../Interfaces/index";
 import { DatabaseHelper } from "../DatabaseHelper";
 
-
-dotenv.config({ path: path.resolve(__dirname, "../../.env") });
 
 // inserting question
 

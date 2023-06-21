@@ -11,6 +11,6 @@ BEGIN
     END
     ELSE
     BEGIN
-        INSERT INTO Votes (aid, uid, type) VALUES (@aid, @uid, 0)
+        INSERT INTO Votes (vid, aid, uid, type) VALUES (@vid,@aid, @uid, 0)
     END
 END

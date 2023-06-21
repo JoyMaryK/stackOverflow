@@ -17,6 +17,3 @@ app.use("/answers", answersRoutes);
 app.use("/comments",commentsRoutes);
 app.use("/votes",votesRoutes);
 app.use("/tags",tagRoutes);
-
-
-app.listen(4000);

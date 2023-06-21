@@ -7,6 +7,6 @@ const answersRoutes = Router()
 
 answersRoutes.post('/:qid',verifyToken,addAnswer)
 answersRoutes.get("/:qid",verifyToken,getAnswersToQuestion)
-answersRoutes.post('/prefer/:aid',verifyToken,markAsPreferred)
+answersRoutes.post('/prefer/:id',verifyToken,markAsPreferred)
 
 export default answersRoutes

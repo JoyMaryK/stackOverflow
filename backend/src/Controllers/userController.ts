@@ -2,14 +2,11 @@ import { Request, RequestHandler, Response } from "express";
 import { v4 as uuid } from "uuid";
 import bcrypt from "bcrypt";
 import { userRegistrationSchema } from "../Helpers/userValidation";
-import dotenv from "dotenv";
-import path from "path";
 import jwt from "jsonwebtoken";
 import { ExtendedRequest,User } from "../Interfaces/index";
 import { DatabaseHelper } from "../DatabaseHelper";
 
 
-dotenv.config({ path: path.resolve(__dirname, "../../.env") });
 
 // inserting users
 
@@ -91,9 +88,10 @@ export const updateUser = async (req: ExtendedRequest, res: Response) => {
 
     if (!user) {
       return res.status(404).json({ message: "User Not Found" });
-    }
-   await DatabaseHelper.exec("updateUserDetails",{uid:id,username,email,location,about});
-    return res.status(200).json({ message: "User Updated" });
+    } else if(user.uid === req.info?.uid){
+      await DatabaseHelper.exec("updateUserDetails",{uid:id,username,email,location,about});
+      return res.status(200).json({ message: "User Updated" });
+    }return res.status(200).json({ message: "Not You" });
   } catch (error: any) {
     return res.status(500).json(error.message);
   }
@@ -134,7 +132,7 @@ export const loginUser = async (req: Request, res: Response) => {
     const { email, password } = req.body;
     let user: User[] = (await (await DatabaseHelper.exec("getUserByEmail",{email})
     )).recordset;
-    if (!user[0]) {
+    if (!user[0] || user[0].isDeleted===1) {
       return res.status(404).json({ message: "User not found" });
     }
 
