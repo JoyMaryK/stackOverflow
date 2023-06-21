@@ -20,7 +20,7 @@ interface User {
 
 export const sendWelcomeEmail = async() => {
     const pool = await mssql.connect(sqlConfig)
-    const users: User[] = (await (await pool.request()).query('SELECT * FROM USERS WHERE emailSent=0')).recordset
+    const users: User[] = (await (await pool.request()).execute("getUsersForWelcome")).recordset
     console.log(users);
 
     // looping through and send an email
@@ -41,7 +41,7 @@ export const sendWelcomeEmail = async() => {
                 }
                  await sendMail(messageOptions)   
                  //update the database email was sent
-                 await pool.request().query(`UPDATE Users SET emailSent=1 WHERE uid='${user.uid}'`);
+                  await pool.request().input('uid',user.uid).execute('updateUserForWelcome')
                  
             } catch (error) {
                  console.log(error);
