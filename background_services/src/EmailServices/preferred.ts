@@ -17,21 +17,7 @@ interface UserAnswered {
 
 export const sendPreferredEmail = async() => {
     const pool = await mssql.connect(sqlConfig)
-    const users: UserAnswered[] = (await (await pool.request()).query(` SELECT
-    U.uid,
-    A.aid,
-    U.username,
-    U.email,
-    U.role,
-    Q.title AS question_title
-  FROM
-    users U
-  JOIN
-    answers A ON U.uid = A.uid
-  JOIN
-    questions Q ON Q.qid = A.qid
-    
-    where A.isPrefered = 1 and A.emailSent=0;`)).recordset
+    const users: UserAnswered[] = (await (await pool.request().execute("getUsersForPreferred"))).recordset
     console.log(users);
 
     // looping through and send an email
@@ -52,7 +38,7 @@ export const sendPreferredEmail = async() => {
                 }
                  await sendMail(messageOptions)   
                  //update the database email was sent
-                 await pool.request().query(`UPDATE Answers SET emailSent=1 WHERE uid='${user.uid}' and aid='${user.aid}'`);
+                await pool.request().input("uid",user.uid).input("aid",user.aid).execute("updateUserForPreferred");
                  
             } catch (error) {
                  console.log(error);
