@@ -5,7 +5,7 @@ import { verifyToken } from "../middleware/verifyToken";
 
 const answersRoutes = Router()
 
-answersRoutes.post('/:qid',verifyToken,addAnswer)
+answersRoutes.post('/:id',verifyToken,addAnswer)
 answersRoutes.get("/:qid",verifyToken,getAnswersToQuestion)
 answersRoutes.post('/prefer/:id',verifyToken,markAsPreferred)
 

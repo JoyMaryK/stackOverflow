@@ -24,7 +24,7 @@ export const addComment = async (req: ExtendedRequest, res: Response) => {
 export const getCommentsToAnswer = async (req: Request<{aid:string}>, res: Response) => {
     try {
         const{aid} =req.params
-        let comments: Comment[] =  (await DatabaseHelper.exec('getCommentsByAID',{aid})).recordset;
+        let comments: Comment[] =  (await DatabaseHelper.exec('getCommentsByAID',{aid, pageNumber:1})).recordset;
         return res.status(200).json(comments);
     } catch (error: any) {
       return res.status(500).json({message:error.message});

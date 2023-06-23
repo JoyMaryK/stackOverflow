@@ -19,4 +19,6 @@ app.use("/votes",votesRoutes);
 app.use("/tags",tagRoutes);
 
 
-app.listen(4000);
+app.listen(4000,'',()=>{
+    console.log("server..");
+});

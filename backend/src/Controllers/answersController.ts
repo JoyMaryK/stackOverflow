@@ -5,14 +5,15 @@ import { DatabaseHelper } from "../DatabaseHelper";
 
 // inserting answer
 
-export const addAnswer = async (req: Request<{qid:string}>, res: Response) => {
+export const addAnswer = async (req: ExtendedRequest, res: Response) => {
   try {
     let aid = uuid();
-    const { answer, uid} = req.body;
-    const { qid } = req.params; 
-    let question: Questions =  (await DatabaseHelper.exec('getOneQuestion',{qid})).recordset[0];
+    const { answer} = req.body;
+    const { id } = req.params; 
+    const uid = req.info?.uid as string
+    let question: Questions =  (await DatabaseHelper.exec('getOneQuestion',{qid:id})).recordset[0];
     if (question) {
-        await DatabaseHelper.exec('addAnswer',{aid,qid,uid,answer})
+        await DatabaseHelper.exec('addAnswer',{aid,qid:id,uid,answer})
         return res.status(201).json({ message: "answer submitted" });
       } else {
       return res.status(404).json({ message: "Question Not Found" }); }             
@@ -27,7 +28,7 @@ export const addAnswer = async (req: Request<{qid:string}>, res: Response) => {
 export const getAnswersToQuestion = async (req: Request<{qid:string}>, res: Response) => {
     try {
         const{qid} =req.params
-        let answers: Answer[] =  (await DatabaseHelper.exec('getAnswersByQID',{qid})).recordset;
+        let answers: Answer[] =  (await DatabaseHelper.exec('getAnswersByQID',{qid, pageNumber:2})).recordset;
         return res.status(200).json(answers);
     } catch (error: any) {
       return res.status(500).json({message:error.message});
@@ -40,12 +41,16 @@ export const getAnswersToQuestion = async (req: Request<{qid:string}>, res: Resp
 export const markAsPreferred = async (req: ExtendedRequest, res: Response) => {
     try {
         const{id} =req.params
-        const {qid}=  req.body
-        const uid = req.info?.uid 
-        let question: Questions =  (await DatabaseHelper.exec('getOneQuestion',{qid})).recordset[0];
-      
+        const uid = req.info?.uid  
+        let answer:Answer = (await DatabaseHelper.exec("getAnswerById",{aid:id})).recordset[0]
+
+        if (!answer){return res.status(404).json({message:"answer not found"})}
+        
+        let question:Questions =  (await DatabaseHelper.exec('getOneQuestion',{qid:answer.qid})).recordset[0];
+        console.log(answer.qid);
+        
     if (question.uid === uid) {
-      await DatabaseHelper.exec('removePreffered',{qid});     
+      await DatabaseHelper.exec('removePreffered',{qid:answer.qid});     
       await DatabaseHelper.exec('markAsPreffered',{aid:id});
       return res.status(200).json({message:"marked as preferred"});
       } 

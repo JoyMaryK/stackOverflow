@@ -2,8 +2,10 @@ create procedure getAllUsers
 
 AS
 BEGIN 
-
-
-select * from Users WHERE isDeleted = 0
-
+ SELECT *
+    FROM Users
+    WHERE isDeleted = 0
+    ORDER BY username
+    OFFSET (@PageNumber - 1) * @PageSize ROWS
+    FETCH NEXT @PageSize ROWS ONLY
 END

@@ -63,7 +63,7 @@ describe("/user tests", async() => {
     })
     })
       
-    it('Should return 500 if user email exists', async ()=>{
+    it('Should return error if user email exists', async ()=>{
         return request(app).post('/users')
         .expect(500)
         .expect("Content-Type", /json/)
@@ -296,7 +296,7 @@ describe("/tags tests", () => {
           )
       })
   })
-  it('should get users (200) if token is valid', ()=>{
+  it('should get tags (200) if token is valid', ()=>{
     return   request(app).get('/tags')
       .expect('Content-Type', /json/)
       .set("token","eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiIwMDRhNDc5NS04ZWRiLTQxYzMtYjc3ZS1mOTg3ZjhiNjVmMzgiLCJ1c2VybmFtZSI6ImpveSIsImVtYWlsIjoiam95QGdtYWlsLmNvbSIsImxvY2F0aW9uIjoiTnllcmkiLCJhYm91dCI6IkFib3V0IG1lZWVlZSA6KSIsInJvbGUiOiJ1c2VyIiwiaWF0IjoxNjg3MjYyNTE0LCJleHAiOjE2ODc2MjI1MTR9.sYO4A4Tuyi9CXjKSgs_pbuaShJTYylzwtrvvO_FErcE")

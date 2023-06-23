@@ -6,11 +6,11 @@ import { DatabaseHelper } from "../DatabaseHelper";
 
 // inserting question
 
-export const addQuestion = async (req: Request<{uid:string}>, res: Response) => {
+export const addQuestion = async (req: ExtendedRequest, res: Response) => {
   try {
     let qid = uuid();
     const { title, body ,tags} = req.body;
-    const { uid } = req.params;               //look into the possibility of confirming this with the token
+    const  uid  = req.info?.uid as string;               //look into the possibility of confirming this with the token
     await DatabaseHelper.exec('addQuestion',{qid,uid,title,body})
      tags.forEach(async (tag: { tid: string; }) => {
         await DatabaseHelper.exec('addQuestionTags',{tid:tag.tid, qid})
@@ -23,7 +23,7 @@ export const addQuestion = async (req: Request<{uid:string}>, res: Response) => 
 
 export const getAllQuestions = async (req: Request, res: Response) => {
     try {
-        let questions: Questions[] =  (await DatabaseHelper.exec('getAllQuestions')).recordset;
+        let questions: Questions[] =  (await DatabaseHelper.exec('GetQuestionsWithPagination', {PageNumber:6})).recordset;
         return res.status(200).json(questions);
     } catch (error: any) {
       return res.status(500).json({message:error.message});
@@ -33,7 +33,7 @@ export const getAllQuestions = async (req: Request, res: Response) => {
   export const getAllQuestionsByUser = async (req: Request<{uid:string}>, res: Response) => {
     try {
         const{uid} =req.params
-        let questions: Questions[] =  (await DatabaseHelper.exec('getQuestionsByUserId',{uid})).recordset;
+        let questions: Questions[] =  (await DatabaseHelper.exec('getQuestionsByUserId',{uid, pageNumber:2})).recordset;
         return res.status(200).json(questions);
     } catch (error: any) {
       return res.status(500).json({message:error.message});

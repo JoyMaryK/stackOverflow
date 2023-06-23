@@ -3,7 +3,7 @@ import { addQuestion, deleteQuestion, getAllQuestions, getAllQuestionsByUser, ge
   import { verifyToken } from "../middleware/verifyToken";
 const questionsRoutes = Router()
 
-questionsRoutes.post('/:uid',verifyToken,addQuestion)
+questionsRoutes.post('',verifyToken,addQuestion)
 questionsRoutes.get('',verifyToken,getAllQuestions)
 questionsRoutes.get('/:uid',verifyToken,getAllQuestionsByUser)
 questionsRoutes.get('/question/:qid',verifyToken,getOneQuestion)

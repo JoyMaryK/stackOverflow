@@ -33,7 +33,7 @@ export const addUser = async (req: ExtendedRequest, res: Response) => {
 export const getallUsers = async (req: Request, res: Response) => {
   try {
     
-    let users: User[] =  (await DatabaseHelper.exec("getAllUsers"))
+    let users: User[] =  (await DatabaseHelper.exec("getAllUsers",{pageNumber:3}))
       .recordset;
     res.status(200).json(users);
   } catch (error: any) {
@@ -91,7 +91,7 @@ export const updateUser = async (req: ExtendedRequest, res: Response) => {
     } else if(user.uid === req.info?.uid){
       await DatabaseHelper.exec("updateUserDetails",{uid:id,username,email,location,about});
       return res.status(200).json({ message: "User Updated" });
-    }return res.status(200).json({ message: "Not You" });
+    }return res.status(200).json({ message: "Not Your Details" });
   } catch (error: any) {
     return res.status(500).json(error.message);
   }

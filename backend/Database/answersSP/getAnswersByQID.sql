@@ -1,6 +1,7 @@
-create procedure getAnswersByQID(@qid varchar(255))
+create procedure getAnswersByQID(@qid varchar(255), @PageNumber INT)
 as 
 begin 
+ DECLARE @PageSize INT = 2;
 SELECT
     u.username,
     a.aid,
@@ -20,6 +21,9 @@ FROM
 JOIN
     answers a ON u.uid = a.uid
 WHERE
-    a.qid = @qid;
+    a.qid = @qid
+ORDER BY a.aid 
 
+OFFSET (@PageNumber - 1) * @PageSize ROWS
+FETCH NEXT @PageSize ROWS ONLY;
 end
