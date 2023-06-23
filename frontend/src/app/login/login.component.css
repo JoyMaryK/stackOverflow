@@ -1,0 +1,19 @@
+.container{
+    min-width: 100vw;
+}
+
+input {
+    border:transparent;
+}
+
+form{
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+    
+}
+
+.login-container{
+    box-shadow:0 2rem 2rem 0 rgba(0,0 ,0,.2);
+}
+
