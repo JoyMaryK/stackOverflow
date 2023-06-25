@@ -1,17 +1,25 @@
 export interface Question{
-    id:string
+    qid:string
     title:string
-    description:string
-    tags:Tag[]
+    body:string
+    tag_names:string
     user_id:string
-    answersNo?:number
+    answer_count:number
     date:string
+
 }
+
+export interface TagName{
+  tagname:string
+}
+
+
 
 export interface QuestionState {
     questions: Question[];
     loaded: boolean;
     error?: string | null;
+  
   }
 
   export interface UserState {
@@ -26,13 +34,23 @@ export interface QuestionState {
     error?: string | null;
   }
 
+  export interface AnswersState{
+    answers:Answer[]
+    loaded:boolean
+    error?: string | null;
+  }
 
-export interface User{
-    id:string
-    username:string
-    email:string
-    password:string
-}
+  export interface User {
+    uid: string;
+    username: string;
+    email: string;
+    role: string;
+    isDeleted: number;
+    password: string;
+    emailSent: string;
+    location?:string;
+    about?:string
+  }
 
 export interface UserSignup{
     username:string
@@ -51,6 +69,20 @@ export interface ReturnedMessage{
 
 export interface Tag{
     id:string
-    tagName:string
+    tagname:string
     description:string
+}
+
+export interface SuccessMessages{
+  message:string
+}
+
+
+
+export interface Answer{
+  username: string
+    aid:string
+    answer: string
+    isPrefered: boolean
+    vote_count: number
 }

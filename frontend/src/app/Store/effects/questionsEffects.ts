@@ -36,4 +36,19 @@ export class QuestionsEffects {
       )
     );
   });
+  getOneQuestion$ = createEffect(() =>
+  this.actions$.pipe(
+    ofType(actions.getOneQuestion),
+    exhaustMap((action) =>
+      this.service.getQuestionById(action.qid).pipe(
+        map((questions) => {
+          console.log(questions);
+
+          return actions.getOneQuestionSuccess({ questions });
+        }),
+        catchError((error: any) => of(actions.getOneQuestionFailure(error)))
+      )
+    )
+  )
+);
 }

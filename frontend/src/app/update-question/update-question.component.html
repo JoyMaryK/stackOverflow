@@ -28,7 +28,7 @@
            <br>
             <label for="tags">Tags:</label><br>
             <select  multiple type="text" id="tags" formControlName="tags" class="border bg-[#E1E5F2] w-10/12 rounded p-1 mb-3 "  > 
-              <option *ngFor="let tag of tags$ | async" [value]="tag">{{ tag.tagName }}</option>
+              <option *ngFor="let tag of tags$ | async" [value]="tag">{{ tag.tagname }}</option>
             </select>
             <div *ngIf="form.get('tags')?.invalid && (form.get('tags')?.dirty || form.get('tags')?.touched)">
               <div *ngIf="form.get('tags')?.errors?.['required']" class="text-xs text-red-600">Question tag is required</div>

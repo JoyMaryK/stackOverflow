@@ -1,102 +1,59 @@
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
-import { Question, ReturnedMessage, Tag, User, UserSignup } from '../Interfaces';
-
+import { Question, ReturnedMessage, SuccessMessages, Tag, User, UserSignup } from '../Interfaces';
+import { HttpClient, HttpHeaders } from '@angular/common/http'
+import { TagContentType } from '@angular/compiler';
 
 
 @Injectable({
   providedIn: 'root'
 })
 export class OverallService {
-  questions:Question[] = [{id:"1",
-  title:"question uno",
-  tags:[{ id:'1',
-  tagName:"Joy", description:'a really good kid',}],
-  description:"desc",
-  user_id:"u_id", answersNo:0,
-  date:"12/1/22"},{id:"2",
-  title:"question dos",
-  tags:[{ id:'1',
-  tagName:"Joy", description:'a really good kid',}],
-  description:"desc",
-  user_id:"u_id", answersNo:2,
-  date:"12/1/22"},{id:"3",
-  title:"question dos",
-  tags:[{ id:'1',
-  tagName:"Joy", description:'a really good kid',}],
-  description:"desc",
-  user_id:"u_id", answersNo:0,
-  date:"12/1/22"}]
-
-  users:User[]=[{ id:'1',
-    username:"Joy",
-    email:"joy@gmail.com",
-    password:"password"},{ id:'1',
-    username:"Mary",
-    email:"mary@gmail.com",
-    password:"password"},{ id:'1',
-    username:"Joy Mary",
-    email:"joymary@gmail.com",
-    password:"password"},{ id:'1',
-    username:"Joy",
-    email:"joy@gmail.com",
-    password:"password"},{ id:'1',
-    username:"Mary",
-    email:"mary@gmail.com",
-    password:"password"},{ id:'1',
-    username:"Joy Mary",
-    email:"joymary@gmail.com",
-    password:"password"},{ id:'1',
-    username:"Joy",
-    email:"joy@gmail.com",
-    password:"password"},{ id:'1',
-    username:"Mary",
-    email:"mary@gmail.com",
-    password:"password"},{ id:'1',
-    username:"Joy Mary",
-    email:"joymary@gmail.com",
-    password:"password"},{ id:'1',
-    username:"Joy",
-    email:"joy@gmail.com",
-    password:"password"},{ id:'1',
-    username:"Mary",
-    email:"mary@gmail.com",
-    password:"password"},{ id:'1',
-    username:"Joy Mary",
-    email:"joymary@gmail.com",
-    password:"password"}]
+    token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiIxMDA3ODRhZC0zZDQyLTQxMDQtYmRiNi0yNjc1NjlhZGM0NTAiLCJ1c2VybmFtZSI6ImpveW1hcnkiLCJlbWFpbCI6ImpveW1hcjg5NjJAZ21haWwuY29tIiwibG9jYXRpb24iOm51bGwsImFib3V0IjpudWxsLCJyb2xlIjoidXNlciIsImlhdCI6MTY4NzM4MDU1OSwiZXhwIjoxNjg3NzQwNTU5fQ.QgNrI_HDgE_WHzgMfOfI54JV93XACd8C0MSnw36NzP0"
     
-    tags:Tag[]=[{ id:'1',tagName:"Javascript", description:'its just vanilla'}, 
-    { id:'2',tagName:"Java", description:'stable and versatile'},
-    { id:'3',tagName:"PHP", description:'where do I begin?'}]
-  constructor() { }
+    tags:Tag[]=[{ id:'1',tagname:"Javascript", description:'its just vanilla'}, 
+    { id:'2',tagname:"Java", description:'stable and versatile'},
+    { id:'3',tagname:"PHP", description:'where do I begin?'}]
+  constructor( private http:HttpClient) { }
 
   //user related 
-  addUser(user:UserSignup):Observable<User[]> {
+  addUser(user:UserSignup):Observable<Tag[]> {
     let newUser = {id:"sth",...user}
-    this.users.push(newUser)
-    return of(this.users)
+    return of(this.tags)
 }
   getUsers():Observable<User[]>{
-    return of(this.users)
+    return this.http.get<User[]>(`http://localhost:4000/users`,{
+      headers:new HttpHeaders().set('token',"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiIxMDA3ODRhZC0zZDQyLTQxMDQtYmRiNi0yNjc1NjlhZGM0NTAiLCJ1c2VybmFtZSI6ImpveW1hcnkiLCJlbWFpbCI6ImpveW1hcjg5NjJAZ21haWwuY29tIiwibG9jYXRpb24iOm51bGwsImFib3V0IjpudWxsLCJyb2xlIjoidXNlciIsImlhdCI6MTY4NzM4MDU1OSwiZXhwIjoxNjg3NzQwNTU5fQ.QgNrI_HDgE_WHzgMfOfI54JV93XACd8C0MSnw36NzP0")})
+    
   }
 
   //question related
   getQuestions():Observable<Question[]> {
-    return of(this.questions)
+    return this.http.get<Question[]>(`http://localhost:4000/questions`,{
+      headers:new HttpHeaders().set('token',"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiIxMDA3ODRhZC0zZDQyLTQxMDQtYmRiNi0yNjc1NjlhZGM0NTAiLCJ1c2VybmFtZSI6ImpveW1hcnkiLCJlbWFpbCI6ImpveW1hcjg5NjJAZ21haWwuY29tIiwibG9jYXRpb24iOm51bGwsImFib3V0IjpudWxsLCJyb2xlIjoidXNlciIsImlhdCI6MTY4NzM4MDU1OSwiZXhwIjoxNjg3NzQwNTU5fQ.QgNrI_HDgE_WHzgMfOfI54JV93XACd8C0MSnw36NzP0")})
 }
 
-addQuestion(newQuestion:Question):Observable<Question[]> {
-  // console.log(newQuestion);
-  
-  // this.questions.push(newQuestion)
-  this.questions = [...this.questions, newQuestion]
-  return of(this.questions)
+getQuestionById(qid:string):Observable<Question[]> {
+  console.log("in service",qid)
+  return this.http.get<Question[]>(`http://localhost:4000/questions/question/${qid}`,{
+    headers:new HttpHeaders().set('token',"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiIxMDA3ODRhZC0zZDQyLTQxMDQtYmRiNi0yNjc1NjlhZGM0NTAiLCJ1c2VybmFtZSI6ImpveW1hcnkiLCJlbWFpbCI6ImpveW1hcjg5NjJAZ21haWwuY29tIiwibG9jYXRpb24iOm51bGwsImFib3V0IjpudWxsLCJyb2xlIjoidXNlciIsImlhdCI6MTY4NzM4MDU1OSwiZXhwIjoxNjg3NzQwNTU5fQ.QgNrI_HDgE_WHzgMfOfI54JV93XACd8C0MSnw36NzP0")})
+}
+
+addQuestion(newQuestion:Question):Observable<SuccessMessages> {
+  return this.http.post<SuccessMessages>(
+    `http://localhost:4000/questions`,
+    newQuestion,
+    {
+      headers: new HttpHeaders().set('token', this.token),
+    }
+  );
 }
 
 //tags related
 getTags():Observable<Tag[]> {
-  return of(this.tags)
+  return this.http.get<Tag[]>(`http://localhost:4000/tags`,{
+    headers:new HttpHeaders().set('token',this.token)})
 }
+
 
 }

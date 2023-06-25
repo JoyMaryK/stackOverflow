@@ -1,12 +1,11 @@
 import { createReducer, on } from "@ngrx/store";
 
 import * as actions from '../actions/questionActions'
-import { QuestionState } from "src/app/Interfaces";
+import { Question, QuestionState } from "src/app/Interfaces";
 const initialState: QuestionState={
     questions:[],
     loaded: false,
     error:  null
-
 }
 export const questionsReducers = createReducer(
     initialState, 
@@ -39,6 +38,22 @@ export const questionsReducers = createReducer(
         error:null,
     })),
     on(actions.addQuestionFailure,(state, {error})=>({
+        ...state,
+        loaded:false,
+        error:error,
+    })),
+    on(actions.getOneQuestion,(state, action)=>{
+        return{
+        ...state,
+        loaded: true}}
+    ),
+    on(actions.getOneQuestionSuccess,(state, action)=>({
+        ...state,
+        questions:action.questions,
+        loaded:false,
+        error:null,
+    })),
+    on(actions.getQuestionsFailure,(state, {error})=>({
         ...state,
         loaded:false,
         error:error,

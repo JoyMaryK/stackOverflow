@@ -13,3 +13,11 @@ export const addQuestionSuccess= createAction('[Questions API] Add New Question 
 props<{message:string}>())
 export const addQuestionFailure= createAction('[Questions API] Add New Question Failure', 
 props<{error:string}>())
+
+
+export const getOneQuestion= createAction('[Questions] Get one Question',
+props<{qid:string}>())
+export const getOneQuestionSuccess= createAction('[Questions API] Question Load Success', 
+props<{questions:Question[]}>())
+export const getOneQuestionFailure= createAction('[Questions API] Question Load Failure', 
+props<{error:string}>())

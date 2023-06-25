@@ -39,7 +39,7 @@ export class AskQuestionComponent {
      this.msg=null
     this.form = this.fb.group({
       title: ['', [Validators.required]],
-      question: ['', [Validators.required, Validators.minLength(1)]],
+      body: ['', [Validators.required, Validators.minLength(1)]],
       tags: [[],Validators.required]
     });
     this.store.dispatch(getAllTags())
@@ -55,8 +55,7 @@ export class AskQuestionComponent {
     }else{
       this.invalid=null
       console.log(this.form.value)
-      let newq:Question = {...this.form.value, id:"2", user_id:'2',date:'12/3/22'}
-      this.store.dispatch(addQuestion({newQuestion:newq}))
+      this.store.dispatch(addQuestion({newQuestion:this.form.value}))
       this.msg='posted successfully'
       this.form.reset()
     }

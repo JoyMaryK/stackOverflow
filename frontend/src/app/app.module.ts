@@ -17,6 +17,9 @@ import { tagsReducers } from './Store/reducers/tagsReducers';
 import { TagsEffects } from './Store/effects/tagsEffects';
 import { YourOneQuestionComponent } from './your-one-question/your-one-question.component';
 import { HashPrefixPipe } from './Pipes/hash-prefix.pipe';
+import { HttpClientModule } from '@angular/common/http';
+import { answersReducers } from './Store/reducers/answersReducer';
+import { AnswersEffects } from './Store/effects/answersEffects';
 
 @NgModule({
   declarations: [
@@ -27,12 +30,13 @@ import { HashPrefixPipe } from './Pipes/hash-prefix.pipe';
   ],
   imports: [
     BrowserModule,
+    HttpClientModule,
     AppRoutingModule,
     HomeComponent,
     LandingPageComponent,
     LoginComponent,
-    StoreModule.forRoot({questions:questionsReducers, users:userReducers, tags:tagsReducers}),
-    EffectsModule.forRoot([QuestionsEffects, UsersEffects, TagsEffects]),
+    StoreModule.forRoot({questions:questionsReducers, users:userReducers, tags:tagsReducers, answers:answersReducers}),
+    EffectsModule.forRoot([QuestionsEffects, UsersEffects, TagsEffects, AnswersEffects]),
     StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: !isDevMode() })
 
   ],

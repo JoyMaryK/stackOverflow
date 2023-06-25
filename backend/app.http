@@ -2,8 +2,8 @@ POST http://localhost:4000/users
 Content-Type:  application/json
 
 {
-   "username":"jonathan" ,
-   "email":"jonathanndambuki16@gmail.com",
+   "username":"joy" ,
+   "email":"joymary@gmail.com",
    "password":"Password@1"    
 }
 
@@ -57,7 +57,7 @@ POST http://localhost:4000/users/login
 Content-Type:  application/json
 
 {
-   "email":"joy@gmail.com",
+   "email":"joymary@gmail.com",
    "password":"Password@1"    
 }
 
@@ -98,7 +98,7 @@ token:eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiIxMDA3ODRhZC0zZDQyLTQxMDQtY
 
 //get one question
 ###
-GET http://localhost:4000/questions/question/124b23bc-112c-47dd-8ba2-b31dca19a74a
+GET http://localhost:4000/questions/question/7f8adc71-dcae-4a31-9b62-28594df9749a
 token:eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiIxMDA3ODRhZC0zZDQyLTQxMDQtYmRiNi0yNjc1NjlhZGM0NTAiLCJ1c2VybmFtZSI6ImpveW1hcnkiLCJlbWFpbCI6ImpveW1hcjg5NjJAZ21haWwuY29tIiwibG9jYXRpb24iOm51bGwsImFib3V0IjpudWxsLCJyb2xlIjoidXNlciIsImlhdCI6MTY4NzM4MDU1OSwiZXhwIjoxNjg3NzQwNTU5fQ.QgNrI_HDgE_WHzgMfOfI54JV93XACd8C0MSnw36NzP0
 
 
@@ -126,18 +126,18 @@ token:eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiIxMDA3ODRhZC0zZDQyLTQxMDQtY
    //------------------------answers----------------------
 //qid in url
 ####
-POST http://localhost:4000/answers/124b23bc-112c-47dd-8ba2-b31dca19a74a
+POST http://localhost:4000/answers/493fca14-1c33-4312-b0e6-5e41a1c54c12
 Content-Type:  application/json
-token:eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiIwOTZhY2Q4NS1hOTg4LTRlZjEtYTAyMC1lNTNlYjI1ODY5NTgiLCJ1c2VybmFtZSI6ImpvbmF0aGFuIiwiZW1haWwiOiJqb25hdGhhbm5kYW1idWtpMTZAZ21haWwuY29tIiwibG9jYXRpb24iOm51bGwsImFib3V0IjpudWxsLCJyb2xlIjoidXNlciIsImlhdCI6MTY4NzQzMzkwMiwiZXhwIjoxNjg3NzkzOTAyfQ.efkwg3-R0Yu8zmDy20ioqmGrXHfvFh9_kfRDLMyGd8Q
+token:eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI1YTg5ODU1Zi0xNWExLTQwMDctYTRiYi1kNDFkOTQ5NjkzMWUiLCJ1c2VybmFtZSI6ImpveSIsImVtYWlsIjoiam95bWFyeUBnbWFpbC5jb20iLCJsb2NhdGlvbiI6bnVsbCwiYWJvdXQiOm51bGwsInJvbGUiOiJ1c2VyIiwiaWF0IjoxNjg3NjkwMTY5LCJleHAiOjE2ODgwNTAxNjl9.u57Ru9R0SRx7UjiXqnJ39a8O6LWJ51I6fEzgQzBufBQ
 
 {
-    "answer": "Jonathan's answer"   
+    "answer": "my answer's answer"   
    }
 
 //get answers of a question 
 ####
-GET http://localhost:4000/answers/124b23bc-112c-47dd-8ba2-b31dca19a74a
-token:eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiIwMDRhNDc5NS04ZWRiLTQxYzMtYjc3ZS1mOTg3ZjhiNjVmMzgiLCJ1c2VybmFtZSI6ImpveSIsImVtYWlsIjoiam95QGdtYWlsLmNvbSIsImxvY2F0aW9uIjoiTnllcmkiLCJhYm91dCI6IkFib3V0IG1lZWVlZSA6KSIsInJvbGUiOiJ1c2VyIiwiaWF0IjoxNjg3MjYyNTE0LCJleHAiOjE2ODc2MjI1MTR9.sYO4A4Tuyi9CXjKSgs_pbuaShJTYylzwtrvvO_FErcE
+GET http://localhost:4000/answers/493fca14-1c33-4312-b0e6-5e41a1c54c12
+token:eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI1YTg5ODU1Zi0xNWExLTQwMDctYTRiYi1kNDFkOTQ5NjkzMWUiLCJ1c2VybmFtZSI6ImpveSIsImVtYWlsIjoiam95bWFyeUBnbWFpbC5jb20iLCJsb2NhdGlvbiI6bnVsbCwiYWJvdXQiOm51bGwsInJvbGUiOiJ1c2VyIiwiaWF0IjoxNjg3NjkwMTY5LCJleHAiOjE2ODgwNTAxNjl9.u57Ru9R0SRx7UjiXqnJ39a8O6LWJ51I6fEzgQzBufBQ
 
 
 //aid in url

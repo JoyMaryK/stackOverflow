@@ -23,7 +23,7 @@ export const addQuestion = async (req: ExtendedRequest, res: Response) => {
 
 export const getAllQuestions = async (req: Request, res: Response) => {
     try {
-        let questions: Questions[] =  (await DatabaseHelper.exec('GetQuestionsWithPagination', {PageNumber:6})).recordset;
+        let questions: Questions[] =  (await DatabaseHelper.exec('GetQuestionsWithPagination', {PageNumber:1})).recordset;
         return res.status(200).json(questions);
     } catch (error: any) {
       return res.status(500).json({message:error.message});

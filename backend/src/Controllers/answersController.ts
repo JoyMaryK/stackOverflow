@@ -11,7 +11,9 @@ export const addAnswer = async (req: ExtendedRequest, res: Response) => {
     const { answer} = req.body;
     const { id } = req.params; 
     const uid = req.info?.uid as string
+    
     let question: Questions =  (await DatabaseHelper.exec('getOneQuestion',{qid:id})).recordset[0];
+
     if (question) {
         await DatabaseHelper.exec('addAnswer',{aid,qid:id,uid,answer})
         return res.status(201).json({ message: "answer submitted" });
@@ -28,7 +30,7 @@ export const addAnswer = async (req: ExtendedRequest, res: Response) => {
 export const getAnswersToQuestion = async (req: Request<{qid:string}>, res: Response) => {
     try {
         const{qid} =req.params
-        let answers: Answer[] =  (await DatabaseHelper.exec('getAnswersByQID',{qid, pageNumber:2})).recordset;
+        let answers: Answer[] =  (await DatabaseHelper.exec('getAnswersByQID',{qid, pageNumber:1})).recordset;
         return res.status(200).json(answers);
     } catch (error: any) {
       return res.status(500).json({message:error.message});
