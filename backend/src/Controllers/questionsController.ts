@@ -10,10 +10,13 @@ export const addQuestion = async (req: ExtendedRequest, res: Response) => {
   try {
     let qid = uuid();
     const { title, body ,tags} = req.body;
-    const  uid  = req.info?.uid as string;               //look into the possibility of confirming this with the token
+    const  uid  = req.info?.uid as string;             
     await DatabaseHelper.exec('addQuestion',{qid,uid,title,body})
-     tags.forEach(async (tag: { tid: string; }) => {
-        await DatabaseHelper.exec('addQuestionTags',{tid:tag.tid, qid})
+     tags.forEach(async (tag:string) => {
+      let tid= uuid()
+        await DatabaseHelper.exec('addTag',{tid,tagname:tag})
+        await DatabaseHelper.exec('addQuestionTags',{tid:tid, qid})
+
      });
     return res.status(201).json({ message: "question submitted" });
   } catch (error: any) {
@@ -32,8 +35,8 @@ export const getAllQuestions = async (req: Request, res: Response) => {
 
   export const getAllQuestionsByUser = async (req: Request<{uid:string}>, res: Response) => {
     try {
-        const{uid} =req.params
-        let questions: Questions[] =  (await DatabaseHelper.exec('getQuestionsByUserId',{uid, pageNumber:2})).recordset;
+        const {uid} =req.params 
+        let questions: Questions[] =  (await DatabaseHelper.exec('getQuestionsByUserId',{uid, pageNumber:1})).recordset;
         return res.status(200).json(questions);
     } catch (error: any) {
       return res.status(500).json({message:error.message});

@@ -1,14 +1,14 @@
-<div class="container h-screen sm:w-10/12" *ngIf="questionArr "  >
+<div class="container h-screen sm:w-10/12" *ngIf="question?.title "  >
 
     <div class="whole-question sm:w-10/12 " >
         <div class="m-3 title">
-            <p class=" text-xl sm:text-2xl text-[#1F7A8C] ">{{questionArr[0].title}} </p>
+            <p class=" text-xl sm:text-2xl text-[#1F7A8C] ">{{question.title}} </p>
         </div>
-        <p class="m-3">{{questionArr[0].body}}</p>
-         <p class="font-light text-right text-gray-500">asked on:{{questionArr[0].date }} </p>
+        <p class="m-3">{{question.body}}</p>
+         <p class="font-light text-right text-gray-500">asked on:{{question.date }} </p>
     </div>
     <div *ngIf="answers$ |async as answers">
-        <h1 class="ml-3 text-xl font-semibold ">{{questionArr[0].answer_count}} Answers</h1>
+        <h1 class="ml-3 text-xl font-semibold ">{{question.answer_count}} Answers</h1>
         <div class="all-answers sm:w-10/12 " *ngFor="let answer of answers">
             
        <div class="one-answer m-1 border" [ngStyle]="{'background-color': answer.isPrefered === true ? '#BFDBF7' : 'transparent'}">

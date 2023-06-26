@@ -33,7 +33,7 @@ export const addUser = async (req: ExtendedRequest, res: Response) => {
 export const getallUsers = async (req: Request, res: Response) => {
   try {
     
-    let users: User[] =  (await DatabaseHelper.exec("getAllUsers",{pageNumber:3}))
+    let users: User[] =  (await DatabaseHelper.exec("getAllUsers",{pageNumber:1}))
       .recordset;
     res.status(200).json(users);
   } catch (error: any) {
@@ -68,7 +68,8 @@ export const getUserByEmail: RequestHandler<{ email: string }> = async (
     const { email } = req.params;
 
 
-    let user: User[] = (await DatabaseHelper.exec("getUserByEmail",{email})).recordset;
+    let user: User = (await DatabaseHelper.exec("getUserByEmail",{email})).recordset[0];
+    console.log(user)
     if(!user){
       return res.status(404).json({ message: "User Not Found" });
     }

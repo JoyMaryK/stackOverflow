@@ -56,9 +56,9 @@
             <div class="edit-question flex justify-between items-center gap-2">
                 <p class="sm:font-semibold text-xl">{{q.title}}</p>
             </div>
-          <div>
-            <p class="text-[#1F7A8C] text-xs">#{{q.tag_names}}</p>
-          </div>
+            <div  *ngFor="let qt of q.tag_names">
+                <p class="text-[#1F7A8C] text-xs">#{{qt}}</p>
+             </div>
            
        </div>
        <div class="answers-date-delete flex items-center gap-2">

@@ -55,7 +55,10 @@ export class AskQuestionComponent {
     }else{
       this.invalid=null
       console.log(this.form.value)
-      this.store.dispatch(addQuestion({newQuestion:this.form.value}))
+      let tagsValue:string[]=[""]
+        if(this.form.get('tags')){
+      tagsValue = this.form.get('tags')!.value.split(",")}
+      this.store.dispatch(addQuestion({newQuestion: {...this.form.value,tags:tagsValue} }))
       this.msg='posted successfully'
       this.form.reset()
     }

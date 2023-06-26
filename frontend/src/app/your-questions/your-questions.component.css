@@ -2,3 +2,12 @@ svg:hover{
  /* transform: scale(1.1); */
  fill: #1F7A8C;
 }
+
+.tags-container {
+    display: flex;
+    flex-wrap: wrap;
+  }
+
+.answered{
+  background-color: #BFDBF7;
+}

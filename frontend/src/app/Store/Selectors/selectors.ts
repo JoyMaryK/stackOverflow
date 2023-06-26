@@ -10,12 +10,19 @@ export const selectAnswersState =createFeatureSelector<AnswersState>('answers')
 
 export const selectAllQuestions = createSelector(
     selectQuestions,
-    (state:QuestionState)=> state.questions
-)
+    (state: QuestionState) => {
+      return state.questions.map((question) => {
+        return {
+          ...question,
+          tags: question.tag_names ? question.tag_names.split(",") : []
+        };
+      });
+    }
+  );
 
 export const selectQuestionById =(qid:string) =>createSelector(
     selectQuestions,
-    (state:QuestionState)=> state.questions
+    (state:QuestionState)=> state.question
 )
 
 export const selectUsers = (state:AppState)=> state.users

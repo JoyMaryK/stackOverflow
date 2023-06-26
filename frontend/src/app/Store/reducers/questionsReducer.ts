@@ -5,7 +5,15 @@ import { Question, QuestionState } from "src/app/Interfaces";
 const initialState: QuestionState={
     questions:[],
     loaded: false,
-    error:  null
+    error:  null,
+    question: {qid:"",
+        title:"",
+        body:"",
+        tags:[],
+        user_id:"",
+        tag_names:"",
+        answer_count:0,
+        date:""}
 }
 export const questionsReducers = createReducer(
     initialState, 
@@ -49,7 +57,7 @@ export const questionsReducers = createReducer(
     ),
     on(actions.getOneQuestionSuccess,(state, action)=>({
         ...state,
-        questions:action.questions,
+        question:action.question,
         loaded:false,
         error:null,
     })),
@@ -58,6 +66,39 @@ export const questionsReducers = createReducer(
         loaded:false,
         error:error,
     })),
+    on(actions.getAllUserQuestions,(state)=>{
+        return{
+        ...state,
+        loaded: true}}
+    ),
+    on(actions.getUserQuestionsSuccess,(state, {questions})=>({
+        ...state,
+        questions:questions,
+        loaded:false,
+        error:null,
+    })),
+    on(actions.getUserQuestionsFailure,(state, {error})=>({
+        ...state,
+        loaded:false,
+        error:error,
+    })
+    ),
+    on(actions.deleteQuestion,(state, action)=>({
+        ...state,
+        questions:state.questions.filter(question => question.qid !== action.qid),
+        loaded:false,
+        error:null,
+    })),
     
-    )
-
+    on(actions.addQuestionSuccess,(state, action)=>({
+        ...state,
+        loaded:false,
+        error:null,
+    })),
+    on(actions.addQuestionFailure,(state, {error})=>({
+        ...state,
+        loaded:false,
+        error:error,
+    })),
+    
+)

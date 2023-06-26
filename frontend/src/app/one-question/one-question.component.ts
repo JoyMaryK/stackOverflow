@@ -30,14 +30,18 @@ export class OneQuestionComponent implements OnInit {
   };
   qid=''
   answers$!: Observable<Answer[]>;
-  questionArr!:Question[];
+  question!:Question;
   constructor(private store: Store<AppState>,private route:ActivatedRoute) {}
 
   ngOnInit(): void {
     this.qid = this.route.snapshot.params['id']
     this.store.dispatch(getOneQuestion({qid:this.qid}))
     this.store.select(selectQuestionById(this.qid)).subscribe(
-     res=>this.questionArr=res
+     res=>{
+      this.question=res as Question
+      console.log(this.question);
+      
+     }
     )
 
     this.store.dispatch(answersActions.getAllAnswers({qid:this.qid}));

@@ -2,10 +2,19 @@ export interface Question{
     qid:string
     title:string
     body:string
-    tag_names:string
+    tags:string[]
     user_id:string
     answer_count:number
     date:string
+    tag_names:string
+}
+
+export interface newQuestion{
+  qid:string
+  title:string
+  body:string
+  tags:string[]
+
 
 }
 
@@ -19,7 +28,7 @@ export interface QuestionState {
     questions: Question[];
     loaded: boolean;
     error?: string | null;
-  
+    question: Question | undefined
   }
 
   export interface UserState {

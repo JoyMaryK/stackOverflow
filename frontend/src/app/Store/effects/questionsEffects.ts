@@ -27,9 +27,9 @@ export class QuestionsEffects {
       ofType(actions.addQuestion),
       mergeMap((action) =>
         this.service.addQuestion(action.newQuestion).pipe(
-          map((questions) => {
-            console.log(questions);
-            return actions.addQuestionSuccess({ message:'success' });
+          map((message) => {
+            console.log(message);
+            return actions.addQuestionSuccess({ message: message });
           }),
           catchError((error: any) => of(actions.addQuestionFailure(error)))
         )
@@ -41,14 +41,43 @@ export class QuestionsEffects {
     ofType(actions.getOneQuestion),
     exhaustMap((action) =>
       this.service.getQuestionById(action.qid).pipe(
-        map((questions) => {
-          console.log(questions);
-
-          return actions.getOneQuestionSuccess({ questions });
+        map((question) => {
+          console.log(question);
+                  
+          return actions.getOneQuestionSuccess({ question});
         }),
         catchError((error: any) => of(actions.getOneQuestionFailure(error)))
       )
     )
   )
 );
+getUserQuestions$ = createEffect(() => {
+  return this.actions$.pipe(
+    ofType(actions.getAllUserQuestions),
+    mergeMap((action) =>
+      this.service.getQuestionsByUserId(action.uid).pipe(
+        map((questions) => {
+          console.log(questions);
+          return actions.getUserQuestionsSuccess({ questions });
+        }),
+        catchError((error: any) => of(actions.getUserQuestionsFailure(error)))
+      )
+    )
+  );
+});
+deleteQuestion$ = createEffect(() => {
+  return this.actions$.pipe(
+    ofType(actions.deleteQuestion),
+    mergeMap((action) =>
+      this.service.deleteQuestion(action.qid).pipe(
+        map((message) => {
+          console.log(message);
+          return actions.deleteQuestionSuccess({ message });
+        }),
+        catchError((error: any) => of(actions.deleteQuestionFailure(error)))
+      )
+    )
+  );
+});
+
 }

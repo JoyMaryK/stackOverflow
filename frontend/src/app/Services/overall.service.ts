@@ -9,7 +9,7 @@ import { TagContentType } from '@angular/compiler';
   providedIn: 'root'
 })
 export class OverallService {
-    token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiIxMDA3ODRhZC0zZDQyLTQxMDQtYmRiNi0yNjc1NjlhZGM0NTAiLCJ1c2VybmFtZSI6ImpveW1hcnkiLCJlbWFpbCI6ImpveW1hcjg5NjJAZ21haWwuY29tIiwibG9jYXRpb24iOm51bGwsImFib3V0IjpudWxsLCJyb2xlIjoidXNlciIsImlhdCI6MTY4NzM4MDU1OSwiZXhwIjoxNjg3NzQwNTU5fQ.QgNrI_HDgE_WHzgMfOfI54JV93XACd8C0MSnw36NzP0"
+    token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI1YTg5ODU1Zi0xNWExLTQwMDctYTRiYi1kNDFkOTQ5NjkzMWUiLCJ1c2VybmFtZSI6ImpveSIsImVtYWlsIjoiam95bWFyeUBnbWFpbC5jb20iLCJsb2NhdGlvbiI6bnVsbCwiYWJvdXQiOm51bGwsInJvbGUiOiJ1c2VyIiwiaWF0IjoxNjg3NzYwNzUxLCJleHAiOjE2ODgxMjA3NTF9.DU2_BO6cM6qqSOQA3PxGJlVcLZtU5pYO6jeHYs7rjrg"
     
     tags:Tag[]=[{ id:'1',tagname:"Javascript", description:'its just vanilla'}, 
     { id:'2',tagname:"Java", description:'stable and versatile'},
@@ -23,26 +23,41 @@ export class OverallService {
 }
   getUsers():Observable<User[]>{
     return this.http.get<User[]>(`http://localhost:4000/users`,{
-      headers:new HttpHeaders().set('token',"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiIxMDA3ODRhZC0zZDQyLTQxMDQtYmRiNi0yNjc1NjlhZGM0NTAiLCJ1c2VybmFtZSI6ImpveW1hcnkiLCJlbWFpbCI6ImpveW1hcjg5NjJAZ21haWwuY29tIiwibG9jYXRpb24iOm51bGwsImFib3V0IjpudWxsLCJyb2xlIjoidXNlciIsImlhdCI6MTY4NzM4MDU1OSwiZXhwIjoxNjg3NzQwNTU5fQ.QgNrI_HDgE_WHzgMfOfI54JV93XACd8C0MSnw36NzP0")})
+      headers:new HttpHeaders().set('token',this.token)})
     
   }
 
   //question related
   getQuestions():Observable<Question[]> {
     return this.http.get<Question[]>(`http://localhost:4000/questions`,{
-      headers:new HttpHeaders().set('token',"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiIxMDA3ODRhZC0zZDQyLTQxMDQtYmRiNi0yNjc1NjlhZGM0NTAiLCJ1c2VybmFtZSI6ImpveW1hcnkiLCJlbWFpbCI6ImpveW1hcjg5NjJAZ21haWwuY29tIiwibG9jYXRpb24iOm51bGwsImFib3V0IjpudWxsLCJyb2xlIjoidXNlciIsImlhdCI6MTY4NzM4MDU1OSwiZXhwIjoxNjg3NzQwNTU5fQ.QgNrI_HDgE_WHzgMfOfI54JV93XACd8C0MSnw36NzP0")})
+      headers:new HttpHeaders().set('token',this.token)})
 }
 
-getQuestionById(qid:string):Observable<Question[]> {
-  console.log("in service",qid)
-  return this.http.get<Question[]>(`http://localhost:4000/questions/question/${qid}`,{
-    headers:new HttpHeaders().set('token',"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiIxMDA3ODRhZC0zZDQyLTQxMDQtYmRiNi0yNjc1NjlhZGM0NTAiLCJ1c2VybmFtZSI6ImpveW1hcnkiLCJlbWFpbCI6ImpveW1hcjg5NjJAZ21haWwuY29tIiwibG9jYXRpb24iOm51bGwsImFib3V0IjpudWxsLCJyb2xlIjoidXNlciIsImlhdCI6MTY4NzM4MDU1OSwiZXhwIjoxNjg3NzQwNTU5fQ.QgNrI_HDgE_WHzgMfOfI54JV93XACd8C0MSnw36NzP0")})
+getQuestionById(qid:string):Observable<Question> {
+  
+  return this.http.get<Question>(`http://localhost:4000/questions/question/${qid}`,{
+    headers:new HttpHeaders().set('token',this.token)})
+}
+
+getQuestionsByUserId(uid:string):Observable<Question[]> {
+
+  return this.http.get<Question[]>(`http://localhost:4000/questions/user/${uid}`,{
+    headers:new HttpHeaders().set('token',this.token)})
 }
 
 addQuestion(newQuestion:Question):Observable<SuccessMessages> {
   return this.http.post<SuccessMessages>(
     `http://localhost:4000/questions`,
     newQuestion,
+    {
+      headers: new HttpHeaders().set('token', this.token),
+    }
+  );
+}
+
+deleteQuestion(qid:string):Observable<SuccessMessages> {
+  return this.http.delete<SuccessMessages>(
+    `http://localhost:4000/questions/delete/${qid}`,
     {
       headers: new HttpHeaders().set('token', this.token),
     }

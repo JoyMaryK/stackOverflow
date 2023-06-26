@@ -15,9 +15,9 @@
     <div class="question-tags mb-3 flex-col p-3">
         <p class="sm:font-semibold text-xl cursor-pointer" [routerLink]="'/home/question/'+question.qid" >{{question.title}}</p>
         <div class="tags-container">
-            <div >
-                <p class="text-[#1F7A8C] text-xs">{{question.tag_names}}</p>
-                </div>
+            <div  *ngFor="let qt of question.tag_names">
+                <p class="text-[#1F7A8C] text-xs">#{{qt}}</p>
+             </div>
        
         </div>
     </div>
