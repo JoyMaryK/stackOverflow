@@ -5,13 +5,15 @@ import { ActivatedRoute, RouterModule } from '@angular/router';
 import { addAnswer } from '../Store/actions/answersActions';
 import { Store } from '@ngrx/store';
 import { AppState } from '../app.state';
-import { Answer, Question } from '../Interfaces';
+import { Answer, Comment, Question } from '../Interfaces';
 import { Observable } from 'rxjs';
 import {
   selectAllAnswers,
+  selectAllComments,
   selectQuestionById,
 } from '../Store/Selectors/selectors';
 import * as answersActions from '../Store/actions/answersActions';
+import * as commentsActions from '../Store/actions/commentsActions';
 import { getAllQuestions, getOneQuestion } from '../Store/actions/questionActions';
 
 @Component({
@@ -31,6 +33,7 @@ export class OneQuestionComponent implements OnInit {
   qid=''
   answers$!: Observable<Answer[]>;
   question!:Question;
+  comments$!: Observable<Comment[]>;
   constructor(private store: Store<AppState>,private route:ActivatedRoute) {}
 
   ngOnInit(): void {
@@ -47,6 +50,8 @@ export class OneQuestionComponent implements OnInit {
     this.store.dispatch(answersActions.getAllAnswers({qid:this.qid}));
     this.answers$ = this.store.select(selectAllAnswers);
 
+   
+
   }
   onSubmit() {
     console.log(this.formData);
@@ -60,12 +65,25 @@ export class OneQuestionComponent implements OnInit {
     this.store.dispatch(addAnswer({ newAnswer: newA ,qid:this.qid}));
   }
 
-  onSub(form: NgForm) {
+  onSub(form: NgForm, aid:string) {
     if (form.valid) {
       this.invalid = null;
       console.log(form.value);
+      this.store.dispatch(commentsActions.addComment({newComment:form.value, aid:aid}))
+      form.reset();
     } else {
       this.invalid = 'invalid input';
     }
   }
+  getComment(aid:string){
+    console.log(aid);
+    
+    this.showComment = !this.showComment
+    if(this.showComment){
+    this.store.dispatch(commentsActions.getAllComments({aid:aid}))
+    this.comments$ = this.store.select(selectAllComments)
+    }
+  }
+
+
 }

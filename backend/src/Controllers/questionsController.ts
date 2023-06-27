@@ -45,8 +45,10 @@ export const getAllQuestions = async (req: Request, res: Response) => {
 
   export const getOneQuestion = async (req: Request<{qid:string}>, res: Response) => {
     try {
-        const{ qid } =req.params;
+        const{ qid } =req.params;        
         let question: Questions =  (await DatabaseHelper.exec('getOneQuestion',{qid})).recordset[0];
+  
+
         if (question) {
             return res.status(200).json(question);
           } else {

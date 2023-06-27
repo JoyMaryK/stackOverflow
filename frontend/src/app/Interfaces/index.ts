@@ -49,6 +49,13 @@ export interface QuestionState {
     error?: string | null;
   }
 
+  export interface CommentsState{
+    comments:Comment[]
+    loaded:boolean
+    error?: string | null;
+  }
+
+
   export interface User {
     uid: string;
     username: string;
@@ -94,4 +101,11 @@ export interface Answer{
     answer: string
     isPrefered: boolean
     vote_count: number
+}
+
+export interface Comment{
+  cid:string
+  aid:string
+  username:string
+  comment:string
 }

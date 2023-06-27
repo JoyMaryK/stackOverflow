@@ -20,6 +20,8 @@ import { HashPrefixPipe } from './Pipes/hash-prefix.pipe';
 import { HttpClientModule } from '@angular/common/http';
 import { answersReducers } from './Store/reducers/answersReducer';
 import { AnswersEffects } from './Store/effects/answersEffects';
+import { commentsReducers } from './Store/reducers/commentsReducers';
+import { CommentsEffects } from './Store/effects/commentsEffects';
 
 @NgModule({
   declarations: [
@@ -35,8 +37,8 @@ import { AnswersEffects } from './Store/effects/answersEffects';
     HomeComponent,
     LandingPageComponent,
     LoginComponent,
-    StoreModule.forRoot({questions:questionsReducers, users:userReducers, tags:tagsReducers, answers:answersReducers}),
-    EffectsModule.forRoot([QuestionsEffects, UsersEffects, TagsEffects, AnswersEffects]),
+    StoreModule.forRoot({questions:questionsReducers, users:userReducers, tags:tagsReducers, answers:answersReducers, comments:commentsReducers}),
+    EffectsModule.forRoot([QuestionsEffects, UsersEffects, TagsEffects, AnswersEffects, CommentsEffects]),
     StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: !isDevMode() })
 
   ],

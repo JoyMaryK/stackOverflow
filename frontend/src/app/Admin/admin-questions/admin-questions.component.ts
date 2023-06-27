@@ -6,6 +6,7 @@ import { AppState } from 'src/app/app.state';
 import { selectAllQuestions } from 'src/app/Store/Selectors/selectors';
 import * as actions from '../../Store/actions/questionActions';
 import { map } from 'rxjs';
+import { deleteQuestion } from '../../Store/actions/questionActions';
 
 
 @Component({
@@ -22,4 +23,8 @@ export class AdminQuestionsComponent {
  ngOnInit(): void {
     this.store.dispatch(actions.getAllQuestions()) 
  }
+
+ delete(qid:string){
+  this.store.dispatch(deleteQuestion({qid:qid}))
+}
 }

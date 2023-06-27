@@ -1,5 +1,5 @@
 import { createAction, props } from "@ngrx/store"
-import { Question , SuccessMessages, newQuestion } from "src/app/Interfaces"
+import { Question , SuccessMessages } from "src/app/Interfaces"
 
 
 export const getAllQuestions= createAction('[Questions] Get All Questions')

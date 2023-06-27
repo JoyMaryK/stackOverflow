@@ -13,13 +13,13 @@ export const answersReducers = createReducer(
 
     on(actions.addAnswer,(state, action)=>({
         ...state,
-        answers:[...state.answers, action.newAnswer ],
         loaded:false,
         error:null,
     })),
     
     on(actions.addAnswerSuccess,(state, action)=>({
         ...state,
+        answers:state.answers,
         loaded:false,
         error:null,
     })),

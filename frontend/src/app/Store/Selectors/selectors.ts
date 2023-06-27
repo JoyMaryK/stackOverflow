@@ -1,6 +1,6 @@
 import { createFeatureSelector, createSelector } from "@ngrx/store";
 import { AppState } from "../../app.state"
-import { AnswersState, QuestionState, TagsState, UserState } from "src/app/Interfaces";
+import { AnswersState, CommentsState, QuestionState, TagsState, UserState } from "src/app/Interfaces";
 export const selectQuestions = (state:AppState)=> state.questions
 export const selectQuestionsState =createFeatureSelector<QuestionState>('questions')
 
@@ -41,6 +41,12 @@ export const selectAnswers = (state:AppState)=> state.answers
 export const selectAllAnswers = createSelector(
     selectAnswers,
     (state:AnswersState)=> state.answers
+)
+
+export const selectComments = (state:AppState)=> state.comments
+export const selectAllComments = createSelector(
+    selectComments,
+    (state:CommentsState)=> state.comments
 )
 
 

@@ -44,6 +44,24 @@ export const userReducers = createReducer(
         loaded:false,
         error:error,
     })),
+    on(actions.deleteUser,(state, action)=>({
+        ...state,
+        
+        loaded:false,
+        error:null,
+    })),
+    
+    on(actions.deleteUserSuccess,(state, action)=>({
+        ...state,
+        users:state.users.filter(user => user.uid !== action.uid),
+        loaded:false,
+        error:null,
+    })),
+    on(actions.deleteUserFailure,(state, {error})=>({
+        ...state,
+        loaded:false,
+        error:error,
+    })),
     
     
     )

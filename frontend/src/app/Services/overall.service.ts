@@ -26,6 +26,14 @@ export class OverallService {
       headers:new HttpHeaders().set('token',this.token)})
     
   }
+  deleteUser(uid:string):Observable<SuccessMessages> {
+    return this.http.delete<SuccessMessages>(
+      `http://localhost:4000/users/${uid}`,
+      {
+        headers: new HttpHeaders().set('token', this.token),
+      }
+    );
+  }
 
   //question related
   getQuestions():Observable<Question[]> {

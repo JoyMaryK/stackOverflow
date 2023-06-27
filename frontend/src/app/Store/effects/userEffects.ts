@@ -35,4 +35,18 @@ export class UsersEffects {
       )
     );
   });
+  deleteUser$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(actions.deleteUser),
+      mergeMap((action) =>
+        this.service.deleteUser(action.uid).pipe(
+          map((message) => {
+            console.log(message);
+            return actions.deleteUserSuccess({ uid:action.uid, message });
+          }),
+          catchError((error: any) => of(actions.deleteUserFailure(error)))
+        )
+      )
+    );
+  });
 }

@@ -4,7 +4,7 @@ import { RouterModule } from '@angular/router';
 import { Observable } from 'rxjs';
 import { User } from 'src/app/Interfaces';
 import { Store } from '@ngrx/store';
-import { getAllUsers } from 'src/app/Store/actions/userActions';
+import { deleteUser, getAllUsers } from 'src/app/Store/actions/userActions';
 import { selectAllUsers, selectUsers } from 'src/app/Store/Selectors/selectors';
 import { AppState } from 'src/app/app.state';
 
@@ -30,4 +30,7 @@ constructor(private store:Store<AppState>){}
     this.store.dispatch(getAllUsers())
   }
 
+  delete(uid:string){
+    this.store.dispatch(deleteUser({uid}))
+  }
 }

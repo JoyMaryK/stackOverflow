@@ -9,7 +9,7 @@ import {
 } from '@angular/forms'
 import { AppState } from '../app.state';
 import { Store } from '@ngrx/store';
-import { addQuestion, addQuestionSuccess } from '../Store/actions/questionActions';
+import { addQuestion} from '../Store/actions/questionActions';
 import { Question, Tag } from '../Interfaces';
 import { Observable } from 'rxjs';
 import { selectAllTags } from '../Store/Selectors/selectors';
@@ -55,10 +55,12 @@ export class AskQuestionComponent {
     }else{
       this.invalid=null
       console.log(this.form.value)
+
       let tagsValue:string[]=[""]
         if(this.form.get('tags')){
       tagsValue = this.form.get('tags')!.value.split(",")}
       this.store.dispatch(addQuestion({newQuestion: {...this.form.value,tags:tagsValue} }))
+      
       this.msg='posted successfully'
       this.form.reset()
     }
