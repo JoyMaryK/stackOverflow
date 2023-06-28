@@ -6,7 +6,8 @@ import {
   Validators,
   ReactiveFormsModule,
   FormControl
-} from '@angular/forms'
+} from '@angular/forms';
+import { OnInit} from '@angular/core';
 import { AppState } from '../app.state';
 import { Store } from '@ngrx/store';
 import { addQuestion} from '../Store/actions/questionActions';
@@ -23,7 +24,7 @@ import { ActivatedRoute } from '@angular/router';
   templateUrl: './ask-question.component.html',
   styleUrls: ['./ask-question.component.css']
 })
-export class AskQuestionComponent {
+export class AskQuestionComponent implements OnInit {
   form!:FormGroup
   invalid!: string | null
   msg!: string | null
@@ -57,6 +58,7 @@ export class AskQuestionComponent {
       console.log(this.form.value)
 
       let tagsValue:string[]=[""]
+      
         if(this.form.get('tags')){
       tagsValue = this.form.get('tags')!.value.split(",")}
       this.store.dispatch(addQuestion({newQuestion: {...this.form.value,tags:tagsValue} }))

@@ -13,7 +13,7 @@ export const upvote = async (req: ExtendedRequest, res: Response) => {
     await DatabaseHelper.exec('upvote',{vid,aid:id,uid})
         return res.status(201).json({ message: "upvoted" });          
  } catch (error: any) {
-    return res.status(500).json({message:error.message});
+    return res.status(500).json({message:"error"});
   }
 };
 

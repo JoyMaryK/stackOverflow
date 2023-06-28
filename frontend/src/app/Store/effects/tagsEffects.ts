@@ -8,7 +8,7 @@ import { OverallService } from 'src/app/Services/overall.service';
 export class TagsEffects {
   constructor(private actions$: Actions, private service: OverallService) {}
 
-  getQuestions$ = createEffect(() => {
+  getTags$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(actions.getAllTags),
       mergeMap((action) =>

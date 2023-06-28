@@ -10,6 +10,7 @@ import { Store } from '@ngrx/store';
 import * as actions from '../Store/actions/userActions'
 import { User } from '../Interfaces';
 import { Router, RouterModule } from '@angular/router';
+import { AppState } from '../app.state';
 
 @Component({
   selector: 'app-signup',
@@ -56,8 +57,9 @@ export class SignupComponent {
       this.matchValues( this.form.get('password')?.value,this.form.get('cpassword')?.value)
       if (!this.matchingPWD){
         console.log(this.form.value) 
-        let newUser:User = {id:"theid", ...this.form.value}
-        this.store.dispatch(actions.addUser({user:newUser}))  
+        let { cpassword, ...rest} = this.form.value
+                
+        this.store.dispatch(actions.addUser({user:rest}))  
         this.router.navigateByUrl('/login')
       } else{
         console.log(this.matchingPWD);

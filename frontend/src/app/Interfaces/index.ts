@@ -28,11 +28,12 @@ export interface QuestionState {
     questions: Question[];
     loaded: boolean;
     error?: string | null;
-    question: Question | undefined
+    question: Question | null
   }
 
   export interface UserState {
     users: User[];
+    user:User | null
     loaded: boolean;
     error?: string | null;
   }
@@ -49,11 +50,18 @@ export interface QuestionState {
     error?: string | null;
   }
 
+  export interface VotesState{
+    loaded:boolean
+    error?: string | null;
+  }
+
   export interface CommentsState{
     comments:Comment[]
     loaded:boolean
     error?: string | null;
   }
+
+  
 
 
   export interface User {
@@ -64,8 +72,8 @@ export interface QuestionState {
     isDeleted: number;
     password: string;
     emailSent: string;
-    location?:string;
-    about?:string
+    location:string;
+    about:string
   }
 
 export interface UserSignup{
@@ -108,4 +116,11 @@ export interface Comment{
   aid:string
   username:string
   comment:string
+}
+
+export interface LoginSuccess{
+  token:string
+  uid:string
+  message:string
+  role:string
 }

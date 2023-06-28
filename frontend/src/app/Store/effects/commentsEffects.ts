@@ -25,7 +25,7 @@ export class CommentsEffects {
           catchError((error: any) => of(actions.addCommentFailure(error)))
         )
       ),
-      tap((action) => this.store.dispatch(actions.getAllComments({ aid: a_id })))
+      tap(() => this.store.dispatch(actions.getAllComments({ aid: a_id })))
     );
   });
   getComment$ = createEffect(() => {

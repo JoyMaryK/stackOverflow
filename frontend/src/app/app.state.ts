@@ -1,4 +1,4 @@
-import { AnswersState, CommentsState, QuestionState, TagsState, UserState } from "./Interfaces";
+import { AnswersState, CommentsState, QuestionState, TagsState, UserState, VotesState } from "./Interfaces";
 
 export interface AppState{
     users:UserState
@@ -6,4 +6,5 @@ export interface AppState{
     tags:TagsState
     answers:AnswersState
     comments:CommentsState
+    votes:VotesState
 }

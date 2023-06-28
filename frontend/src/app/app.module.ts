@@ -22,6 +22,8 @@ import { answersReducers } from './Store/reducers/answersReducer';
 import { AnswersEffects } from './Store/effects/answersEffects';
 import { commentsReducers } from './Store/reducers/commentsReducers';
 import { CommentsEffects } from './Store/effects/commentsEffects';
+import { VotesEffects } from './Store/effects/votesEffects';
+import { votesReducers } from './Store/reducers/votesReducers';
 
 @NgModule({
   declarations: [
@@ -37,8 +39,8 @@ import { CommentsEffects } from './Store/effects/commentsEffects';
     HomeComponent,
     LandingPageComponent,
     LoginComponent,
-    StoreModule.forRoot({questions:questionsReducers, users:userReducers, tags:tagsReducers, answers:answersReducers, comments:commentsReducers}),
-    EffectsModule.forRoot([QuestionsEffects, UsersEffects, TagsEffects, AnswersEffects, CommentsEffects]),
+    StoreModule.forRoot({questions:questionsReducers, users:userReducers, tags:tagsReducers, answers:answersReducers, comments:commentsReducers, votes:votesReducers}),
+    EffectsModule.forRoot([QuestionsEffects, UsersEffects, TagsEffects, AnswersEffects, CommentsEffects, VotesEffects]),
     StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: !isDevMode() })
 
   ],

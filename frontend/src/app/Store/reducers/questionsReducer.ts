@@ -85,13 +85,13 @@ export const questionsReducers = createReducer(
     ),
     on(actions.deleteQuestion,(state, action)=>({
         ...state,
-        questions:state.questions.filter(question => question.qid !== action.qid),
         loaded:false,
         error:null,
     })),
     
     on(actions.addQuestionSuccess,(state, action)=>({
         ...state,
+        questions: state.questions,
         loaded:false,
         error:null,
     })),

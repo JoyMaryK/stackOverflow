@@ -25,7 +25,7 @@ export class AnswersEffects {
           catchError((error: any) => of(actions.addAnswerFailure(error)))
         )
       ),
-      tap((action) => this.store.dispatch(actions.getAllAnswers({ qid: q_id })))
+      tap(() => this.store.dispatch(actions.getAllAnswers({ qid: q_id })))
     );
   });
   getAnswers$ = createEffect(() => {

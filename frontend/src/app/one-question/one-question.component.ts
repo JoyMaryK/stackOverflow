@@ -14,7 +14,8 @@ import {
 } from '../Store/Selectors/selectors';
 import * as answersActions from '../Store/actions/answersActions';
 import * as commentsActions from '../Store/actions/commentsActions';
-import { getAllQuestions, getOneQuestion } from '../Store/actions/questionActions';
+import { getOneQuestion } from '../Store/actions/questionActions';
+import { downvote, upvote } from '../Store/actions/votesActions';
 
 @Component({
   selector: 'app-one-question',
@@ -32,7 +33,7 @@ export class OneQuestionComponent implements OnInit {
   };
   qid=''
   answers$!: Observable<Answer[]>;
-  question!:Question;
+  question:Question | null = null;
   comments$!: Observable<Comment[]>;
   constructor(private store: Store<AppState>,private route:ActivatedRoute) {}
 
@@ -41,7 +42,7 @@ export class OneQuestionComponent implements OnInit {
     this.store.dispatch(getOneQuestion({qid:this.qid}))
     this.store.select(selectQuestionById(this.qid)).subscribe(
      res=>{
-      this.question=res as Question
+      this.question=res
       console.log(this.question);
       
      }
@@ -84,6 +85,10 @@ export class OneQuestionComponent implements OnInit {
     this.comments$ = this.store.select(selectAllComments)
     }
   }
-
-
+  upvote(aid:string){
+    this.store.dispatch(upvote({aid:aid}))
+  }
+  downvote(aid:string){
+    this.store.dispatch(downvote({aid}))
+  }
 }

@@ -12,7 +12,7 @@
       <p *ngIf="invalid" class="text-xs text-red-600">{{invalid}}</p>
           
             <label for="username" >Username:</label><br>
-            <input type="text" id="username" formControlName="username" class="mb-3 border bg-[#E1E5F2] w-10/12 rounded p-1" placeholder="Enter the title of the question" required>
+            <input type="text" id="username" formControlName="username" class="mb-3 border bg-[#E1E5F2] w-10/12 rounded p-1" placeholder="Enter new Username" required>
             <div *ngIf="form.get('username')?.invalid && (form.get('username')?.dirty || form.get('username')?.touched)">
               <div *ngIf="form.get('username')?.errors?.['required']" class="text-xs text-red-600">Username is required</div>
             </div>

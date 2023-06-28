@@ -25,11 +25,21 @@ export const selectQuestionById =(qid:string) =>createSelector(
     (state:QuestionState)=> state.question
 )
 
+export const selectQuestion = createSelector(
+  selectQuestionsState,
+  (state: QuestionState) => state.question
+);
+
 export const selectUsers = (state:AppState)=> state.users
 export const selectAllUsers = createSelector(
     selectUsers,
     (state:UserState)=> state.users
 )
+export const selectUser = createSelector(
+  selectUsers,
+  (state:UserState)=> state.user
+)
+
 
 export const selectTags = (state:AppState)=> state.tags
 export const selectAllTags = createSelector(

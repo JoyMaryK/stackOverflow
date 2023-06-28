@@ -1,11 +1,11 @@
-<div class="container h-screen sm:w-10/12" *ngIf="question?.title">
+<div class="container h-screen sm:w-10/12" *ngIf="question">
   <div class="whole-question sm:w-10/12">
     <div class="m-3 title">
       <p class="text-xl sm:text-2xl text-[#1F7A8C]">{{ question.title }}</p>
     </div>
     <p class="m-3">{{ question.body }}</p>
     <p class="font-light text-right text-gray-500">
-      asked on:{{ question.date }}
+      asked on:{{ question.date | date }}
     </p>
   </div>
   <div *ngIf="answers$ | async as answers">
@@ -47,8 +47,11 @@
         <div class="upvote-controls flex items-center p-4">
           <div
             class="upvote-downvote bg-[#E1E5F2] ml-8 flex items-center gap-2 rounded-2xl w-fit border-8"
-          >
-            <div class="upvote flex items-center">
+            >
+            <div
+            class="upvote flex items-center border"
+            (click)="upvote(answer.aid); $event.stopPropagation()"
+              >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 height="1em"
@@ -66,10 +69,11 @@
             <p>{{ answer.vote_count }}</p>
 
             <svg
+              (click)="downvote(answer.aid); $event.stopPropagation()"
               xmlns="http://www.w3.org/2000/svg"
               height="1em"
               viewBox="0 0 384 512 "
-              class="downvote"
+              class="downvote border"
             >
               <!--! Font Awesome Free 6.4.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. -->
               <path
@@ -78,7 +82,7 @@
             </svg>
           </div>
           <svg
-            (click)="getComment(answer.aid)"
+            (click)="getComment(answer.aid); $event.stopPropagation()"
             xmlns="http://www.w3.org/2000/svg"
             height="1em"
             viewBox="0 0 640 512"

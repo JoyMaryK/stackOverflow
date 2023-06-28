@@ -84,7 +84,7 @@ export const getUserByEmail: RequestHandler<{ email: string }> = async (
 export const updateUser = async (req: ExtendedRequest, res: Response) => {
   try {
     const { username, email, location, about } = req.body;
-    const { id } = req.params;
+    const  id  = req.info?.uid as string;
     let user: User = await (await DatabaseHelper.exec("getUserById",{uid:id})).recordset[0];
 
     if (!user) {

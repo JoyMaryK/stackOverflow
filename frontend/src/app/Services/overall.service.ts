@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
-import { Question, ReturnedMessage, SuccessMessages, Tag, User, UserSignup } from '../Interfaces';
+import { LoginSuccess, Question,  SuccessMessages, Tag, User, UserLogin, UserSignup } from '../Interfaces';
 import { HttpClient, HttpHeaders } from '@angular/common/http'
 import { TagContentType } from '@angular/compiler';
 
@@ -10,16 +10,27 @@ import { TagContentType } from '@angular/compiler';
 })
 export class OverallService {
     token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI1YTg5ODU1Zi0xNWExLTQwMDctYTRiYi1kNDFkOTQ5NjkzMWUiLCJ1c2VybmFtZSI6ImpveSIsImVtYWlsIjoiam95bWFyeUBnbWFpbC5jb20iLCJsb2NhdGlvbiI6bnVsbCwiYWJvdXQiOm51bGwsInJvbGUiOiJ1c2VyIiwiaWF0IjoxNjg3NzYwNzUxLCJleHAiOjE2ODgxMjA3NTF9.DU2_BO6cM6qqSOQA3PxGJlVcLZtU5pYO6jeHYs7rjrg"
-    
-    tags:Tag[]=[{ id:'1',tagname:"Javascript", description:'its just vanilla'}, 
-    { id:'2',tagname:"Java", description:'stable and versatile'},
-    { id:'3',tagname:"PHP", description:'where do I begin?'}]
+  
   constructor( private http:HttpClient) { }
 
   //user related 
-  addUser(user:UserSignup):Observable<Tag[]> {
-    let newUser = {id:"sth",...user}
-    return of(this.tags)
+  addUser(user:UserSignup):Observable<SuccessMessages> {
+    return this.http.post<SuccessMessages>(
+      `http://localhost:4000/users/login`,
+         user
+    );
+}
+
+loginUser(user:UserLogin):Observable<LoginSuccess> {
+  return this.http.post<LoginSuccess>(
+    `http://localhost:4000/users/login`,
+       user
+  );
+}
+getUser(uid:string):Observable<User>{
+  return this.http.get<User>(`http://localhost:4000/users/${uid}`,{
+    headers:new HttpHeaders().set('token',this.token)})
+  
 }
   getUsers():Observable<User[]>{
     return this.http.get<User[]>(`http://localhost:4000/users`,{
@@ -32,6 +43,15 @@ export class OverallService {
       {
         headers: new HttpHeaders().set('token', this.token),
       }
+    );
+  }
+
+  updateUser(userUpdate:User):Observable<SuccessMessages> {
+    return this.http.put<SuccessMessages>(
+      `http://localhost:4000/users/update`,
+      userUpdate,
+        {headers: new HttpHeaders().set('token', this.token)},
+      
     );
   }
 

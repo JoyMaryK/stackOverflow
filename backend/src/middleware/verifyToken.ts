@@ -19,9 +19,10 @@ export const verifyToken = (
 ) => {
   try {
     const token = req.headers["token"] as string;
-
+    //  console.log(token);
+     
     if (!token) {
-      return res.status(401).json({ message: "Unathorized" });
+      return res.status(401).json({ message: "Unathorized " });
     }
 
     const decodedData = jwt.verify(

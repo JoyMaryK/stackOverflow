@@ -1,12 +1,14 @@
 import { Injectable } from '@angular/core';
 import * as actions from '../actions/questionActions';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
-import { catchError, exhaustMap, map, mergeMap, of, switchMap } from 'rxjs';
+import { catchError, exhaustMap, map, mergeMap, of, switchMap, tap } from 'rxjs';
 import { OverallService } from 'src/app/Services/overall.service';
+import { AppState } from 'src/app/app.state';
+import { Store } from '@ngrx/store';
 
 @Injectable()
 export class QuestionsEffects {
-  constructor(private actions$: Actions, private service: OverallService) {}
+  constructor(private actions$: Actions, private service: OverallService, private store:Store<AppState>) {}
 
   getQuestions$ = createEffect(() => {
     return this.actions$.pipe(
@@ -76,7 +78,8 @@ deleteQuestion$ = createEffect(() => {
         }),
         catchError((error: any) => of(actions.deleteQuestionFailure(error)))
       )
-    )
+    ),
+    tap(() => this.store.dispatch(actions.getAllQuestions()))
   );
 });
 

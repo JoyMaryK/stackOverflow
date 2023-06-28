@@ -7,6 +7,9 @@ import {
   ReactiveFormsModule
 } from '@angular/forms';
 import { Router, RouterModule } from '@angular/router';
+import { AppState } from '../app.state';
+import { Store } from '@ngrx/store';
+import { userLogin } from '../Store/actions/userActions';
 
 
 @Component({
@@ -21,7 +24,8 @@ export class LoginComponent {
   showFP=false
   constructor(
     private fb: FormBuilder,
-    private router:Router
+    private router:Router,
+    private store:Store<AppState>
   ) {}
 
   ngOnInit(): void {
@@ -40,7 +44,8 @@ export class LoginComponent {
 if(this.form.get('email')?.value ==='admin@gmail.com'){
   this.router.navigateByUrl('/admin-questions')
 } else{
-  this.router.navigateByUrl('/home')
+   this.store.dispatch(userLogin({user:this.form.value}))
+ 
 }
 
  
