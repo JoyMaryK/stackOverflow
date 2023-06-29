@@ -5,12 +5,14 @@
             Top Questions
         </h2>
     </div>
-    <div class="filter mr-4 bg-[#E1E5F2] rounded-md flex items-center">
-      <input type="text" class="bg-[#E1E5F2] rounded-md p-1" placeholder="filter">  
-      <svg class="mr-2" xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 512 512"><!--! Font Awesome Free 6.4.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. --><path d="M3.9 54.9C10.5 40.9 24.5 32 40 32H472c15.5 0 29.5 8.9 36.1 22.9s4.6 30.5-5.2 42.5L320 320.9V448c0 12.1-6.8 23.2-17.7 28.6s-23.8 4.3-33.5-3l-64-48c-8.1-6-12.8-15.5-12.8-25.6V320.9L9 97.3C-.7 85.4-2.8 68.8 3.9 54.9z"/></svg>
-    </div>
+    <div class="filter mr-4 rounded-md flex gap-2 items-center">
+        <button class="bg-[#1F7A8C] hover:bg-[#BFDBF7] text-white font-bold py-2 px-4 rounded" (click)="all()">all</button>
+        <button class="bg-[#1F7A8C] hover:bg-[#BFDBF7] text-white font-bold py-2 px-4 rounded" (click)="answered()">answered</button>
+        <button class="bg-[#1F7A8C] hover:bg-[#BFDBF7] text-white font-bold py-2 px-4 rounded" (click)="unanswered()">unanswered</button>
+        
+          </div>
  </div>
-<div class="all-questions mt-5" *ngIf="questions$ | async as questions">
+<div class="all-questions mt-5" *ngIf="questions$  as questions">
     <div class="one-question border m-3 p-3 sm:flex sm:justify-between sm:items-center " *ngFor="let question of questions" [ngClass]="{'answered':question.answer_count!>0}">
     <div class="question-tags mb-3 flex-col p-3">
         <p class="sm:font-semibold text-xl cursor-pointer" [routerLink]="'/home/question/'+question.qid" >{{question.title}}</p>

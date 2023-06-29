@@ -4,7 +4,7 @@ import { Question } from '../Interfaces';
 import { Store } from '@ngrx/store';
 import { AppState } from '../app.state';
 import * as actions from '../Store/actions/questionActions';
-import { selectAllQuestions, selectQuestionById } from '../Store/Selectors/selectors';
+import { selectAllQuestions, selectQuestionAnswered, selectQuestionById } from '../Store/Selectors/selectors';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { HashPrefixPipe } from '../Pipes/hash-prefix.pipe';
@@ -21,13 +21,38 @@ export class HomeComponent implements OnInit{
 
   constructor(private store:Store<AppState>){}
 
-  questions$!:Observable<Question[]>
+  questions$!:Question[]
  ngOnInit(): void {
     this.store.dispatch(actions.getAllQuestions()) 
-    this.questions$ = this.store.select(selectAllQuestions)
+    this.store.select(selectAllQuestions).subscribe(res=>{
+      this.questions$ = res
+    })
  }
 
   oneQ(qid:string){
     
+ }
+ all(){
+  this.store.select(selectAllQuestions).subscribe(res=>{
+    console.log(res);
+    
+    this.questions$ = res
+  });
+ }
+ answered(){
+  this.store.select(selectAllQuestions).subscribe(res=>{
+    console.log(res);
+    
+    this.questions$ = res.filter(q=>q.answer_count>0)
+  })
+
+ }
+ unanswered(){
+  this.store.select(selectAllQuestions).subscribe(res=>{
+    console.log(res);
+    
+    this.questions$ = res.filter(q=>q.answer_count<1)
+  });
+  
  }
 }

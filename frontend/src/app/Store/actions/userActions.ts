@@ -44,3 +44,10 @@ export const getUserSuccess= createAction('[Users API] Get User Success',
 props<{user:User}>())
 export const getUserFailure= createAction('[Users API] Get User Failure', 
 props<{error:string}>())
+
+
+export const getUserById= createAction('[Users] Get one User By Id',props<{uid:string}>() )
+export const getUserByIdSuccess= createAction('[Users API] Get User By Id Success', 
+props<{user:User}>())
+export const getUserByIdFailure= createAction('[Users API] Get User By Id Failure', 
+props<{error:string}>())

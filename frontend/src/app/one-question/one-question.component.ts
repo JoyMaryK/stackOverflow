@@ -11,11 +11,13 @@ import {
   selectAllAnswers,
   selectAllComments,
   selectQuestionById,
+  selectUser,
 } from '../Store/Selectors/selectors';
 import * as answersActions from '../Store/actions/answersActions';
 import * as commentsActions from '../Store/actions/commentsActions';
-import { getOneQuestion } from '../Store/actions/questionActions';
+import { getAllUserQuestions, getOneQuestion } from '../Store/actions/questionActions';
 import { downvote, upvote } from '../Store/actions/votesActions';
+import { getUserById } from '../Store/actions/userActions';
 
 @Component({
   selector: 'app-one-question',
@@ -64,6 +66,10 @@ export class OneQuestionComponent implements OnInit {
       isPrefered: false,
       vote_count: 0,
     };
+     if(this.formData.answer= ''){
+      this.invalid="invalid"
+      return 
+     }
     this.store.dispatch(addAnswer({ newAnswer: newA ,qid:this.qid}));
   }
 
@@ -95,5 +101,10 @@ export class OneQuestionComponent implements OnInit {
     this.store.dispatch(downvote({aid}))
     this.store.dispatch(answersActions.getAllAnswers({qid:this.qid}));
     this.answers$ = this.store.select(selectAllAnswers);
+  }
+
+  viewUser(uid:string){
+     this.store.dispatch(getUserById({uid}))
+     this.store.dispatch(getAllUserQuestions({uid}))
   }
 }

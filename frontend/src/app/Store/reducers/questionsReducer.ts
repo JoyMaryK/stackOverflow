@@ -6,6 +6,7 @@ const initialState: QuestionState={
     questions:[],
     loaded: false,
     error:  null,
+    success:null,
     question: {qid:"",
         title:"",
         body:"",
@@ -43,6 +44,7 @@ export const questionsReducers = createReducer(
     on(actions.addQuestionSuccess,(state, action)=>({
         ...state,
         loaded:false,
+        success:action.message,
         error:null,
     })),
     on(actions.addQuestionFailure,(state, {error})=>({

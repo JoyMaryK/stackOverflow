@@ -7,3 +7,8 @@
     fill: #1F7A8C;
     cursor: pointer;
 }
+
+button:disabled{
+    cursor: not-allowed;
+    background: #1f7a8c8f;
+}

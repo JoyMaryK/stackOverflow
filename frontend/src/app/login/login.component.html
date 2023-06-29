@@ -18,7 +18,7 @@
           <div *ngIf="form.get('password')?.invalid && (form.get('password')?.dirty || form.get('password')?.touched)">
             <div *ngIf="form.get('password')?.errors?.['required']" class="text-xs text-red-600">Password is required</div>
           </div> <br>
-          <a class="text-sm text-[#1F7A8C] cursor-pointer "  (click) = "showFP = !showFP" >forgot password?</a> <br>
+          <!-- <a class="text-sm text-[#1F7A8C] cursor-pointer "  (click) = "showFP = !showFP" >forgot password?</a> <br> -->
           <div [hidden]="!showFP" class="w-full ">
              <div class="fogot-password flex justify-center  items-center">
               <input type="email" id="emailFP" name="emailFP" class="border bg-[#E1E5F2] rounded p-1 w-full" placeholder="Enter your email" required>

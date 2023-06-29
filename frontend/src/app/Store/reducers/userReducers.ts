@@ -96,4 +96,15 @@ export const userReducers = createReducer(
         loaded:false,
         error:error,
     })),
+    on(actions.getUserByIdSuccess,(state, action)=>({
+        ...state,
+        user:action.user,
+        loaded:false,
+        error:null,
+    })),
+    on(actions.getUserByIdFailure,(state, {error})=>({
+        ...state,
+        loaded:false,
+        error:error,
+    })),
     )

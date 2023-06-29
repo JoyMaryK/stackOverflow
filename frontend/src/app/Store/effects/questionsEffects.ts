@@ -5,10 +5,11 @@ import { catchError, exhaustMap, map, mergeMap, of, switchMap, tap } from 'rxjs'
 import { OverallService } from 'src/app/Services/overall.service';
 import { AppState } from 'src/app/app.state';
 import { Store } from '@ngrx/store';
+import { Router } from '@angular/router';
 
 @Injectable()
 export class QuestionsEffects {
-  constructor(private actions$: Actions, private service: OverallService, private store:Store<AppState>) {}
+  constructor(private actions$: Actions, private service: OverallService, private store:Store<AppState>,private router:Router) {}
 
   getQuestions$ = createEffect(() => {
     return this.actions$.pipe(
@@ -121,6 +122,7 @@ getQuestionsByTags$ = createEffect(() => {
       this.service.getQuestionsByTag(action.tagname).pipe(
         map((questions) => {
           console.log(questions);
+          this.router.navigateByUrl('/home/question/tag/:id')
           return actions.getUserQuestionsSuccess({ questions });
         }),
         catchError((error: any) => of(actions.getQuestionsByTagsFailure(error)))

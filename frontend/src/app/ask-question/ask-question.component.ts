@@ -13,14 +13,15 @@ import { Store } from '@ngrx/store';
 import { addQuestion} from '../Store/actions/questionActions';
 import { Question, Tag } from '../Interfaces';
 import { Observable } from 'rxjs';
-import { selectAllTags } from '../Store/Selectors/selectors';
+import { selectAddQuestionError, selectAddQuestionSuccess, selectAllTags } from '../Store/Selectors/selectors';
 import { getAllTags } from '../Store/actions/tagsActions';
 import { ActivatedRoute } from '@angular/router';
+import { ErrorComponent } from '../error/error.component';
 
 @Component({
   selector: 'app-ask-question',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule],
+  imports: [CommonModule, ReactiveFormsModule, ErrorComponent],
   templateUrl: './ask-question.component.html',
   styleUrls: ['./ask-question.component.css']
 })
@@ -62,8 +63,17 @@ export class AskQuestionComponent implements OnInit {
         if(this.form.get('tags')){
       tagsValue = this.form.get('tags')!.value.split(",")}
       this.store.dispatch(addQuestion({newQuestion: {...this.form.value,tags:tagsValue} }))
+      this.store.select(selectAddQuestionSuccess).subscribe(res=>{
+        console.log(res?.message);
+        
+        this.msg = res?.message as string
+      })
+      this.store.select(selectAddQuestionError).subscribe(res=>{
+        console.log(res);
+        
+        this.msg = res as string
+      })
       
-      this.msg='posted successfully'
       this.form.reset()
     }
 

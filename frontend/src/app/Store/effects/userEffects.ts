@@ -46,6 +46,7 @@ export class UsersEffects {
             console.log(res);
             localStorage.setItem('token',res.token)
             localStorage.setItem('uid',res.uid)
+            localStorage.setItem('role',res.role)
             if(res.role==='admin'){
               this.router.navigateByUrl('/admin-questions')
             } else{this.router.navigateByUrl('/home')}
@@ -93,6 +94,22 @@ export class UsersEffects {
         this.service.getUser(localStorage.getItem('uid') as string).pipe(
           map((User) => {
             console.log(User);
+            return actions.getUserSuccess({ user:User });
+          }),
+          catchError((error: any) => of(actions.getUserFailure(error)))
+        )
+      )
+    );
+  });
+
+  getUserById$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(actions.getUserById),
+      mergeMap((action) =>
+        this.service.getUser(action.uid).pipe(
+          map((User) => {
+            console.log(User);
+            this.router.navigateByUrl('/home/view')
             return actions.getUserSuccess({ user:User });
           }),
           catchError((error: any) => of(actions.getUserFailure(error)))

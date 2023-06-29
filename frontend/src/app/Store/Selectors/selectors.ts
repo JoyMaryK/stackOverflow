@@ -42,6 +42,19 @@ export const selectQuestion = createSelector(
   (state: QuestionState) => state.question
 );
 
+export const selectQuestionAnswered = createSelector(
+  selectQuestionsState,
+  (state: QuestionState) => state.questions.filter(q=>{q.answer_count>0})
+);
+
+export const selectAddQuestionError = createSelector(
+  selectQuestionsState,
+  (state: QuestionState) => state.error
+);
+export const selectAddQuestionSuccess = createSelector(
+  selectQuestionsState,
+  (state: QuestionState) => state.success
+);
 export const selectUsers = (state:AppState)=> state.users
 export const selectAllUsers = createSelector(
     selectUsers,
@@ -70,5 +83,6 @@ export const selectAllComments = createSelector(
     selectComments,
     (state:CommentsState)=> state.comments
 )
+
 
 

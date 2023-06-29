@@ -37,7 +37,7 @@ props<{message:SuccessMessages}>())
 export const deleteQuestionFailure= createAction('[Questions API] Delete Question Failure', 
 props<{error:string}>())
 
-export const deleteQuestionAdmin= createAction('[Questions] Delete one Question',
+export const deleteQuestionAdmin= createAction('[Questions] Admin Delete one Question',
 props<{qid:string}>())
 
 export const updateQuestion= createAction('[Questions] Update Questions', props<{qid:string,updatedQuestion:Question}>())

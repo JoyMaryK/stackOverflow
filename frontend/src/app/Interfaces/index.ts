@@ -27,6 +27,7 @@ export interface TagName{
 export interface QuestionState {
     questions: Question[];
     loaded: boolean;
+    success: SuccessMessages | null
     error?: string | null;
     question: Question | null
   }

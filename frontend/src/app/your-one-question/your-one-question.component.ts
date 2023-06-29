@@ -91,7 +91,22 @@ export class YourOneQuestionComponent {
      
 
   }
-
+  onSubmit() {
+    console.log(this.formData);
+    let newA: Answer = {
+      ...this.formData,
+      username: '',
+      aid: '',
+      uid:'',
+      isPrefered: false,
+      vote_count: 0,
+    };
+     if(this.formData.answer= ''){
+      this.invalid="invalid"
+      return 
+     }
+    this.store.dispatch(addAnswer({ newAnswer: newA ,qid:this.qid}));
+  }
 
 }
     
