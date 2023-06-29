@@ -6,7 +6,7 @@ import { Store } from '@ngrx/store';
 import { Question } from '../Interfaces';
 import { Observable } from 'rxjs';
 import { deleteQuestion, getAllUserQuestions } from '../Store/actions/questionActions';
-import { selectAllQuestions } from '../Store/Selectors/selectors';
+import { selectUserQuestions } from '../Store/Selectors/selectors';
 import { AppState } from '../app.state';
 
 @Component({
@@ -20,10 +20,12 @@ export class YourQuestionsComponent implements OnInit {
  
   questions$!:Observable<Question[]>
   constructor(private store:Store<AppState>){}
-   uid = '5a89855f-15a1-4007-a4bb-d41d9496931e'
+   uid = localStorage.getItem("uid") as string
   ngOnInit(): void {
       this.store.dispatch(getAllUserQuestions({uid:this.uid}))
-      this.questions$ = this.store.select(selectAllQuestions)
+      this.questions$ = this.store.select(selectUserQuestions)
+      console.log(this.uid);
+      
   }
 
   delete(qid:string){

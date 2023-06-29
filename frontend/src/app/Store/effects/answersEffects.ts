@@ -42,4 +42,22 @@ export class AnswersEffects {
       )
     );
   });
+
+  markPreffered$ = createEffect(() => {
+    let q_id:string
+    return this.actions$.pipe(
+      ofType(actions.markPreferred),
+      mergeMap((action) =>
+        this.service.markPreferred(action.aid).pipe(
+          map((message) => {
+            q_id = action.qid
+            console.log(message);
+            return actions.markPreferredSuccess({  message});
+          }),
+          catchError((error: any) => of(actions.markPreferredFailure(error)))
+        )
+      ),
+      tap(() => this.store.dispatch(actions.getAllAnswers({ qid: q_id })))
+    );
+  });
 }

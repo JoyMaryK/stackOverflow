@@ -18,18 +18,16 @@
               <div *ngIf="form.get('title')?.errors?.['required']" class="text-xs text-red-600">Question title is required</div>
             </div>
             </div><br>
-            <label for="question" >Question Description:</label><br>
-            <textarea rows="5" cols="16" id="question" formControlName="question" class="mb-3 border bg-[#E1E5F2] w-10/12 rounded p-1 " placeholder="Enter your question's details" required></textarea>
-            <div *ngIf="form.get('question')?.invalid && (form.get('question')?.dirty || form.get('question')?.touched)">
-              <div *ngIf="form.get('question')?.errors?.['required']" class="text-xs text-red-600">Question description is required</div>
+            <label for="body" >Question Description:</label><br>
+            <textarea rows="5" cols="16" id="body" formControlName="body" class="mb-3 border bg-[#E1E5F2] w-10/12 rounded p-1 " placeholder="Enter your question's details" required></textarea>
+            <div *ngIf="form.get('body')?.invalid && (form.get('body')?.dirty || form.get('body')?.touched)">
+              <div *ngIf="form.get('body')?.errors?.['required']" class="text-xs text-red-600">Question description is required</div>
             </div>
 
 
            <br>
             <label for="tags">Tags:</label><br>
-            <select  multiple type="text" id="tags" formControlName="tags" class="border bg-[#E1E5F2] w-10/12 rounded p-1 mb-3 "  > 
-              <option *ngFor="let tag of tags$ | async" [value]="tag">{{ tag.tagname }}</option>
-            </select>
+            <input  multiple type="text" id="tags" formControlName="tags" class="border bg-[#E1E5F2] w-10/12 rounded p-1 mb-3 "  > 
             <div *ngIf="form.get('tags')?.invalid && (form.get('tags')?.dirty || form.get('tags')?.touched)">
               <div *ngIf="form.get('tags')?.errors?.['required']" class="text-xs text-red-600">Question tag is required</div>
             </div>

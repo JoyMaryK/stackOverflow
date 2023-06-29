@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { RouterModule } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 import { Observable } from 'rxjs';
 import { User } from 'src/app/Interfaces';
 import { Store } from '@ngrx/store';
@@ -19,7 +19,7 @@ export class AdminUsersComponent implements OnInit{
   users$!:Observable<User[]>
   
   
-constructor(private store:Store<AppState>){}
+constructor(private store:Store<AppState>, private router:Router){}
 
   ngOnInit(): void {
      this.users$= this.store.select(selectAllUsers)
@@ -32,5 +32,9 @@ constructor(private store:Store<AppState>){}
 
   delete(uid:string){
     this.store.dispatch(deleteUser({uid}))
+  }
+  logout(){
+    localStorage.clear()
+    this.router.navigateByUrl('/login')
   }
 }

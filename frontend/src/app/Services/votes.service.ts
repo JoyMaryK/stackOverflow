@@ -7,7 +7,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class VotesService {
-  token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI1YTg5ODU1Zi0xNWExLTQwMDctYTRiYi1kNDFkOTQ5NjkzMWUiLCJ1c2VybmFtZSI6ImpveSIsImVtYWlsIjoiam95bWFyeUBnbWFpbC5jb20iLCJsb2NhdGlvbiI6bnVsbCwiYWJvdXQiOm51bGwsInJvbGUiOiJ1c2VyIiwiaWF0IjoxNjg3OTM4MTgwLCJleHAiOjE2ODgyOTgxODB9.DkN7emjM-xtWnYfADm62_aXwLUCTyOylQS0MI_WCdlc"
+  token = localStorage.getItem('token') as string
   constructor( private http:HttpClient) { }
 
   upvote(aid:string):Observable<SuccessMessages> {      

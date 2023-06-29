@@ -1,25 +1,25 @@
-<div class="container h-screen sm:w-10/12">
+<div class="container h-screen sm:w-10/12" *ngIf="question">
 
     <div class="whole-question sm:w-10/12  ">
         <div class="m-3 title">
-            <p class=" text-xl sm:text-2xl text-[#1F7A8C] ">The question being asked ?</p>
+            <p class=" text-xl sm:text-2xl text-[#1F7A8C] ">{{question.title}}</p>
         </div>
-        <p class="m-3">the loong description of the question being asked will go right here :></p>
-         <p class="font-light text-right text-gray-500">asked on: 2/2/23</p>
+        <p class="m-3">{{question.body}}</p>
+         <p class="font-light text-right text-gray-500">asked on:{{question.date | date}}</p>
     </div>
-     <div class="all-answers sm:w-10/12 ">
-        <h1 class="ml-3 text-xl font-semibold ">2 Answers</h1>
-   <div class="one-answer border m-3" [ngStyle]="{'background-color': selectedOption === 'option1' ? '#BFDBF7' : 'transparent'}">
-    <p *ngIf="selectedOption==='option1'" class="text-center text-xs text-[#1F7A8C]">Accepted Answer</p>
+     <div class="all-answers sm:w-10/12 " *ngIf="answers$ | async as answers">
+        <h1 class="ml-3 text-xl font-semibold ">{{question.answer_count}} Answers</h1>
+   <div class="one-answer border m-3" [ngStyle]="{'background-color':  answer.isPrefered===true ? '#BFDBF7' : 'transparent'}" *ngFor="let answer of answers">
+    <p *ngIf="answer.isPrefered===true " class="text-center text-xs text-[#1F7A8C]">Answer You Accepted</p>
 
     <div class="user-question w-full flex p-3 ">
             <div class="name-letter bg-[#1F7A8C] p-2 h-8 w-8 text-white rounded-full cursor-pointer " routerLink="/home/view"><p class="text-center" routerLink="/home/view">K</p></div>
          
         <div class="question w-full ml-4 flex justify-between items-center">
-                <p> The answer to the question is here </p>
+                <p> {{answer.answer}} </p>
                 <div class="select flex gap-2 items-center ">
                     <p>Select Answer:</p>
-                    <input type="radio" [(ngModel)]="selectedOption" value="option1">
+                    <input type="radio" [(ngModel)]="selectedOption" [value]= 'answer.aid' (change)="markPreferred()">
                 </div>
                 
         </div>
@@ -27,32 +27,31 @@
 
     <div class="upvote-controls flex items-center p-4" >
         <div class="upvote-downvote bg-[#E1E5F2] ml-8 flex items-center gap-2 rounded-2xl w-fit border-8">
-            <div class=" upvote flex items-center ">
+            <div class=" upvote flex items-center " (click)="upvote(answer.aid); $event.stopPropagation()">
                 <svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 384 512" style="fill: #1F7A8C;" ><!--! Font Awesome Free 6.4.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. --><path d="M214.6 41.4c-12.5-12.5-32.8-12.5-45.3 0l-160 160c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L160 141.2V448c0 17.7 14.3 32 32 32s32-14.3 32-32V141.2L329.4 246.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3l-160-160z" /></svg>
                 <p class="ml-2">Upvote</p>
             </div>
                 <p class="align-middle relative top-[-0.2rem]">.</p>
-                <p>255</p>
+                <p>{{answer.vote_count}}</p>
             
    
     
-                <svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 384 512 " class="downvote"><!--! Font Awesome Free 6.4.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. --><path d="M169.4 502.6c12.5 12.5 32.8 12.5 45.3 0l128-128c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L224 402.7 224 32c0-17.7-14.3-32-32-32s-32 14.3-32 32l0 370.7L86.6 329.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3l128 128z"/></svg>
+                <svg (click)="downvote(answer.aid); $event.stopPropagation()" xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 384 512 " class="downvote"><!--! Font Awesome Free 6.4.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. --><path d="M169.4 502.6c12.5 12.5 32.8 12.5 45.3 0l128-128c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L224 402.7 224 32c0-17.7-14.3-32-32-32s-32 14.3-32 32l0 370.7L86.6 329.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3l128 128z"/></svg>
 
         </div>
-        <svg (click) = "showComment1 = !showComment1" xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 640 512" class="downvote ml-4" 
+
+        <svg (click)="getComment(answer.aid); $event.stopPropagation()" xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 640 512" class="downvote ml-4" 
         ><!--! Font Awesome Free 6.4.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. --><path d="M88.2 309.1c9.8-18.3 6.8-40.8-7.5-55.8C59.4 230.9 48 204 48 176c0-63.5 63.8-128 160-128s160 64.5 160 128s-63.8 128-160 128c-13.1 0-25.8-1.3-37.8-3.6c-10.4-2-21.2-.6-30.7 4.2c-4.1 2.1-8.3 4.1-12.6 6c-16 7.2-32.9 13.5-49.9 18c2.8-4.6 5.4-9.1 7.9-13.6c1.1-1.9 2.2-3.9 3.2-5.9zM0 176c0 41.8 17.2 80.1 45.9 110.3c-.9 1.7-1.9 3.5-2.8 5.1c-10.3 18.4-22.3 36.5-36.6 52.1c-6.6 7-8.3 17.2-4.6 25.9C5.8 378.3 14.4 384 24 384c43 0 86.5-13.3 122.7-29.7c4.8-2.2 9.6-4.5 14.2-6.8c15.1 3 30.9 4.5 47.1 4.5c114.9 0 208-78.8 208-176S322.9 0 208 0S0 78.8 0 176zM432 480c16.2 0 31.9-1.6 47.1-4.5c4.6 2.3 9.4 4.6 14.2 6.8C529.5 498.7 573 512 616 512c9.6 0 18.2-5.7 22-14.5c3.8-8.8 2-19-4.6-25.9c-14.2-15.6-26.2-33.7-36.6-52.1c-.9-1.7-1.9-3.4-2.8-5.1C622.8 384.1 640 345.8 640 304c0-94.4-87.9-171.5-198.2-175.8c4.1 15.2 6.2 31.2 6.2 47.8l0 .6c87.2 6.7 144 67.5 144 127.4c0 28-11.4 54.9-32.7 77.2c-14.3 15-17.3 37.6-7.5 55.8c1.1 2 2.2 4 3.2 5.9c2.5 4.5 5.2 9 7.9 13.6c-17-4.5-33.9-10.7-49.9-18c-4.3-1.9-8.5-3.9-12.6-6c-9.5-4.8-20.3-6.2-30.7-4.2c-12.1 2.4-24.7 3.6-37.8 3.6c-61.7 0-110-26.5-136.8-62.3c-16 5.4-32.8 9.4-50 11.8C279 439.8 350 480 432 480z" /></svg>
     </div>
-    <div [hidden]="!showComment1" class="all-comments flex-col w-full justify-end bg-white pl-10 ">
+    <div *ngIf="comments$ | async as comments">
+    <div *ngFor="let c of comments" [hidden]="!showComment || answer.aid !== c.aid" class="all-comments flex-col w-full justify-end bg-white pl-10 ">
         <div class="one-comment flex gap-2 items-center p-3">
             <div class="name-letter bg-[#1F7A8C] p-2 h-8 w-8 text-white rounded-full cursor-pointer " routerLink="/home/view"><p class="text-center" routerLink="/home/view">K</p></div>
-            <p> The comment to the answer is here </p>
+            <p> {{c.comment}}</p>
         </div>
-        <div class="one-comment flex gap-2 items-center p-3">
-            <div class="name-letter bg-[#1F7A8C] p-2 h-8 w-8 text-white rounded-full cursor-pointer " routerLink="/home/view"><p class="text-center" routerLink="/home/view">K</p></div>
-            <p> The comment to the answer is here </p>
-        </div>
+       
         <div >
-            <form (ngSubmit)="onSub(commentForm)" #commentForm="ngForm"  class="add-comment ml-12 flex items-center gap-2 bg-[#E1E5F2] w-fit ">
+            <form (ngSubmit)="onSub(commentForm, answer.aid)" #commentForm="ngForm"  class="add-comment ml-12 flex items-center gap-2 bg-[#E1E5F2] w-fit ">
                 <input type="text" id="comment" name="comment" ngModel class="border bg-[#E1E5F2] rounded p-1 w-10/12  " placeholder="Enter your comment" required>
                 <button type="submit" (click)="commentForm.ngSubmit.emit()">
                 <svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 512 512"><!--! Font Awesome Free 6.4.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. --><path d="M498.1 5.6c10.1 7 15.4 19.1 13.5 31.2l-64 416c-1.5 9.7-7.4 18.2-16 23s-18.9 5.4-28 1.6L284 427.7l-68.5 74.1c-8.9 9.7-22.9 12.9-35.2 8.1S160 493.2 160 480V396.4c0-4 1.5-7.8 4.2-10.7L331.8 202.8c5.8-6.3 5.6-16-.4-22s-15.7-6.4-22-.7L106 360.8 17.7 316.6C7.1 311.3 .3 300.7 0 288.9s5.9-22.8 16.1-28.7l448-256c10.7-6.1 23.9-5.5 34 1.4z"/></svg>
@@ -62,59 +61,8 @@
             <p class="text-xs text-red-600 ml-12" *ngIf="invalid">{{invalid}}</p>
         </div>
             </div>
+        </div>
    </div>
-   <div class="one-answer border m-3" [ngStyle]="{'background-color': selectedOption === 'option2' ? '#BFDBF7' : 'transparent'}">
-    <p *ngIf="selectedOption==='option2'" class="text-center text-xs text-[#1F7A8C]">Accepted Answer</p>
-    <div class="user-question w-full flex p-3 ">
-            <div class="name-letter bg-[#1F7A8C] p-2 h-8 w-8 text-white rounded-full cursor-pointer " routerLink="/home/view"><p class="text-center" routerLink="/home/view">K</p></div>
-         
-        <div class="question ml-4 flex justify-between w-full ">
-                <p> The answer to the question is here </p>
-                <div class="select flex gap-2 items-center ">
-                    <p>Select Answer:</p>
-                    <input type="radio" [(ngModel)]="selectedOption" value="option2">
-                </div>
-        </div>
-    </div>
-
-    <div class="upvote-controls flex items-center p-4" >
-        <div class="upvote-downvote bg-[#E1E5F2] ml-8 flex items-center gap-2 rounded-2xl w-fit border-8">
-            <div class=" upvote flex items-center ">
-                <svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 384 512" style="fill: #1F7A8C;" ><!--! Font Awesome Free 6.4.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. --><path d="M214.6 41.4c-12.5-12.5-32.8-12.5-45.3 0l-160 160c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L160 141.2V448c0 17.7 14.3 32 32 32s32-14.3 32-32V141.2L329.4 246.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3l-160-160z" /></svg>
-                <p class="ml-2">Upvote</p>
-            </div>
-                <p class="align-middle relative top-[-0.2rem]">.</p>
-                <p>255</p>
-            
-   
-    
-                <svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 384 512 " class="downvote"><!--! Font Awesome Free 6.4.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. --><path d="M169.4 502.6c12.5 12.5 32.8 12.5 45.3 0l128-128c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L224 402.7 224 32c0-17.7-14.3-32-32-32s-32 14.3-32 32l0 370.7L86.6 329.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3l128 128z"/></svg>
-
-        </div>
-        <svg (click) = "showComment = !showComment" xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 640 512" class="downvote ml-4" 
-        ><!--! Font Awesome Free 6.4.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. --><path d="M88.2 309.1c9.8-18.3 6.8-40.8-7.5-55.8C59.4 230.9 48 204 48 176c0-63.5 63.8-128 160-128s160 64.5 160 128s-63.8 128-160 128c-13.1 0-25.8-1.3-37.8-3.6c-10.4-2-21.2-.6-30.7 4.2c-4.1 2.1-8.3 4.1-12.6 6c-16 7.2-32.9 13.5-49.9 18c2.8-4.6 5.4-9.1 7.9-13.6c1.1-1.9 2.2-3.9 3.2-5.9zM0 176c0 41.8 17.2 80.1 45.9 110.3c-.9 1.7-1.9 3.5-2.8 5.1c-10.3 18.4-22.3 36.5-36.6 52.1c-6.6 7-8.3 17.2-4.6 25.9C5.8 378.3 14.4 384 24 384c43 0 86.5-13.3 122.7-29.7c4.8-2.2 9.6-4.5 14.2-6.8c15.1 3 30.9 4.5 47.1 4.5c114.9 0 208-78.8 208-176S322.9 0 208 0S0 78.8 0 176zM432 480c16.2 0 31.9-1.6 47.1-4.5c4.6 2.3 9.4 4.6 14.2 6.8C529.5 498.7 573 512 616 512c9.6 0 18.2-5.7 22-14.5c3.8-8.8 2-19-4.6-25.9c-14.2-15.6-26.2-33.7-36.6-52.1c-.9-1.7-1.9-3.4-2.8-5.1C622.8 384.1 640 345.8 640 304c0-94.4-87.9-171.5-198.2-175.8c4.1 15.2 6.2 31.2 6.2 47.8l0 .6c87.2 6.7 144 67.5 144 127.4c0 28-11.4 54.9-32.7 77.2c-14.3 15-17.3 37.6-7.5 55.8c1.1 2 2.2 4 3.2 5.9c2.5 4.5 5.2 9 7.9 13.6c-17-4.5-33.9-10.7-49.9-18c-4.3-1.9-8.5-3.9-12.6-6c-9.5-4.8-20.3-6.2-30.7-4.2c-12.1 2.4-24.7 3.6-37.8 3.6c-61.7 0-110-26.5-136.8-62.3c-16 5.4-32.8 9.4-50 11.8C279 439.8 350 480 432 480z" /></svg>
-    </div>
-    <div [hidden]="!showComment" class="all-comments flex-col w-full justify-end bg-white pl-10 ">
-        <div class="one-comment flex gap-2 items-center p-3">
-            <div class="name-letter bg-[#1F7A8C] p-2 h-8 w-8 text-white rounded-full cursor-pointer " routerLink="/home/view"><p class="text-center" routerLink="/home/view">K</p></div>
-            <p> The comment to the answer is here </p>
-        </div>
-        <div class="one-comment flex gap-2 items-center p-3">
-            <div class="name-letter bg-[#1F7A8C] p-2 h-8 w-8 text-white rounded-full cursor-pointer " routerLink="/home/view"><p class="text-center" routerLink="/home/view">K</p></div>
-            <p> The comment to the answer is here </p>
-        </div>
-        <div >
-            <form (ngSubmit)="onSub(commentForm)" #commentForm="ngForm"  class="add-comment ml-12 flex items-center gap-2 bg-[#E1E5F2] w-fit ">
-                <input type="text" id="comment" name="comment" ngModel class="border bg-[#E1E5F2] rounded p-1 w-10/12  " placeholder="Enter your comment" required>
-                <button type="submit" (click)="commentForm.ngSubmit.emit()">
-                <svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 512 512"><!--! Font Awesome Free 6.4.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. --><path d="M498.1 5.6c10.1 7 15.4 19.1 13.5 31.2l-64 416c-1.5 9.7-7.4 18.2-16 23s-18.9 5.4-28 1.6L284 427.7l-68.5 74.1c-8.9 9.7-22.9 12.9-35.2 8.1S160 493.2 160 480V396.4c0-4 1.5-7.8 4.2-10.7L331.8 202.8c5.8-6.3 5.6-16-.4-22s-15.7-6.4-22-.7L106 360.8 17.7 316.6C7.1 311.3 .3 300.7 0 288.9s5.9-22.8 16.1-28.7l448-256c10.7-6.1 23.9-5.5 34 1.4z"/></svg>
-            </button>
-          
-            </form>
-            <p class="text-xs text-red-600 ml-12" *ngIf="invalid">{{invalid}}</p>
-        </div>
-            </div>
-   </div> 
      </div>   
    
       

@@ -79,7 +79,53 @@ deleteQuestion$ = createEffect(() => {
         catchError((error: any) => of(actions.deleteQuestionFailure(error)))
       )
     ),
+    tap(() => this.store.dispatch(actions.getAllUserQuestions({uid:localStorage.getItem("uid") as string})))
+  );
+});
+
+deleteQuestionAdmin$ = createEffect(() => {
+  return this.actions$.pipe(
+    ofType(actions.deleteQuestionAdmin),
+    mergeMap((action) =>
+      this.service.deleteQuestion(action.qid).pipe(
+        map((message) => {
+          console.log(message);
+          return actions.deleteQuestionSuccess({ message });
+        }),
+        catchError((error: any) => of(actions.deleteQuestionFailure(error)))
+      )
+    ),
     tap(() => this.store.dispatch(actions.getAllQuestions()))
+  );
+});
+
+updateQuestion$ = createEffect(() => {
+  return this.actions$.pipe(
+    ofType(actions.updateQuestion),
+    mergeMap((action) =>
+      this.service.updateQuestion(action.qid,action.updatedQuestion).pipe(
+        map((message) => {
+          console.log(message);
+          return actions.updateQuestionSuccess({ message: message });
+        }),
+        catchError((error: any) => of(actions.updateQuestionFailure(error)))
+      )
+    )
+  );
+});
+
+getQuestionsByTags$ = createEffect(() => {
+  return this.actions$.pipe(
+    ofType(actions.getQuestionsByTags),
+    mergeMap((action) =>
+      this.service.getQuestionsByTag(action.tagname).pipe(
+        map((questions) => {
+          console.log(questions);
+          return actions.getUserQuestionsSuccess({ questions });
+        }),
+        catchError((error: any) => of(actions.getQuestionsByTagsFailure(error)))
+      )
+    )
   );
 });
 

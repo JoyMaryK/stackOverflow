@@ -36,3 +36,18 @@ export const deleteQuestionSuccess= createAction('[Questions API] Delete Questio
 props<{message:SuccessMessages}>())
 export const deleteQuestionFailure= createAction('[Questions API] Delete Question Failure', 
 props<{error:string}>())
+
+export const deleteQuestionAdmin= createAction('[Questions] Delete one Question',
+props<{qid:string}>())
+
+export const updateQuestion= createAction('[Questions] Update Questions', props<{qid:string,updatedQuestion:Question}>())
+export const updateQuestionSuccess= createAction('[Questions API] Update Question Success', 
+props<{message:SuccessMessages}>())
+export const updateQuestionFailure= createAction('[Questions API] Update Question Failure', 
+props<{error:string}>())
+
+export const getQuestionsByTags= createAction('[Questions] Get Questions By Tags',props<{tagname:string}>())
+export const getQuestionsByTagsSuccess= createAction('[Questions API] Questions By Tags Load Success', 
+props<{questions:Question[]}>())
+export const getQuestionsByTagsFailure= createAction('[Questions API] Questions By Tags Load Failure', 
+props<{error:string}>())

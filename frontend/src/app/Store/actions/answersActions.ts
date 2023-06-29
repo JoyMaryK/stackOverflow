@@ -1,5 +1,5 @@
 import { createAction, props } from "@ngrx/store"
-import { Answer} from "src/app/Interfaces"
+import { Answer, SuccessMessages} from "src/app/Interfaces"
 
 
 export const addAnswer= createAction('[Answers] Add New Answers', props<{newAnswer:Answer, qid:string}>())
@@ -12,4 +12,10 @@ export const getAllAnswers= createAction('[Answers] Get All Answers',props<{qid:
 export const getAnswersSuccess= createAction('[Answers API] Answers Load Success', 
 props<{answers:Answer[]}>())
 export const getAnswersFailure= createAction('[Answers API] Answers Load Failure', 
+props<{error:string}>())
+
+export const markPreferred= createAction('[Answers] Mark Preferred',props<{aid:string, qid:string}>())
+export const markPreferredSuccess= createAction('[Answers API] Mark Preferred Success', 
+props<{message:SuccessMessages}>())
+export const markPreferredFailure= createAction('[Answers API] Mark Preferred Failure', 
 props<{error:string}>())

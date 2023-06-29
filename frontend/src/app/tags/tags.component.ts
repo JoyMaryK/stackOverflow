@@ -4,6 +4,7 @@ import { Store } from '@ngrx/store';
 import { AppState } from '../app.state';
 import { selectAllTags } from '../Store/Selectors/selectors';
 import * as actions from '../Store/actions/tagsActions';
+import { getQuestionsByTags } from '../Store/actions/questionActions';
 
 @Component({
   selector: 'app-tags',
@@ -19,4 +20,9 @@ export class TagsComponent {
  ngOnInit(): void {
     this.store.dispatch(actions.getAllTags()) 
  }
+
+ getQ(tagname:string){
+     this.store.dispatch(getQuestionsByTags({tagname}));
+ }
+
 }

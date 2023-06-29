@@ -109,6 +109,7 @@ export interface Answer{
     answer: string
     isPrefered: boolean
     vote_count: number
+    uid:string
 }
 
 export interface Comment{

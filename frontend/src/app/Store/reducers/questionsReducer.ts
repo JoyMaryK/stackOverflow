@@ -89,13 +89,42 @@ export const questionsReducers = createReducer(
         error:null,
     })),
     
-    on(actions.addQuestionSuccess,(state, action)=>({
+    on(actions.deleteQuestionSuccess,(state, action)=>({
         ...state,
         questions: state.questions,
         loaded:false,
         error:null,
     })),
-    on(actions.addQuestionFailure,(state, {error})=>({
+    on(actions.deleteQuestionFailure,(state, {error})=>({
+        ...state,
+        loaded:false,
+        error:error,
+    })),
+    on(actions.updateQuestion,(state, action)=>({
+        ...state,
+        question: action.updatedQuestion,
+        loaded:false,
+        error:null,
+    })),
+
+    on(actions.updateQuestionSuccess,(state, action)=>({
+        ...state,
+        loaded:false,
+        error:null,
+    })),
+    on(actions.updateQuestionFailure,(state, {error})=>({
+        ...state,
+        loaded:false,
+        error:error,
+    })),
+    
+    on(actions.getQuestionsByTagsSuccess,(state, action)=>({
+        ...state,
+        questions:action.questions,
+        loaded:false,
+        error:null,
+    })),
+    on(actions.getQuestionsByTagsFailure,(state, {error})=>({
         ...state,
         loaded:false,
         error:error,

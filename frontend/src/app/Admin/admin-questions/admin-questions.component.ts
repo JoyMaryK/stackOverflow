@@ -1,12 +1,13 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { RouterModule } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { AppState } from 'src/app/app.state';
 import { selectAllQuestions } from 'src/app/Store/Selectors/selectors';
 import * as actions from '../../Store/actions/questionActions';
-import { map } from 'rxjs';
+import { Observable, map } from 'rxjs';
 import { deleteQuestion } from '../../Store/actions/questionActions';
+import { Question } from 'src/app/Interfaces';
 
 
 @Component({
@@ -17,14 +18,20 @@ import { deleteQuestion } from '../../Store/actions/questionActions';
   styleUrls: ['./admin-questions.component.css']
 })
 export class AdminQuestionsComponent {
-  constructor(private store:Store<AppState>){}
+  constructor(private store:Store<AppState>, private router:Router){}
 
-  questions$ = this.store.select(selectAllQuestions)
+  questions$!:Observable<Question[]>
  ngOnInit(): void {
     this.store.dispatch(actions.getAllQuestions()) 
+    this.questions$= this.store.select(selectAllQuestions)
  }
 
  delete(qid:string){
-  this.store.dispatch(deleteQuestion({qid:qid}))
+  this.store.dispatch(actions.deleteQuestionAdmin({qid:qid}))
+}
+
+logout(){
+  localStorage.clear()
+  this.router.navigateByUrl('/login')
 }
 }

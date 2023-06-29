@@ -9,14 +9,15 @@ import { TagContentType } from '@angular/compiler';
   providedIn: 'root'
 })
 export class OverallService {
-    token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI1YTg5ODU1Zi0xNWExLTQwMDctYTRiYi1kNDFkOTQ5NjkzMWUiLCJ1c2VybmFtZSI6ImpveSIsImVtYWlsIjoiam95bWFyeUBnbWFpbC5jb20iLCJsb2NhdGlvbiI6bnVsbCwiYWJvdXQiOm51bGwsInJvbGUiOiJ1c2VyIiwiaWF0IjoxNjg3NzYwNzUxLCJleHAiOjE2ODgxMjA3NTF9.DU2_BO6cM6qqSOQA3PxGJlVcLZtU5pYO6jeHYs7rjrg"
+    token = localStorage.getItem('token') as string
+    
   
   constructor( private http:HttpClient) { }
 
   //user related 
   addUser(user:UserSignup):Observable<SuccessMessages> {
     return this.http.post<SuccessMessages>(
-      `http://localhost:4000/users/login`,
+      `http://localhost:4000/users`,
          user
     );
 }
@@ -82,7 +83,15 @@ addQuestion(newQuestion:Question):Observable<SuccessMessages> {
     }
   );
 }
-
+updateQuestion(qid:string,updatedQuestion:Question):Observable<SuccessMessages> {
+  return this.http.put<SuccessMessages>(
+    `http://localhost:4000/questions/question/${qid}`,
+    updatedQuestion,
+    {
+      headers: new HttpHeaders().set('token', this.token),
+    }
+  );
+}
 deleteQuestion(qid:string):Observable<SuccessMessages> {
   return this.http.delete<SuccessMessages>(
     `http://localhost:4000/questions/delete/${qid}`,
@@ -92,6 +101,10 @@ deleteQuestion(qid:string):Observable<SuccessMessages> {
   );
 }
 
+getQuestionsByTag(tagname:string):Observable<Question[]>{
+    return this.http.get<Question[]>(`http://localhost:4000/questions/tag/${tagname}`,{
+    headers:new HttpHeaders().set('token',this.token)})
+}
 //tags related
 getTags():Observable<Tag[]> {
   return this.http.get<Tag[]>(`http://localhost:4000/tags`,{

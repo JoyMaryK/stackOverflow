@@ -95,8 +95,11 @@ export const getAllQuestions = async (req: Request, res: Response) => {
             if (question.uid === uid_ ){             
         
         await DatabaseHelper.exec('updateQuestion',{qid:id,uid:uid_,title,body})
-         tags.forEach(async (tag: { tid: string; }) => {
-            await DatabaseHelper.exec('updateQuestionTags',{tid:tag.tid, qid:id}) 
+         tags.forEach(async (tag:string) => {
+            await DatabaseHelper.exec('updateQuestionTags',{qid:id}) 
+            let tid= uuid()
+            await DatabaseHelper.exec('addTag',{tid,tagname:tag})
+            await DatabaseHelper.exec('addQuestionTags',{tid:tid, qid:id})
          }); 
         } else{
             return res.status(401).json({ message: "Not your Question" });
@@ -106,4 +109,15 @@ export const getAllQuestions = async (req: Request, res: Response) => {
       catch (error: any) {
         return res.status(500).json({message:error.message});
       }
+  };
+
+  
+  export const getAllQuestionsByTags = async (req: Request<{tid:string}>, res: Response) => {
+    try {
+        const {tid} =req.params 
+        let questions: Questions[] =  (await DatabaseHelper.exec('getQuestionsByTag',{tagname:tid})).recordset;
+        return res.status(200).json(questions);
+    } catch (error: any) {
+      return res.status(500).json({message:error.message});
+    }
   };

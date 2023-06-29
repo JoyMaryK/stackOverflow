@@ -44,6 +44,17 @@ export const answersReducers = createReducer(
         loaded:false,
         error:error,
     })),
+    on(actions.markPreferredSuccess,(state)=>({
+        ...state,
+        answers:state.answers,
+        loaded:false,
+        error:null,
+    })),
+    on(actions.getAnswersFailure,(state, {error})=>({
+        ...state,
+        loaded:false,
+        error:error,
+    })),
     
     )
 

@@ -35,8 +35,12 @@ export class UpdateProfileComponent {
     this.store.select(selectUser).subscribe(
       res=>{
         this.user = res as User
+        this.prePopulate()
       }
     )
+    
+  }
+  prePopulate(){
     this.form = this.fb.group({
       
       username: [this.user?.username, [Validators.required]],

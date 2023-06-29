@@ -2,12 +2,13 @@ import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Observable } from 'rxjs';
-import { Tag } from '../Interfaces';
+import { Question, Tag } from '../Interfaces';
 import { Store } from '@ngrx/store';
 import { getAllTags } from '../Store/actions/tagsActions';
-import { selectAllTags } from '../Store/Selectors/selectors';
+import { selectAllTags, selectQuestion, selectQuestionById } from '../Store/Selectors/selectors';
 import { AppState } from '../app.state';
-import { RouterModule } from '@angular/router';
+import { ActivatedRoute, RouterModule } from '@angular/router';
+import { getOneQuestion, updateQuestion } from '../Store/actions/questionActions';
 
 @Component({
   selector: 'app-update-question',
@@ -21,23 +22,37 @@ export class UpdateQuestionComponent {
   invalid!: string | null
   msg!: string | null
   tags$!:Observable<Tag[]>
-  
+  question!:Question
   constructor(
    private store:Store<AppState>,
    private fb: FormBuilder,
+   private route: ActivatedRoute
   ) {}
 
   ngOnInit(): void {
      this.msg=null
-    this.form = this.fb.group({
-      title: ['How do I center a div?', [Validators.required]],
-      question: ['I need help in centering a div', [Validators.required, Validators.minLength(1)]],
-      tags: [[],Validators.required]
-    });
+     let qid = this.route.snapshot.params['id'] 
+     this.store.dispatch(getOneQuestion({qid:qid}))
+     this.store.select(selectQuestionById('')).subscribe(
+      res=>{
+        console.log(res);
+        
+        this.question = res as Question
+        this.initializeForm()
+      }
+    )
     
-    this.store.dispatch(getAllTags())
-    this.tags$=this.store.select(selectAllTags)
+    
   }
+
+  initializeForm(): void {
+    this.form = this.fb.group({
+      title: [this.question.title, [Validators.required]],
+      body: [this.question.body, [Validators.required, Validators.minLength(1)]],
+      tags: [this.question.tag_names, Validators.required]
+    });
+  }
+
 
   onSubmit(){
     if (this.form.invalid){
@@ -47,7 +62,14 @@ export class UpdateQuestionComponent {
     }else{
       this.invalid=null
       console.log(this.form.value)
-     
+      let qid = this.route.snapshot.params['id'] 
+      let tagsValue:string[]=[""]
+      
+      if(this.form.get('tags')){
+    tagsValue = this.form.get('tags')!.value.split(",")}
+    this.store.dispatch(updateQuestion({qid,updatedQuestion: {...this.form.value,tags:tagsValue} }))
+   
+    
     }
 
   }

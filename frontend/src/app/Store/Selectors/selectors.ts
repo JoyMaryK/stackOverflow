@@ -14,7 +14,19 @@ export const selectAllQuestions = createSelector(
       return state.questions.map((question) => {
         return {
           ...question,
-          tags: question.tag_names ? question.tag_names.split(",") : []
+          tags: question.tag_names ? question.tag_names.split(" #") : []
+        };
+      });
+    }
+  );
+
+  export const selectUserQuestions = createSelector(
+    selectQuestions,
+    (state: QuestionState) => {
+      return state.questions.map((question) => {
+        return {
+          ...question,
+          tags: question.tag_names ? question.tag_names.split("#") : []
         };
       });
     }

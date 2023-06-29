@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { addQuestion, deleteQuestion, getAllQuestions, getAllQuestionsByUser, getOneQuestion, updateQuestion } from "../Controllers/questionsController";
+import { addQuestion, deleteQuestion, getAllQuestions, getAllQuestionsByTags, getAllQuestionsByUser, getOneQuestion, updateQuestion } from "../Controllers/questionsController";
   import { verifyToken } from "../middleware/verifyToken";
 const questionsRoutes = Router()
 
@@ -9,4 +9,5 @@ questionsRoutes.get('/user/:uid',verifyToken,getAllQuestionsByUser)
 questionsRoutes.get('/question/:qid',verifyToken,getOneQuestion)
 questionsRoutes.put('/question/:id',verifyToken,updateQuestion)
 questionsRoutes.delete('/delete/:id',verifyToken,deleteQuestion)
+questionsRoutes.get('/tag/:tid',verifyToken,getAllQuestionsByTags)
 export default questionsRoutes

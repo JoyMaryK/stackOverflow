@@ -41,13 +41,11 @@ export class LoginComponent {
       return
     }
   console.log(this.form.value)
-if(this.form.get('email')?.value ==='admin@gmail.com'){
-  this.router.navigateByUrl('/admin-questions')
-} else{
+
    this.store.dispatch(userLogin({user:this.form.value}))
  
 }
 
  
 }
-}
+

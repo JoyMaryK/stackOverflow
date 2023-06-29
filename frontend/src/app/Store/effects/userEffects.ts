@@ -29,6 +29,7 @@ export class UsersEffects {
         this.service.addUser(action.user).pipe(
           map((res) => {
             console.log(res);
+            this.router.navigateByUrl('/login')
             return actions.addUserSuccess({message:res });
           }),
           catchError((error: any) => of(actions.addUserFailure(error)))
@@ -45,9 +46,9 @@ export class UsersEffects {
             console.log(res);
             localStorage.setItem('token',res.token)
             localStorage.setItem('uid',res.uid)
-            if(res.role==='user'){
-              this.router.navigateByUrl('/home')
-            } else{this.router.navigateByUrl('/admin-questions')}
+            if(res.role==='admin'){
+              this.router.navigateByUrl('/admin-questions')
+            } else{this.router.navigateByUrl('/home')}
             return actions.userLoginSuccess({response:res});
           }),
           catchError((error: any) => of(actions.userLoginFailure(error)))

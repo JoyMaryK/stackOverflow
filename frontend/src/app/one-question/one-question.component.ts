@@ -60,6 +60,7 @@ export class OneQuestionComponent implements OnInit {
       ...this.formData,
       username: '',
       aid: '',
+      uid:'',
       isPrefered: false,
       vote_count: 0,
     };
@@ -87,8 +88,12 @@ export class OneQuestionComponent implements OnInit {
   }
   upvote(aid:string){
     this.store.dispatch(upvote({aid:aid}))
+    this.store.dispatch(answersActions.getAllAnswers({qid:this.qid}));
+    this.answers$ = this.store.select(selectAllAnswers);
   }
   downvote(aid:string){
     this.store.dispatch(downvote({aid}))
+    this.store.dispatch(answersActions.getAllAnswers({qid:this.qid}));
+    this.answers$ = this.store.select(selectAllAnswers);
   }
 }

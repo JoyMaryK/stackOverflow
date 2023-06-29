@@ -57,10 +57,11 @@ export class SignupComponent {
       this.matchValues( this.form.get('password')?.value,this.form.get('cpassword')?.value)
       if (!this.matchingPWD){
         console.log(this.form.value) 
+        
         let { cpassword, ...rest} = this.form.value
                 
         this.store.dispatch(actions.addUser({user:rest}))  
-        this.router.navigateByUrl('/login')
+        console.log(rest)
       } else{
         console.log(this.matchingPWD);
         
