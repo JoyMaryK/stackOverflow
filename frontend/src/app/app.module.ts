@@ -26,11 +26,13 @@ import { VotesEffects } from './Store/effects/votesEffects';
 import { votesReducers } from './Store/reducers/votesReducers';
 import { QuestionByTagComponent } from './question-by-tag/question-by-tag.component';
 import { ErrorComponent } from './error/error.component';
+import { BackgroundHighlightDirective } from './directives/background-highlight.directive';
 
 @NgModule({
   declarations: [
     AppComponent,
     HashPrefixPipe,
+   
    
     
     
@@ -43,6 +45,7 @@ import { ErrorComponent } from './error/error.component';
     LandingPageComponent,
     LoginComponent,
     ErrorComponent,
+    BackgroundHighlightDirective,
     StoreModule.forRoot({questions:questionsReducers, users:userReducers, tags:tagsReducers, answers:answersReducers, comments:commentsReducers, votes:votesReducers}),
     EffectsModule.forRoot([QuestionsEffects, UsersEffects, TagsEffects, AnswersEffects, CommentsEffects, VotesEffects]),
     StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: !isDevMode() })

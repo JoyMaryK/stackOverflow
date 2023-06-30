@@ -30,6 +30,7 @@ export interface QuestionState {
     success: SuccessMessages | null
     error?: string | null;
     question: Question | null
+    searchQuestions: Question[]
   }
 
   export interface UserState {
@@ -37,6 +38,8 @@ export interface QuestionState {
     user:User | null
     loaded: boolean;
     error?: string | null;
+    success: LoginSuccess | null
+    updateSuccess: SuccessMessages | null
   }
 
   export interface TagsState {

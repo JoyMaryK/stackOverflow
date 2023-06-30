@@ -7,7 +7,8 @@ const initialState: UserState={
     loaded: false,
     error:  null,
     user: null,
-        
+    success:null,
+    updateSuccess:null
 }
 export const userReducers = createReducer(
     initialState, 
@@ -54,11 +55,13 @@ export const userReducers = createReducer(
         ...state,
         loaded:false,
         error:null,
+        success:action.response
     })),
     on(actions.userLoginFailure,(state, {error})=>({
         ...state,
         loaded:false,
         error:error,
+        success:null
     })),
     
     
@@ -79,10 +82,13 @@ export const userReducers = createReducer(
         users:state.users,
         loaded:false,
         error:null,
+        updateSuccess:action.message
     })),
     on(actions.updateUserFailure,(state, {error})=>({
         ...state,
         loaded:false,
+        updateSuccess:null,
+        success:null,
         error:error,
     })),
     on(actions.getUserSuccess,(state, action)=>({

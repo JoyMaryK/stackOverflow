@@ -131,4 +131,18 @@ getQuestionsByTags$ = createEffect(() => {
   );
 });
 
+searchQuestion$ = createEffect(() => {
+  return this.actions$.pipe(
+    ofType(actions.searchQuestion),
+    mergeMap((action) =>
+      this.service.searchQuestion(action.searchStr).pipe(
+        map((questions) => {
+          console.log(questions);
+          return actions.searchQuestionSuccess({ questions });
+        }),
+        catchError((error: any) => of(actions.searchQuestionFailure(error)))
+      )
+    )
+  );
+});
 }

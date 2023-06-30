@@ -1,6 +1,7 @@
 
 <div class="container flex flex-col justify-center items-center h-screen">
   <div class="login-container border flex justify-center w-7/12 m-4 rounded-3xl sm:w-5/12"> 
+
     <form class=" sm:text-xl w-full m-2  " [formGroup]="form" (ngSubmit)="logIn()">
       <!-- <form class=" sm:text-xl w-full m-2 flex-col items-center " [formGroup]="form" (ngSubmit)="logIn()"> -->
         <h1 class=" text-2xl sm:text-3xl font-semibold text-[#1F7A8C] sm:mt-12 mb-6 text-center">Login</h1>
@@ -36,3 +37,5 @@
       </form>
 </div>
 </div>
+
+<app-error *ngIf="msg" [message]="msg"></app-error>

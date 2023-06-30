@@ -93,14 +93,15 @@ export class OneQuestionComponent implements OnInit {
     }
   }
   upvote(aid:string){
-    this.store.dispatch(upvote({aid:aid}))
-    this.store.dispatch(answersActions.getAllAnswers({qid:this.qid}));
-    this.answers$ = this.store.select(selectAllAnswers);
+    let q_id = this.qid
+    this.store.dispatch(upvote({aid}))
+    
+    
   }
   downvote(aid:string){
+    let q_id = this.qid as string
     this.store.dispatch(downvote({aid}))
-    this.store.dispatch(answersActions.getAllAnswers({qid:this.qid}));
-    this.answers$ = this.store.select(selectAllAnswers);
+    
   }
 
   viewUser(uid:string){

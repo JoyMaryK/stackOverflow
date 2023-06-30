@@ -10,17 +10,20 @@ import { Router, RouterModule } from '@angular/router';
 import { AppState } from '../app.state';
 import { Store } from '@ngrx/store';
 import { userLogin } from '../Store/actions/userActions';
+import { selectLoginError, selectLoginSuccess } from '../Store/Selectors/selectors';
+import { ErrorComponent } from '../error/error.component';
 
 
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule, RouterModule],
+  imports: [CommonModule, ReactiveFormsModule, RouterModule,ErrorComponent ],
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent {
   form!: FormGroup;
+  msg!:string | null
   showFP=false
   constructor(
     private fb: FormBuilder,
@@ -43,7 +46,14 @@ export class LoginComponent {
   console.log(this.form.value)
 
    this.store.dispatch(userLogin({user:this.form.value}))
- 
+  //  this.store.select(selectLoginSuccess).subscribe(res=>{
+  //   this.msg=res?.message as string
+  //  })
+   this.store.select(selectLoginError).subscribe(res=>{
+    console.log(res);
+    
+    this.msg="Invalid Credentials "
+   })
 }
 
  

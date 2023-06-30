@@ -37,7 +37,16 @@ export const getAnswersToQuestion = async (req: Request<{qid:string}>, res: Resp
     }
   };
 
+  export const getAnserById = async (req: ExtendedRequest, res: Response) => {
+    try {
+        const{id} =req.params 
+        let answer:Answer = (await DatabaseHelper.exec("getAnswerById",{aid:id})).recordset[0]
 
+        if (!answer){return res.status(404).json({message:"answer not found"})}
+      } catch (error: any) {
+        return res.status(500).json({message:error.message});
+      }
+    }
   //mark answer as preferred
 
 export const markAsPreferred = async (req: ExtendedRequest, res: Response) => {

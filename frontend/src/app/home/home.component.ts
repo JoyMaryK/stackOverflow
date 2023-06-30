@@ -8,12 +8,13 @@ import { selectAllQuestions, selectQuestionAnswered, selectQuestionById } from '
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { HashPrefixPipe } from '../Pipes/hash-prefix.pipe';
+import { BackgroundHighlightDirective } from '../directives/background-highlight.directive';
 
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css'],
-  imports: [CommonModule, RouterModule, ],
+  imports: [CommonModule, RouterModule,BackgroundHighlightDirective  ],
   providers: [HashPrefixPipe],
   standalone: true
 })

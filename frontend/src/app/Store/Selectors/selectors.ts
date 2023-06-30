@@ -47,11 +47,25 @@ export const selectQuestionAnswered = createSelector(
   (state: QuestionState) => state.questions.filter(q=>{q.answer_count>0})
 );
 
+export const selectQuestionSearched = createSelector(
+  selectQuestionsState,
+  (state: QuestionState) => state.searchQuestions
+);
+
 export const selectAddQuestionError = createSelector(
   selectQuestionsState,
   (state: QuestionState) => state.error
 );
 export const selectAddQuestionSuccess = createSelector(
+  selectQuestionsState,
+  (state: QuestionState) => state.success
+);
+
+export const selectUpdateQuestionError = createSelector(
+  selectQuestionsState,
+  (state: QuestionState) => state.error
+);
+export const selectUpdateQuestionSuccess = createSelector(
   selectQuestionsState,
   (state: QuestionState) => state.success
 );
@@ -83,6 +97,15 @@ export const selectAllComments = createSelector(
     selectComments,
     (state:CommentsState)=> state.comments
 )
+
+export const selectLoginError = createSelector(
+  selectUsersState,
+  (state: UserState) => state.error
+);
+export const selectLoginSuccess = createSelector(
+  selectUsersState,
+  (state: UserState) => state.success
+);
 
 
 

@@ -51,3 +51,11 @@ export const getQuestionsByTagsSuccess= createAction('[Questions API] Questions 
 props<{questions:Question[]}>())
 export const getQuestionsByTagsFailure= createAction('[Questions API] Questions By Tags Load Failure', 
 props<{error:string}>())
+
+
+export const searchQuestion= createAction('[Questions] Search Question',
+props<{searchStr:string}>())
+export const searchQuestionSuccess= createAction('[Questions API] Search Question Success', 
+props<{questions:Question[]}>())
+export const searchQuestionFailure= createAction('[Questions API] Search Question Failure', 
+props<{error:string}>())

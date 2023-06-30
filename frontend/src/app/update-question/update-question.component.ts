@@ -5,15 +5,16 @@ import { Observable } from 'rxjs';
 import { Question, Tag } from '../Interfaces';
 import { Store } from '@ngrx/store';
 import { getAllTags } from '../Store/actions/tagsActions';
-import { selectAllTags, selectQuestion, selectQuestionById } from '../Store/Selectors/selectors';
+import { selectAllTags, selectQuestion, selectQuestionById, selectUpdateQuestionError, selectUpdateQuestionSuccess } from '../Store/Selectors/selectors';
 import { AppState } from '../app.state';
 import { ActivatedRoute, RouterModule } from '@angular/router';
 import { getOneQuestion, updateQuestion } from '../Store/actions/questionActions';
+import { ErrorComponent } from '../error/error.component';
 
 @Component({
   selector: 'app-update-question',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule, RouterModule],
+  imports: [CommonModule, ReactiveFormsModule, RouterModule, ErrorComponent],
   templateUrl: './update-question.component.html',
   styleUrls: ['./update-question.component.css']
 })
@@ -68,9 +69,16 @@ export class UpdateQuestionComponent {
       if(this.form.get('tags')){
     tagsValue = this.form.get('tags')!.value.split(",")}
     this.store.dispatch(updateQuestion({qid,updatedQuestion: {...this.form.value,tags:tagsValue} }))
-   
+     this.store.select(selectUpdateQuestionSuccess).subscribe(
+      res=>{
+        this.msg = res?.message as string
+      }
+     )
     
+     this.store.select(selectUpdateQuestionError).subscribe(res=>{
+      this.msg = res as string
+     })
     }
-
+    this.form.reset()
   }
 }

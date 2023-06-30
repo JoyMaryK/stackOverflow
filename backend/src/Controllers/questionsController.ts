@@ -24,9 +24,11 @@ export const addQuestion = async (req: ExtendedRequest, res: Response) => {
   }
 };
 
-export const getAllQuestions = async (req: Request, res: Response) => {
+export const getAllQuestions = async (req: Request<{pgNo:string}>, res: Response) => {
     try {
-        let questions: Questions[] =  (await DatabaseHelper.exec('GetQuestionsWithPagination', {PageNumber:1})).recordset;
+      const {pgNo} = req.params
+     let  pageNumber= +pgNo
+        let questions: Questions[] =  (await DatabaseHelper.exec('GetQuestionsWithPagination', {PageNumber:pageNumber})).recordset;
         return res.status(200).json(questions);
     } catch (error: any) {
       return res.status(500).json({message:error.message});
@@ -116,6 +118,16 @@ export const getAllQuestions = async (req: Request, res: Response) => {
     try {
         const {tid} =req.params 
         let questions: Questions[] =  (await DatabaseHelper.exec('getQuestionsByTag',{tagname:tid})).recordset;
+        return res.status(200).json(questions);
+    } catch (error: any) {
+      return res.status(500).json({message:error.message});
+    }
+  };
+
+  export const searchQuestion = async (req: Request<{searchStr:string}>, res: Response) => {
+    try {
+        const {searchStr} =req.params 
+        let questions: Questions[] =  (await DatabaseHelper.exec('searchQuestion',{searchStr})).recordset;
         return res.status(200).json(questions);
     } catch (error: any) {
       return res.status(500).json({message:error.message});

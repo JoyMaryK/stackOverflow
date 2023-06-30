@@ -58,7 +58,7 @@ getUser(uid:string):Observable<User>{
 
   //question related
   getQuestions():Observable<Question[]> {
-    return this.http.get<Question[]>(`http://localhost:4000/questions`,{
+    return this.http.get<Question[]>(`http://localhost:4000/questions/1`,{
       headers:new HttpHeaders().set('token',this.token)})
 }
 
@@ -105,6 +105,11 @@ getQuestionsByTag(tagname:string):Observable<Question[]>{
     return this.http.get<Question[]>(`http://localhost:4000/questions/tag/${tagname}`,{
     headers:new HttpHeaders().set('token',this.token)})
 }
+
+ searchQuestion(searchStr:string){
+  return this.http.get<Question[]>(`http://localhost:4000/questions/search/${searchStr}`,{
+    headers:new HttpHeaders().set('token',this.token)})
+ }
 //tags related
 getTags():Observable<Tag[]> {
   return this.http.get<Tag[]>(`http://localhost:4000/tags`,{

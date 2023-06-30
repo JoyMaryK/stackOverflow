@@ -14,7 +14,8 @@ const initialState: QuestionState={
         user_id:"",
         tag_names:"",
         answer_count:0,
-        date:""}
+        date:""},
+        searchQuestions:[]
 }
 export const questionsReducers = createReducer(
     initialState, 
@@ -112,12 +113,14 @@ export const questionsReducers = createReducer(
     on(actions.updateQuestionSuccess,(state, action)=>({
         ...state,
         loaded:false,
+        success:action.message,
         error:null,
     })),
     on(actions.updateQuestionFailure,(state, {error})=>({
         ...state,
         loaded:false,
         error:error,
+        success:null
     })),
     
     on(actions.getQuestionsByTagsSuccess,(state, action)=>({
@@ -127,6 +130,19 @@ export const questionsReducers = createReducer(
         error:null,
     })),
     on(actions.getQuestionsByTagsFailure,(state, {error})=>({
+        ...state,
+        loaded:false,
+        error:error,
+    })),
+
+    
+    on(actions.searchQuestionSuccess,(state, action)=>({
+        ...state,
+        searchQuestions:action.questions,
+        loaded:false,
+        error:null,
+    })),
+    on(actions.searchQuestionFailure,(state, {error})=>({
         ...state,
         loaded:false,
         error:error,
