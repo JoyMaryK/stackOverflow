@@ -22,7 +22,7 @@ props<{user:UserLogin}>())
 export const userLoginSuccess= createAction('[User API] Login User Success', 
 props<{response:LoginSuccess}>())
 export const userLoginFailure= createAction('[User API] Login User Failure', 
-props<{error:string}>())
+props<{error:SuccessMessages}>())
 
 export const deleteUser= createAction('[Users] Delete one User',
 props<{uid:string}>())
@@ -36,7 +36,7 @@ props<{user:User}>())
 export const updateUserSuccess= createAction('[User API] Update User Success', 
 props<{message:SuccessMessages}>())
 export const updateUserFailure= createAction('[User API] Update User Failure', 
-props<{error:string}>())
+props<{error:SuccessMessages}>())
 
 
 export const getUser= createAction('[Users] Get one User')

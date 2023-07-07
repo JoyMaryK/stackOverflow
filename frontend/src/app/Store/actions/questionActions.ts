@@ -44,7 +44,7 @@ export const updateQuestion= createAction('[Questions] Update Questions', props<
 export const updateQuestionSuccess= createAction('[Questions API] Update Question Success', 
 props<{message:SuccessMessages}>())
 export const updateQuestionFailure= createAction('[Questions API] Update Question Failure', 
-props<{error:string}>())
+props<{error:SuccessMessages}>())
 
 export const getQuestionsByTags= createAction('[Questions] Get Questions By Tags',props<{tagname:string}>())
 export const getQuestionsByTagsSuccess= createAction('[Questions API] Questions By Tags Load Success', 

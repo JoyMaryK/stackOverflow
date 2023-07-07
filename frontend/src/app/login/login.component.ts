@@ -46,13 +46,13 @@ export class LoginComponent {
   console.log(this.form.value)
 
    this.store.dispatch(userLogin({user:this.form.value}))
-  //  this.store.select(selectLoginSuccess).subscribe(res=>{
-  //   this.msg=res?.message as string
-  //  })
+   this.store.select(selectLoginSuccess).subscribe(res=>{
+    this.msg=res?.message as string
+   })
    this.store.select(selectLoginError).subscribe(res=>{
     console.log(res);
     
-    this.msg="Invalid Credentials "
+    this.msg=res as string
    })
 }
 

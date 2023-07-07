@@ -119,7 +119,7 @@ export const questionsReducers = createReducer(
     on(actions.updateQuestionFailure,(state, {error})=>({
         ...state,
         loaded:false,
-        error:error,
+        error:error.message,
         success:null
     })),
     

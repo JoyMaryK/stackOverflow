@@ -31,7 +31,7 @@ import { BackgroundHighlightDirective } from './directives/background-highlight.
 @NgModule({
   declarations: [
     AppComponent,
-    HashPrefixPipe,
+   
    
    
     

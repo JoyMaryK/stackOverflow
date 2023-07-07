@@ -22,6 +22,7 @@ export class YourQuestionsComponent implements OnInit {
   constructor(private store:Store<AppState>){}
    uid = localStorage.getItem("uid") as string
   ngOnInit(): void {
+     console.log(this.uid)
       this.store.dispatch(getAllUserQuestions({uid:this.uid}))
       this.store.select(selectUserQuestions).subscribe(res=>{
         this.questions$ = res

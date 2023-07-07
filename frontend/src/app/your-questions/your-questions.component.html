@@ -12,8 +12,8 @@
         
           </div>
     </div>
-   <div class="all-questions mt-5" *ngIf="questions$ as questions">
-    <div class="one-question border m-3 p-3 sm:flex sm:justify-between sm:items-center " *ngFor="let question of questions" [ngClass]="{'answered':question.answer_count!>0}">
+   <div class="all-questions mt-5" *ngIf="questions$.length; else alternateTemplate">
+    <div class="one-question border m-3 p-3 sm:flex sm:justify-between sm:items-center " *ngFor="let question of questions$" [ngClass]="{'answered':question.answer_count!>0}">
        <div class="question-tags mb-3 flex-col p-3">
             <div class="edit-question flex justify-between items-center gap-2 w-fit">
                 <p class="sm:font-semibold text-xl cursor-pointer" [routerLink]="'your-question/'+question.qid"  >{{question.title}}</p>
@@ -38,8 +38,16 @@
        </div>
       
    </div>
+   <ng-template #alternateTemplate>
+    <div>
+      <p>No Questions Found</p>
+    </div>
+  </ng-template>
+
+</div>
+
    
-   </div>
+   
    
    
    

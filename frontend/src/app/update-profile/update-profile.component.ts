@@ -12,12 +12,13 @@ import { addQuestion } from '../Store/actions/questionActions';
 import { Question, User } from '../Interfaces';
 import { RouterModule } from '@angular/router';
 import { getUser, updateUser } from '../Store/actions/userActions';
-import { selectUser } from '../Store/Selectors/selectors';
+import { selectUser, selectUserUpdateFailure, selectUserUpdateSuccess } from '../Store/Selectors/selectors';
+import { ErrorComponent } from '../error/error.component';
 
 @Component({
   selector: 'app-update-profile',
   standalone: true,
-  imports: [CommonModule,ReactiveFormsModule, RouterModule],
+  imports: [CommonModule,ReactiveFormsModule, RouterModule, ErrorComponent],
   templateUrl: './update-profile.component.html',
   styleUrls: ['./update-profile.component.css']
 })
@@ -25,6 +26,7 @@ export class UpdateProfileComponent {
   form!:FormGroup
   invalid!: string | null
   user!:User  
+  msg!: string | null
   constructor(
     private fb: FormBuilder,
     private store:Store<AppState>
@@ -59,6 +61,19 @@ export class UpdateProfileComponent {
       this.invalid=null
       console.log(this.form.value)
       this.store.dispatch(updateUser({user:this.form.value}))
+      this.store.select(selectUserUpdateSuccess).subscribe(
+        res=>{
+          console.log(res);
+          this.msg = res?.message as string
+          
+        }
+      )
+      this.store.select(selectUserUpdateFailure).subscribe(
+        res=>{
+          console.log(res);
+          this.msg = res as string
+        }
+      )
     }
 
   }

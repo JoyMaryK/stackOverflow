@@ -14,7 +14,7 @@ import { BackgroundHighlightDirective } from '../directives/background-highlight
   selector: 'app-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css'],
-  imports: [CommonModule, RouterModule,BackgroundHighlightDirective  ],
+  imports: [CommonModule, RouterModule,BackgroundHighlightDirective,  HashPrefixPipe,  ],
   providers: [HashPrefixPipe],
   standalone: true
 })
@@ -45,6 +45,7 @@ export class HomeComponent implements OnInit{
     console.log(res);
     
     this.questions$ = res.filter(q=>q.answer_count>0)
+    this.questions$.sort((a, b) => b.answer_count - a.answer_count);
   })
 
  }

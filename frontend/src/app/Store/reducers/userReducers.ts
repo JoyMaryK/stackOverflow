@@ -60,7 +60,7 @@ export const userReducers = createReducer(
     on(actions.userLoginFailure,(state, {error})=>({
         ...state,
         loaded:false,
-        error:error,
+        error:error.message,
         success:null
     })),
     
@@ -89,7 +89,7 @@ export const userReducers = createReducer(
         loaded:false,
         updateSuccess:null,
         success:null,
-        error:error,
+        error:error.message,
     })),
     on(actions.getUserSuccess,(state, action)=>({
         ...state,

@@ -12,13 +12,13 @@
         
           </div>
  </div>
-<div class="all-questions mt-5" *ngIf="questions$  as questions">
-    <div class="one-question border m-3 p-3 sm:flex sm:justify-between sm:items-center " *ngFor="let question of questions" [ngClass]="{'answered':question.answer_count!>0}">
+<div class="all-questions mt-5" *ngIf="questions$.length; else alternateTemplate">
+    <div class="one-question border m-3 p-3 sm:flex sm:justify-between sm:items-center " *ngFor="let question of questions$" [ngClass]="{'answered':question.answer_count!>0}">
     <div class="question-tags mb-3 flex-col p-3">
         <p class="sm:font-semibold text-xl cursor-pointer" [routerLink]="'/home/question/'+question.qid" >{{question.title}}</p>
         <div class="tags-container">
             <div  *ngIf="question.tag_names">
-                <p class="text-[#1F7A8C] text-xs">#{{question.tag_names}}</p>
+                <p class="text-[#1F7A8C] text-xs">{{question.tag_names | hashPrefix}}</p>
              </div>
        
         </div>
@@ -30,6 +30,12 @@
 
     </div>
 </div>
+
+<ng-template #alternateTemplate>
+    <div>
+      <p>No Questions Found</p>
+    </div>
+  </ng-template>
 
 </div>
 

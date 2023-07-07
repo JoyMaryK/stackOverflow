@@ -79,7 +79,7 @@ addQuestion(newQuestion:Question):Observable<SuccessMessages> {
     `http://localhost:4000/questions`,
     newQuestion,
     {
-      headers: new HttpHeaders().set('token', this.token),
+      headers: new HttpHeaders().set('token', localStorage.getItem('token') as string),
     }
   );
 }

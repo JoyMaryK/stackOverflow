@@ -79,6 +79,15 @@ export const selectUser = createSelector(
   (state:UserState)=> state.user
 )
 
+export const selectUserUpdateSuccess = createSelector(
+  selectUsers,
+  (state:UserState)=> state.updateSuccess
+)
+
+export const selectUserUpdateFailure = createSelector(
+  selectUsers,
+  (state:UserState)=> state.error
+)
 
 export const selectTags = (state:AppState)=> state.tags
 export const selectAllTags = createSelector(
